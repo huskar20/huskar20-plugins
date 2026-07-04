@@ -16,6 +16,15 @@
       "author": { "name": "Huseyin Karaarslan" },
       "category": "productivity",
       "keywords": ["job-search", "applications", "recruiting", "automation", "tracker"]
+    },
+    {
+      "name": "x-twitter-scraper",
+      "source": "./plugins/x-twitter-scraper",
+      "description": "Plan Xquik X/Twitter data workflows with REST API routing, MCP setup, SDKs, webhooks, exports, monitoring, and confirmation-gated actions.",
+      "version": "0.1.0",
+      "author": { "name": "Xquik" },
+      "category": "data",
+      "keywords": ["x", "twitter", "xquik", "api", "mcp", "sdk", "webhooks", "monitoring", "exports"]
     }
   ]
 }
