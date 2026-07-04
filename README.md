@@ -6,7 +6,7 @@ and automations you can install into Claude Code or the Claude desktop app.
 ## Install the marketplace
 
 ```
-/plugin marketplace add huskar20/claude-plugins
+/plugin marketplace add huskar20/huskar20-plugins
 ```
 
 Then browse and install:
@@ -50,7 +50,7 @@ the governance model.
 ## Repository layout
 
 ```
-claude-plugins/
+huskar20-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json      # the marketplace manifest (lists every plugin)
 ├── plugins/

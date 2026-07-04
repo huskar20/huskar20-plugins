@@ -49,7 +49,7 @@ Open an issue. For a new-plugin idea, use the "Propose a plugin" issue template.
 Point Claude at your local checkout to try it end to end:
 
 ```
-/plugin marketplace add /absolute/path/to/your/claude-plugins
+/plugin marketplace add /absolute/path/to/your/huskar20-plugins
 /plugin install <plugin-name>
 ```
 

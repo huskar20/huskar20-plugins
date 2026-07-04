@@ -35,7 +35,7 @@ Branch protection rules), targeting `main`:
 **Or via GitHub CLI** once authenticated:
 
 ```bash
-gh api -X PUT repos/huskar20/claude-plugins/branches/main/protection \
+gh api -X PUT repos/huskar20/huskar20-plugins/branches/main/protection \
   --input - <<'JSON'
 {
   "required_status_checks": { "strict": true, "contexts": ["validate"] },
