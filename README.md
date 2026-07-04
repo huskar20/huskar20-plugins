@@ -45,6 +45,10 @@ check locally first:
 python3 scripts/validate.py
 ```
 
+All changes land through pull requests reviewed and approved by the repo owner —
+direct pushes to `main` are blocked. See [MAINTAINERS.md](./MAINTAINERS.md) for
+the governance model.
+
 ## Repository layout
 
 ```
