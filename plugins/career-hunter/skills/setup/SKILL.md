@@ -40,6 +40,25 @@ the real gate, so do it thoroughly and stop if a required piece is absent.
    (or a subfolder) and confirm its path. Record it in config. If they don't have
    it ready, continue setup and leave a TODO in the summary.
 
+   **Then smoke-test that the file is actually attachable.** `file_upload` only
+   accepts files the user has shared with the session — attachments, the
+   session's outputs/uploads folders, or a folder they have connected. A bare
+   local path is rejected. Verify once here rather than letting `apply`
+   rediscover it on every form:
+
+   - Confirm the path resolves and the file is readable.
+   - Confirm it sits somewhere `file_upload` can reach.
+   - Record the result as `resume_uploadable: true | false` in config.
+
+   If it is **false**, say so now and offer the fixes: move the resume into a
+   folder shared with the session, or attach it to the conversation. Explain the
+   consequence plainly — applications on systems with no cached resume will be
+   filled but handed back for the user to attach and submit. Do not leave this
+   to be discovered mid-run.
+
+   If the user does not have a resume at all, point them at the `resume-forge`
+   plugin, which builds one in an ATS-safe format.
+
 If any required connector (Gmail, Drive, Calendar) is not connected, tell the user
 exactly which one and how to enable it in their Claude app's connector settings
 before the dependent skill will work.
@@ -77,12 +96,19 @@ user didn't give; leave the field marked `TODO (ask owner)` instead.
    questions on US applications; recording defaults avoids stopping mid-form) —
    gender, Hispanic/Latino, race/ethnicity, disability status, protected-veteran
    status, "how did you hear about us" convention.
-9. **Submission mode** — the most important safety question:
+9. **Submission mode** — the most important safety question. Present all three
+   and say plainly that they differ enormously in cost:
    - **Fully automatic**: the apply skill submits applications without per-form
-     confirmation (still bounded by every guardrail).
-   - **Review before submit**: the apply skill fills everything, then stops and
-     asks the user to review and click Submit themselves.
-   Record the choice in config as `submission_mode: "auto" | "review"`.
+     confirmation (still bounded by every guardrail). Most expensive.
+   - **Review before submit**: fills everything, then stops and asks the user to
+     review and click Submit themselves. Similar cost to automatic — the filling
+     is what costs, not the submitting.
+   - **Prepare only**: never opens a form. Finds and scores roles, then writes
+     every answer the user will need — screening answers and a tailored cover
+     paragraph — into a queue file to work through by hand. A small fraction of
+     the cost of the other two, and a good default for anyone cost-conscious or
+     applying to roles that deserve a personal touch.
+   Record the choice in config as `submission_mode: "auto" | "review" | "prepare"`.
 10. **Caps & cadence** — daily application cap (default 10), per-company cap
     (default 2 per rolling 7 days), which days of the week apply runs are allowed.
 11. **Notifications & calendar** — (a) push notification when an interview invite
@@ -155,7 +181,8 @@ Write `career-hunter-state/config.json`:
   "spreadsheet_id": "...",
   "spreadsheet_url": "...",
   "resume_path": "...",
-  "submission_mode": "auto | review",
+  "resume_uploadable": true,
+  "submission_mode": "auto | review | prepare",
   "daily_cap": 10,
   "per_company_cap_7d": 2,
   "apply_days": ["Tue", "Wed", "Thu"],
