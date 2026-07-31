@@ -1,9 +1,8 @@
 # Resume Forge
 
 Build, tailor, and review resumes in a single-column, ATS-safe house style.
-Generates a formatted **Google Doc** master plus a **named PDF**, aims a copy at
-a specific job posting, and audits any resume against a pre-submission
-checklist.
+Generates a formatted **Google Doc** master, aims a copy at a specific job
+posting, and audits any resume against a pre-submission checklist.
 
 Works standalone. If the [`career-hunter`](../career-hunter) plugin is also
 installed, Resume Forge reads its `career-profile.md` so you don't re-enter
@@ -13,7 +12,7 @@ your contact details and target titles.
 
 | Skill | Invoke with | What it does |
 |---|---|---|
-| **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text) **or** interviews you from scratch → writes a formatted Google Doc and exports `JobTitle_FirstNameLastName.pdf`. |
+| **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text) **or** interviews you from scratch → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
 | **tailor** | "tailor my resume to this job" | Takes a job description → rewrites the target title line, reorders bullets and skill categories, aligns wording with the posting, and reports keyword coverage as a table. Always produces a new copy; never edits your master. |
 | **review** | "review my resume" | Audits a resume against a 27-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, length problems. |
 
@@ -36,13 +35,27 @@ Full spec: [`skills/build/references/house-style.md`](skills/build/references/ho
 
 ## Requirements
 
-- **Google Drive connector** enabled — creates the Doc.
-- **Claude-in-Chrome extension** connected — recommended. Needed to edit an
-  existing Doc, export the PDF, and fix the font after import. The Drive
+- **Google Drive connector** enabled — required. Creates the Doc.
+- **Claude-in-Chrome extension** connected — optional but recommended. Needed to
+  edit an existing Doc, fix the font after import, and export a PDF. The Drive
   connector can create files but has no update, rename, or delete tool.
 
-Installing the plugin cannot turn connectors on for you. If Drive isn't
-connected, `build` will say so before it starts collecting your details.
+Installing the plugin cannot turn connectors on for you, so every skill checks
+before it collects anything: if Drive isn't connected, it stops and tells you,
+rather than asking twenty interview questions first.
+
+## About PDFs
+
+The plugin deliberately **does not generate a PDF for you.** Google Docs exports
+one in two clicks (File → Download → PDF Document), a stored PDF goes stale the
+moment you edit the Doc, and there is no reliable way to place a PDF *into*
+Drive from here — the only route is a binary round-trip that has been observed
+to silently corrupt characters.
+
+So the Doc is the deliverable. When you want a PDF, the plugin offers to do the
+export through Chrome (it lands in your local Downloads folder, not Drive) or
+gives you the menu path and the file name `JobTitle_FirstNameLastName.pdf`. Send
+the PDF to employers, never the editable Doc.
 
 ## Quick start
 
@@ -87,8 +100,8 @@ You distribute your own resume.
 `career-hunter` needs a resume PDF and asks you to supply one. Resume Forge
 makes it:
 
-1. `build` → Doc + PDF
-2. `review` → fix what it finds
+1. `build` → the Doc
+2. `review` → fix what it finds, then export the PDF
 3. Point `career-hunter`'s setup at the PDF
 4. `tailor` per posting when a role is worth the extra fifteen minutes
 

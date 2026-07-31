@@ -13,7 +13,15 @@ Roughly fifteen minutes of tailoring per application is the highest-return time
 in a job search. It is also where fabrication is most tempting: the posting
 names something the user lacks, and adding it is one keystroke away. Do not.
 
-## Step 1 — Collect both inputs
+## Step 1 — Check prerequisites
+
+Confirm the **Google Drive connector** is present before collecting inputs — the
+tailored copy has to land somewhere. List the available tools rather than
+assuming; stop and say what is missing if it is absent.
+
+Chrome is optional here but needed to edit an existing Doc or export a PDF.
+
+## Step 2 — Collect both inputs
 
 1. **The resume** — Google Doc link, local file, or pasted text.
 2. **The job posting** — pasted text, a URL to fetch, or a file. Get the actual
@@ -22,7 +30,7 @@ names something the user lacks, and adding it is one keystroke away. Do not.
 Capture the **company name** and **exact job title** as written — both go into
 the new file name and the title line.
 
-## Step 2 — Analyze coverage
+## Step 3 — Analyze coverage
 
 Read `references/keyword-coverage.md` and follow it. It defines the four
 requirement buckets, the four coverage states, and the report format.
@@ -32,7 +40,7 @@ describes it differently from the posting. Adopting the posting's exact phrasing
 for experience they genuinely have is legitimate and effective. Inventing
 experience is not.
 
-## Step 3 — Apply the changes that need no new claims
+## Step 4 — Apply the changes that need no new claims
 
 In order of impact:
 
@@ -51,7 +59,7 @@ In order of impact:
 Every one of these is a reordering or a rewording of something already true.
 None adds a claim.
 
-## Step 4 — Surface what needs the user
+## Step 5 — Surface what needs the user
 
 Anything absent from the resume is a **question**, not an edit:
 
@@ -63,7 +71,7 @@ Anything absent from the resume is a **question**, not an edit:
 Same for metrics. If the posting asks for measurable impact and the bullets have
 no numbers, ask for the numbers. Never generate them.
 
-## Step 5 — Produce the tailored copy
+## Step 6 — Produce the tailored copy
 
 Create a **new** document — never overwrite the master:
 
@@ -71,18 +79,21 @@ Create a **new** document — never overwrite the master:
   `../build/references/drive-formatting.md`
 - Name it `JobTitle_FirstNameLastName`, using the posting's job title
 - Keep it in the same folder as the master unless told otherwise
-- Export `JobTitle_FirstNameLastName.pdf`
 - **Read the document back** and verify before reporting
+
+Do not generate a PDF as part of this. Offer it: if Chrome is connected, File →
+Download → PDF Document (it lands in local Downloads, not Drive); otherwise give
+the menu path and the file name `JobTitle_FirstNameLastName.pdf`.
 
 Re-check the page budget. Tailoring adds words more often than it removes them,
 and a resume that silently spills onto a second page is a regression.
 
-## Step 6 — Report
+## Step 7 — Report
 
-- Coverage table from Step 2
+- Coverage table from Step 3
 - Every change made, grouped as title line / summary / skills / bullet order
 - **Open questions** for absent requirements — listed, not buried
-- Links to the new Doc and PDF
+- A link to the new Doc, and the PDF export offer
 - An honest sentence on fit. If the posting is a stretch, say so; that is more
   useful than a confident tailoring job that falls apart in a screen
 
