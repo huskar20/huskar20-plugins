@@ -3,6 +3,40 @@
 Field-tested notes per applicant-tracking system. Read before the first apply of
 each run; consult again when a form misbehaves.
 
+## Resume attachment — read this first
+
+**Attach the resume before filling anything else.** Greenhouse, Lever, Workday,
+and most others parse the file and autofill name, email, phone, and work
+history. Every field the parse fills is a field you don't pay to fill, and the
+autofilled values are usually more consistent than hand-entered ones. Attaching
+last throws that away.
+
+**`file_upload` only accepts files the user has shared with the session** —
+attachments, the session's outputs/uploads folders, or a folder the user has
+connected. A bare local path from `config.json` is rejected. Setup records the
+outcome of a one-time smoke test in `resume_uploadable`:
+
+- `true` — the resume is reachable; upload it directly with `file_upload` after
+  locating the input with `find`.
+- `false` — do not burn calls trying. Use a cached copy if the ATS has one
+  (below), otherwise fill everything else and hand the role to the user.
+
+**Cached resumes are the cheap path** and avoid the problem entirely:
+
+| System | Cache behavior |
+|---|---|
+| Greenhouse | MyGreenhouse attaches the cached resume automatically across companies |
+| LinkedIn Easy Apply | Keeps previously uploaded resumes — select, never re-upload |
+| Ashby | Caches **per company workspace** — first application to a company has nothing |
+| Lever / Workday | No cross-company cache; needs a real upload |
+
+When a role is posted on several systems, prefer the one that already has the
+resume.
+
+**Never submit an application without the resume attached.** If it cannot be
+attached, the role is `flagged` with reason `resume-upload-blocked`, the tab is
+left open, and the user is given the exact URL and the remaining steps.
+
 ## Greenhouse (`job-boards.greenhouse.io`, embedded on company sites)
 
 - **MyGreenhouse autofill is the fast path.** If the user has applied via
@@ -23,13 +57,10 @@ each run; consult again when a form misbehaves.
 
 ## Ashby (`jobs.ashbyhq.com`)
 
-- **Resume upload is the recurring blocker.** Ashby caches resumes per company
-  workspace; a company the user never applied to has nothing cached, and the
-  `file_upload` tool only accepts files the user has shared with the session —
-  local filesystem paths are rejected. When upload is blocked: fill every other
-  field (contact, work auth, EEO), then flag the role for the user to attach the
-  resume and click Submit (include the exact URL). If the resume was shared into
-  the session (attachment/uploads folder), `file_upload` works — try that first.
+- **Resume upload is the recurring blocker** — see "Resume attachment" above.
+  Ashby's cache is per company workspace, so the first application to any
+  company needs a real upload. If `resume_uploadable` is false, go straight to
+  filling the rest and flagging; don't probe the upload widget.
 - Location fields are typeahead comboboxes: type the city, wait for the dropdown,
   click the correct option — don't just type-and-tab.
 - Yes/No toggles and consent widgets (e.g. AI-notetaker consent) are custom
