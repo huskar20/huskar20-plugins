@@ -5,7 +5,7 @@ and automations you can install into Claude Code or the Claude desktop app.
 
 ## Installing
 
-Career Hunter installs like any Claude plugin. There are two environments:
+Every plugin here installs the same way. There are two environments:
 
 ### Claude Code (terminal)
 
@@ -15,14 +15,17 @@ available in non-interactive or embedded runs:
 ```
 /plugin marketplace add huskar20/huskar20-plugins
 /plugin install career-hunter
+/plugin install resume-forge
 ```
+
+Install only the ones you want; they work independently.
 
 Then **restart Claude Code** (start a fresh session) so the plugin's skills
 register. Update later with `/plugin marketplace update huskar20-plugins`.
 
 ### Claude desktop app
 
-Add the marketplace and install `career-hunter` from the app's **plugin /
+Add the marketplace and install the plugin you want from the app's **plugin /
 marketplace settings**, pointing it at the `huskar20/huskar20-plugins` repo. If
 your desktop version accepts the `/plugin` slash commands in chat, the two commands
 above work there too. After installing, **reload the app** so the skills load.
@@ -30,7 +33,8 @@ above work there too. After installing, **reload the app** so the skills load.
 
 ### First thing after installing (both environments)
 
-Open or create a folder to use as your job-search workspace, then say:
+**career-hunter** — open or create a folder to use as your job-search workspace,
+then say:
 
 > **set up career hunter**
 
@@ -38,11 +42,22 @@ This one-time onboarding interviews you and builds your profile + tracker. **Run
 before** "run the job hunt" or "sync my job search" — those skills depend on the
 profile and config it creates, and will send you back to setup if they're missing.
 
+**resume-forge** — no setup step. Say:
+
+> **build my resume**
+
+It checks your Google Drive connector first, then either reads a resume you
+already have or interviews you from scratch.
+
 ## Available plugins
 
 | Plugin | What it does | Version |
 |---|---|---|
 | **career-hunter** | End-to-end job-search automation: guided onboarding builds your profile + a Google Sheets tracker, then auto-apply and Gmail-sync skills hunt roles, submit applications, keep the tracker current, and add confirmed interviews to your calendar. | 0.2.0 |
+| **resume-forge** | Build, tailor, and review resumes in a single-column ATS-safe house style: writes a formatted Google Doc from an interview or an existing resume file, aims a copy at a specific job description, and audits any resume against a pre-submission checklist — without ever inventing achievements. | 0.1.0 |
+
+The two work well together: `resume-forge` produces the resume `career-hunter`
+asks you to supply, and reads its `career-profile.md` when it's there.
 
 Each plugin has its own README under [`plugins/`](./plugins/) with full details
 and requirements.
