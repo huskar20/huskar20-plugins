@@ -15,7 +15,8 @@ and keep going.** You will finish the workshop either way.
 | A laptop | Phone works for Lane C only |
 | Your resume | Any format. No resume yet? That is fine, see Step 5 |
 | A Claude account | Check you can sign in **before** the session |
-| Google Drive | The plugin writes your resume there |
+| Google Drive | **Required.** The plugin writes your resume there |
+| Claude-in-Chrome extension | **Optional.** Saves you two manual fixes, see below |
 
 > **Check first.** Sign in to Claude and confirm you can open it. If you cannot,
 > you are on **Lane C** — the workshop still works, you just do the writing by
@@ -100,6 +101,22 @@ plugin cannot do this for you.
 
 If Drive is off, the plugin will stop and tell you so before asking you any
 questions — that is intended, not a crash.
+
+### Optional: the Chrome extension
+
+There is also a **Claude-in-Chrome** extension. You do **not** need it. Your
+resume gets created either way.
+
+What it saves you, if you have it:
+
+| Without it | With it |
+|---|---|
+| Your resume may arrive in **Arial** instead of Calibri, and you fix it yourself: select all, then pick Calibri from the font menu | The font gets fixed for you |
+| You export the PDF yourself: File → Download → PDF Document | It can do the export for you |
+| Changes to an existing Doc you make by hand | It can edit the Doc directly |
+
+Both of those manual fixes take about ten seconds. Do not spend session time
+installing the extension — if you already have it, good; if not, carry on.
 
 ---
 
@@ -257,6 +274,8 @@ Run these on any resume, yours or a friend's, with or without a computer.
 | Cannot find plugin settings | Menu wording varies by version. Ask — do not hunt |
 | Cannot sign in at all | Go to Lane C. You lose nothing important |
 | It asks for a number you do not have | Correct behaviour. Give it a real estimate or tell it to leave the placeholder |
+| **My resume is in Arial, not Calibri** | Google Docs sometimes drops the font when it imports. Select all (Cmd/Ctrl+A), open the font menu, pick Calibri. Ten seconds |
+| No PDF appeared | Correct — the plugin does not make one. File → Download → PDF Document |
 | The output feels generic | Give it more to work with. It cannot invent detail you did not provide |
 
 ---
