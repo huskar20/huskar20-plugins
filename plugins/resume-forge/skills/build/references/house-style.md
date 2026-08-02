@@ -43,6 +43,13 @@ border beneath them, since the underline belongs to the text itself.
 **The name is written in title case — `First Last`, not `FIRST LAST`.** Section
 headers are the only ALL CAPS text on the page.
 
+**Never use italic anywhere in a resume.** Not for degree lines, not for
+organizations, not for project stacks, not for dates. The document has exactly
+three levels of emphasis: bold, underline on section headers, and regular
+weight. Italic at 11pt prints faintly, adds a fourth signal the reader has to
+decode, and buys nothing that bold and position do not already give. If a line
+needs to stand out, make it bold or move it, never slant it.
+
 ## Bullet glyphs — pick one scheme per document
 
 Which scheme depends on how much is on the page. Choose once and hold it for the
@@ -239,8 +246,8 @@ five weak ones. Cut any project the user cannot walk through line by line.
 
 ## Education & certifications
 
-Institution bold with dates on the right tab stop; degree line in italic
-underneath. Reverse chronological.
+Institution bold with dates on the right tab stop; degree line in regular
+weight underneath. Reverse chronological.
 
 - **GPA:** only if 3.5+ **and** within three years of graduation
 - "Expected May 2026" is normal for students
