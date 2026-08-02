@@ -63,14 +63,19 @@ interrogate one field at a time.
 Required:
 
 1. **Target job title** — the role being applied for, not the one currently
-   held. Drives the title line and the file name.
-2. **Contact block** — name, city and state, phone, email, LinkedIn. GitHub or
+   held. Drives the title line and the file name. Note whether this is an
+   internship.
+2. **Years of professional experience** — ask directly; do not infer it from
+   dates. This decides the section order and the page budget, and the two orders
+   in `house-style.md` produce genuinely different documents. Part-time and
+   campus jobs held while studying do not count toward the total.
+3. **Contact block** — name, city and state, phone, email, LinkedIn. GitHub or
    portfolio for technical roles.
-3. **Experience** — for each role: title, organization, city/state, start and
+4. **Experience** — for each role: title, organization, city/state, start and
    end dates, and what they actually did.
-4. **Education** — institution, degree, dates. GPA only if 3.5+ and within three
+5. **Education** — institution, degree, dates. GPA only if 3.5+ and within three
    years.
-5. **Skills** — grouped into three to five categories. Header is TECHNICAL SKILLS
+6. **Skills** — grouped into three to five categories. Header is TECHNICAL SKILLS
    on a technical resume, CORE COMPETENCIES otherwise.
 
 Optional, ask once: certifications (including in-progress), projects, languages,
@@ -82,7 +87,9 @@ count and belong on the page.
 
 ## Step 5 — Write the content
 
-Follow `house-style.md` for structure. For the writing itself:
+Follow `house-style.md` for structure, including **the section order for the
+experience level established in Step 4** — a student leads with Education, a
+mid-career candidate leads with Professional Experience. For the writing itself:
 
 **Bullets** use strong verb + what they did + the tool or method + the result or
 scale. Convert everything passive: "Responsible for monitoring logs" becomes

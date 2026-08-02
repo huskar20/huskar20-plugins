@@ -108,14 +108,31 @@ on the preceding paragraph. Either matches the shipped template.
 
 ## Section order
 
-**0–3 years / student:** header → target title → summary → skills section →
-**Education** → **Projects** → Professional Experience → Certifications
+Decide this from the years of professional experience, which `build` asks for
+before writing anything. The two orders are genuinely different documents, not a
+preference.
 
-**3+ years:** header → target title → summary → skills section →
+**Student, new grad, or internship seeker (0–3 years):**
+
+header → target title → summary → **Education** → skills section →
+**Projects** → Professional Experience → Certifications
+
+Education comes first, directly under the summary. Someone screening interns
+filters on school, major, year, and graduation date before anything else, so
+that block answers their first question immediately. Projects sit above work
+history because for a student they usually *are* the evidence: coursework
+builds, hackathons, home labs, and volunteer work all count.
+
+**3+ years:**
+
+header → target title → summary → skills section →
 **Professional Experience** → Education → Certifications → optional Projects
 
-Move Education and Projects back down once the user has roughly two years of
-full-time work.
+Once there is a real track record it leads, and Education drops below it.
+
+Move Education and Projects down once the user has roughly two years of
+full-time work. Part-time and campus jobs held while studying do not count
+toward that two years.
 
 ## The header block — four lines
 
