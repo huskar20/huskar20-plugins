@@ -16,7 +16,7 @@ and keep going.** You will finish the workshop either way.
 | Your resume | Any format. No resume yet? That is fine, see Step 5 |
 | A Claude account | Check you can sign in **before** the session |
 | Google Drive | **Required.** The plugin writes your resume there |
-| Claude-in-Chrome extension | **Optional.** Saves you two manual fixes, see below |
+| Claude in Chrome extension | **Required.** Needs Google Chrome and a paid Claude plan — see below |
 
 > **Check first.** Sign in to Claude and confirm you can open it. If you cannot,
 > you are on **Lane C** — the workshop still works, you just do the writing by
@@ -115,21 +115,33 @@ plugin cannot do this for you.
 If Drive is off, the plugin will stop and tell you so before asking you any
 questions — that is intended, not a crash.
 
-### Optional: the Chrome extension
+### Install the Claude in Chrome extension
 
-There is also a **Claude-in-Chrome** extension. You do **not** need it. Your
-resume gets created either way.
+The plugin uses this to fix the font on your finished resume and to export your
+PDF. Install it before the session if you can.
 
-What it saves you, if you have it:
+1. Open **Google Chrome**
+2. Go to the **Chrome Web Store** and search for **Claude in Chrome**
+3. Click **Add to Chrome**
+4. Sign in with your Claude account
+5. Pin it: click the puzzle-piece icon, then the thumbtack next to **Claude**
+6. Grant the permissions it asks for
 
-| Without it | With it |
+**Check these before you try:**
+
+| Requirement | Why it matters |
 |---|---|
-| Your resume may arrive in **Arial** instead of Calibri, and you fix it yourself: select all, then pick Calibri from the font menu | The font gets fixed for you |
-| You export the PDF yourself: File → Download → PDF Document | It can do the export for you |
-| Changes to an existing Doc you make by hand | It can edit the Doc directly |
+| **Google Chrome** | Not Edge, Brave, Safari, Firefox, or any other browser |
+| **A paid Claude plan** | Pro, Max, Team, or Enterprise. A free account cannot use it |
+| **A computer** | Not available on mobile |
 
-Both of those manual fixes take about ten seconds. Do not spend session time
-installing the extension — if you already have it, good; if not, carry on.
+**If any of those do not apply to you, go to [Lane B or Lane C](#lane-c--no-laptop-no-account-no-problem).**
+You are not stuck — the writing is the part that matters, and it works on paper.
+
+Without the extension, two things fall to you by hand, about ten seconds each:
+
+- Your resume may arrive in **Arial** — select all, then pick Calibri
+- Export the PDF yourself: File → Download → PDF Document
 
 ---
 
