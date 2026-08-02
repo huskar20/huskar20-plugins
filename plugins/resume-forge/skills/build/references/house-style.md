@@ -3,6 +3,11 @@
 Every measurement the `build` skill produces. Follow it exactly; when the user
 asks for something different, follow the user and note the deviation.
 
+The blank template shipped at `../../../assets/Resume_Template_Clean.docx` is the
+reference rendering of this spec. If a user asks to see the format, or wants to
+start from a document instead of an interview, point them at it. Keep the two in
+agreement: a change here means regenerating that file.
+
 ## Page setup
 
 | Setting | Value | Why |
@@ -10,7 +15,7 @@ asks for something different, follow the user and note the deviation.
 | Paper | US Letter, 8.5" × 11" | Set explicitly — defaults vary by machine |
 | Margins | 0.75" all four sides | Leaves a 7.0" text column |
 | Font | Calibri, black only | One family for the whole document |
-| Body size | 10.5pt | 10pt to save a page. **Never below 10pt** |
+| Body size | 11pt | 10.5pt to save a page. **Never below 10pt** |
 | Line spacing | 1.0 (single) | Everywhere, no exceptions |
 | Length | 1 page for 0–5 years, 2 pages maximum beyond | |
 | Layout | Single column | No tables, text boxes, columns, or horizontal rules |
@@ -23,17 +28,17 @@ Empty paragraphs do **not** break parsing; do not claim otherwise.
 
 | Element | Size | Style | Alignment |
 |---|---|---|---|
-| Name | 22pt | Bold | Centered |
-| City, State | 10.5pt | Regular | Centered |
-| Contact line | 10.5pt | Regular | Centered |
-| Target job title | 12pt | Bold | Centered |
-| Summary | 10.5pt | Regular | Left |
-| Section headers | 11pt | Bold, ALL CAPS | Left |
-| Body and bullets | 10.5pt | Regular | Left |
+| Name | 20pt | Bold | Centered |
+| City, State | 11pt | Regular | Centered |
+| Contact line | 11pt | Regular | Centered |
+| Target job title | 16pt | Bold | Centered |
+| Summary | 11pt | Regular | Left |
+| Section headers | 11pt | Bold, ALL CAPS, underlined | Left |
+| Body and bullets | 11pt | Regular | Left |
 
-The name is the only element above 12pt. Section headers get no underline, no
-colour, and no rule line beneath them — caps plus bold is enough separation, and
-a rule just eats vertical space.
+The name and the target title line are the only elements above 11pt. Section
+headers are underlined; they carry no colour, and never a drawn rule line or
+border beneath them — the underline belongs to the text itself.
 
 ## Spacing
 

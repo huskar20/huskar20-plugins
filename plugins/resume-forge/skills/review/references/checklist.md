@@ -9,7 +9,7 @@ fail with the offending text quoted, not a generic warning.
 |---|---|---|
 | 1 | No tables, text boxes, columns, or embedded images | These break ATS parsing; content inside can vanish |
 | 2 | Fits the page budget | 1 page for 0–5 years, 2 max beyond. No orphan line alone on the last page |
-| 3 | Nothing below 10pt | Body 10–10.5pt |
+| 3 | Nothing below 10pt | Body 11pt (10.5pt only to save a page) |
 | 4 | One font family throughout | Calibri in this house style; any second family is a defect |
 | 5 | Contact block complete | Name, city/state, phone, email, LinkedIn. GitHub for technical roles |
 | 6 | No prohibited personal data | Street address, photo, age, DOB, marital status, nationality |
