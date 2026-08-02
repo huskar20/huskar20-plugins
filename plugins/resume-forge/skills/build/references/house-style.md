@@ -153,6 +153,10 @@ team player, dynamic.
 | Technical (engineering, IT, security, data) | **TECHNICAL SKILLS** |
 | Everything else (education, program, operations, clinical) | **CORE COMPETENCIES** |
 
+The shipped blank template uses `TECHNICAL SKILLS`, since most people reaching
+for it are in a technical field. Swap it for `CORE COMPETENCIES` when the resume
+is not.
+
 `TECHNICAL SKILLS` is the more standard header for ATS keyword extraction and is
 what a technical reader expects. `CORE COMPETENCIES` carries the same content for
 fields where "technical" would read oddly. Pick one and use it once.
