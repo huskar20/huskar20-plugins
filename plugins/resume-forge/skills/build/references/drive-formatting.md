@@ -63,7 +63,7 @@ p{margin:0}
 .k0{font-family:Calibri,sans-serif;font-size:20pt;text-align:center;
     margin-top:0pt;margin-bottom:2pt;font-weight:bold}
 </style>
-<p class="k0">FIRST LAST</p>
+<p class="k0">First Last</p>
 ```
 
 - Express gaps as `margin-bottom` in points — that becomes paragraph spacing.
