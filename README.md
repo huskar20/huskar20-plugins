@@ -25,11 +25,15 @@ register. Update later with `/plugin marketplace update huskar20-plugins`.
 
 ### Claude desktop app
 
-Add the marketplace and install the plugin you want from the app's **plugin /
-marketplace settings**, pointing it at the `huskar20/huskar20-plugins` repo. If
-your desktop version accepts the `/plugin` slash commands in chat, the two commands
-above work there too. After installing, **reload the app** so the skills load.
-(The exact menu location varies by app version.)
+1. Click **Customize** in the left sidebar
+2. Open the **Plugins** tab
+3. Under **Personal plugins**, click **+** → **Add marketplace** → **Add from a repository**
+4. Paste `https://github.com/huskar20/huskar20-plugins`
+5. Click **Install** on **Career hunter** or **Resume forge**
+
+The cards use display names with a space, so look for **Resume forge** rather
+than `resume-forge`. If your version accepts the `/plugin` slash commands in
+chat, the two commands above work there too.
 
 ### First thing after installing (both environments)
 
