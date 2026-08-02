@@ -14,7 +14,7 @@ your contact details and target titles.
 |---|---|---|
 | **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text) **or** interviews you from scratch → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
 | **tailor** | "tailor my resume to this job" | Takes a job description → rewrites the target title line, reorders bullets and skill categories, aligns wording with the posting, and reports keyword coverage as a table. Always produces a new copy; never edits your master. |
-| **review** | "review my resume" | Audits a resume against a 27-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, length problems. |
+| **review** | "review my resume" | Audits a resume against a 35-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, length problems. |
 
 ## The format it produces
 
@@ -22,16 +22,59 @@ Calibri throughout, US Letter, 0.75" margins, single column. No tables, text
 boxes, columns, or horizontal rules — those are what actually break applicant
 tracking parsers.
 
-- Name 22pt bold, centered — the only element above 12pt
+- Name 20pt bold, centered, in title case
 - City/State, then a one-line contact block
-- **Target job title line**, 12pt bold — the job you want, not the one you have
+- **Target job title line**, 16pt bold — the job you want, not the one you have
 - Summary with **no section header**, flowing straight out of the title line
-- Core Competencies grouped by category, never a flat wall of tool names
-- Experience with dates flush right, `•` bullets, verb + tool + result
+- Underlined ALL-CAPS section headers at 11pt; 11pt body throughout
+- Skills grouped by category, never a flat wall of tool names (TECHNICAL SKILLS on
+  technical resumes, CORE COMPETENCIES elsewhere)
+- Experience with dates flush right, verb + tool + result, one line per bullet
 - Projects: name only, tools inside the bullets where they carry evidence
+- Bullet glyphs scale with length: short resumes use plain titles with `•` details;
+  longer ones use `•` on titles and `-` on details
 - One page under five years of experience
 
 Full spec: [`skills/build/references/house-style.md`](skills/build/references/house-style.md).
+
+## Download the blank template
+
+A ready-to-use Word copy of the format, with placeholders instead of content:
+
+**[⬇ Resume_Template_Clean.docx](assets/Resume_Template_Clean.docx)** — 8 KB
+
+Direct link, safe to share with anyone:
+
+```
+https://github.com/huskar20/huskar20-plugins/raw/main/plugins/resume-forge/assets/Resume_Template_Clean.docx
+```
+
+Open it in Word, Google Docs (File → Open → Upload), or Pages, then type over
+the placeholders. It contains no personal data — every field is a placeholder
+like `First Last` and `first.last@email.com`.
+
+This is the same format the `build` skill produces, so the two agree: use the
+file if you'd rather start from a document, or the skill if you'd rather be
+interviewed.
+
+## Download the worked example
+
+A completed one-page resume in the same format, so you can see what the writing
+should look like, not just the structure:
+
+**[⬇ SoftwareEngineer_AlexMoreno.docx](assets/SoftwareEngineer_AlexMoreno.docx)** — 9 KB
+
+```
+https://github.com/huskar20/huskar20-plugins/raw/main/plugins/resume-forge/assets/SoftwareEngineer_AlexMoreno.docx
+```
+
+**Alex Moreno is not a real person.** The name, schools, employers, projects, and
+every number in it are invented for illustration. Study how the bullets are
+written; do not copy them into your own resume.
+
+It shows the short-resume glyph scheme (plain titles, `•` details), one-line
+bullets, `TECHNICAL SKILLS` as the header for a technical field, and the file
+naming convention `JobTitle_FirstNameLastName`.
 
 ## Requirements
 

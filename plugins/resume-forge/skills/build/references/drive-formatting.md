@@ -60,10 +60,10 @@ it well, and it keeps the payload small.
 <meta charset="utf-8"><style>
 @page{size:8.5in 11in;margin:0.75in}
 p{margin:0}
-.k0{font-family:Calibri,sans-serif;font-size:22pt;text-align:center;
+.k0{font-family:Calibri,sans-serif;font-size:20pt;text-align:center;
     margin-top:0pt;margin-bottom:2pt;font-weight:bold}
 </style>
-<p class="k0">FIRST LAST</p>
+<p class="k0">First Last</p>
 ```
 
 - Express gaps as `margin-bottom` in points — that becomes paragraph spacing.

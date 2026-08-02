@@ -23,13 +23,18 @@ posting-specific comparison, and keep this review about the document itself.
 
 ## Step 2 — Run the checklist
 
-Read `references/checklist.md` and work through all 27 items. Check every one;
+Read `references/checklist.md` and work through all 35 items. Check every one;
 do not sample. Each is written to be objectively testable against the text.
 
 Some checks need a whole-document view rather than a line-by-line pass:
 
 - **Metric count** — count bullets containing a figure across the entire resume.
   Fewer than four is a strong warning; zero is the most common failure there is.
+  The opposite also matters: if nearly *every* bullet ends in a figure, flag it —
+  that reads fabricated even when each number is true.
+- **Machine-written tells** — these need the whole document too: dash density
+  inside sentences, bullets all landing at the same length, repeated opening
+  verbs across a role.
 - **Tense consistency** — evaluate within each role, not globally. Present tense
   is correct for a current role and wrong for a past one.
 - **Page budget** — estimate from content volume if the source is text rather
