@@ -42,20 +42,26 @@ border beneath them — the underline belongs to the text itself.
 
 ## Spacing
 
-Gaps come from a blank line whose font size is set deliberately:
+Gaps come from a blank line whose font size is set deliberately. Every paragraph
+keeps `space before = 0` and `space after = 0`; the blank line is the gap.
 
-- **1pt** between jobs
-- **5–7pt** between main section titles
-- **3pt** before and after the target role line
+| Gap | Where |
+|---|---|
+| **1pt** | between jobs, and between education entries |
+| **7pt** | before every section header |
+| **3pt** | before and after the target role line |
+
+To set one: press Enter once, click the empty line, and type the size into the
+font-size box. The size lives on the paragraph mark, so an empty line really is
+1pt or 7pt tall.
 
 The equivalent paragraph-property route is Format → Line & paragraph spacing →
 **Custom spacing**, where exact points can be typed. Avoid the one-click "Add
 space after paragraph" — it applies a fixed chunk far too big for a resume.
 
-When generating a document programmatically, use paragraph spacing (space
-before/after) rather than blank paragraphs: 2pt after each bullet, 6pt after a
-role's last bullet, 6pt before each section header, 8pt after the contact line.
-That produces the same visual result and survives editing.
+When generating the document programmatically via HTML, the same result comes
+from an empty paragraph carrying the target `font-size`, or from `margin-bottom`
+on the preceding paragraph. Either matches the shipped template.
 
 ## Section order
 
