@@ -78,6 +78,23 @@ It shows the short-resume glyph scheme (plain titles, `•` details), one-line
 bullets, `TECHNICAL SKILLS` as the header for a technical field, and the file
 naming convention `JobTitle_FirstNameLastName`.
 
+## Running a workshop with this
+
+[`assets/WORKSHOP.md`](assets/WORKSHOP.md) is a student handout written for
+people who have never used Claude, a plugin, or a terminal. It covers what a
+plugin actually is, both install paths, enabling the Drive connector, the three
+skills in order, the ten checks, a troubleshooting table, and a paper-only
+fallback lane for anyone who cannot get signed in.
+
+Share it as a single link:
+
+```
+https://github.com/huskar20/huskar20-plugins/blob/main/plugins/resume-forge/assets/WORKSHOP.md
+```
+
+It renders in any browser, works on a phone, and prints to PDF if you want paper
+copies.
+
 ## Requirements
 
 - **Google Drive connector** enabled — required. Creates the Doc.
