@@ -81,15 +81,28 @@ Type these two lines into a Claude session, one at a time:
 Then **quit and reopen** Claude Code so the skills load. This step is easy to
 skip and nothing will work if you do.
 
-### If you use the Claude desktop app
+### If you use the Claude app (desktop or web)
 
-1. Open **settings**, find the **plugins / marketplace** section
-2. Add this marketplace: `huskar20/huskar20-plugins`
-3. Install **resume-forge** from the list
-4. **Reload the app**
+1. Click **Customize** in the left sidebar
+2. Open the **Plugins** tab
+3. Under **Personal plugins**, click the **+** button
+4. Choose **Add marketplace**
+5. Choose **Add from a repository**
+6. Paste this and confirm:
 
-The exact menu wording moves around between versions. If you cannot find it,
-raise your hand rather than hunting for ten minutes.
+```
+https://github.com/huskar20/huskar20-plugins
+```
+
+7. Two plugin cards appear: **Career hunter** and **Resume forge**
+8. Click **Install** on **Resume forge**
+
+> The cards show display names with a space — you are looking for
+> **Resume forge**, not `resume-forge`. The hyphenated name is only used for the
+> Claude Code commands above.
+
+You should not need to restart the app; the skills become available in chat once
+installed. If they do not respond, quit Claude and reopen it.
 
 ### Turn on Google Drive
 
