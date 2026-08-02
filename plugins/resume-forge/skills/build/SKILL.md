@@ -103,6 +103,17 @@ title. This document is used to get hired; a number the user cannot defend in an
 interview is worse than no number. The same applies to tools — never list
 something the user did not say they know.
 
+**Keep it one line.** A detail line should fit one line at 11pt across the 7.0"
+column, roughly 100 characters. Take a second line only when it carries a number
+or tool that would otherwise be cut.
+
+**Do not let it read as machine-written.** No dashes inside a sentence — that is
+the loudest generated-prose tell; use a comma, a full stop, or parentheses.
+Hyphens are fine at the start of a detail line and in compounds. Do not force a
+metric into every bullet, vary bullet length and opening verbs deliberately, and
+avoid leveraged / spearheaded / utilized / seamless / robust. `house-style.md`
+has the full list.
+
 **The summary** is written last, after every other section exists.
 
 ## Step 6 — Create the Google Doc
