@@ -44,7 +44,7 @@ The tells are structural, not lexical. Report these with the offending text quot
 | 23 | Bullets per role | 4–6 for the most recent, 2–3 for older, 1–2 beyond ten years |
 | 24 | Section headers standard | "Professional Experience", not "Where I've Worked" |
 | 25 | GPA rule | Present only if 3.5+ and within three years of graduation |
-| 26 | Section order | Students lead with Education and Projects; 3+ years leads with Experience |
+| 26 | Section order | 0–3 years: Education directly under the summary, then skills, then Projects, then Experience. 3+ years: skills, then Experience, then Education |
 | 27 | Project lines | Name only, no stack list and no printed URL |
 | 28 | Bullet glyph scheme consistent | One scheme per document. Short: plain titles + • details. Long: • titles + - details. Never mixed |
 

@@ -34,6 +34,8 @@ tracking parsers.
 - Bullet glyphs scale with length: short resumes use plain titles with `•` details;
   longer ones use `•` on titles and `-` on details
 - One page under five years of experience
+- Section order follows experience level: students lead with Education, then
+  skills and Projects; 3+ years leads with Professional Experience
 
 Full spec: [`skills/build/references/house-style.md`](skills/build/references/house-style.md).
 
