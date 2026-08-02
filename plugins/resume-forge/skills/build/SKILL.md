@@ -70,7 +70,8 @@ Required:
    end dates, and what they actually did.
 4. **Education** — institution, degree, dates. GPA only if 3.5+ and within three
    years.
-5. **Skills** — grouped into three to five categories.
+5. **Skills** — grouped into three to five categories. Header is TECHNICAL SKILLS
+   on a technical resume, CORE COMPETENCIES otherwise.
 
 Optional, ask once: certifications (including in-progress), projects, languages,
 publications, volunteering.

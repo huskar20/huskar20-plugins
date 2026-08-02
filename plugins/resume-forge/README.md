@@ -27,7 +27,8 @@ tracking parsers.
 - **Target job title line**, 16pt bold — the job you want, not the one you have
 - Summary with **no section header**, flowing straight out of the title line
 - Underlined ALL-CAPS section headers at 11pt; 11pt body throughout
-- Core Competencies grouped by category, never a flat wall of tool names
+- Skills grouped by category, never a flat wall of tool names (TECHNICAL SKILLS on
+  technical resumes, CORE COMPETENCIES elsewhere)
 - Experience with dates flush right, verb + tool + result, one line per bullet
 - Projects: name only, tools inside the bullets where they carry evidence
 - Bullet glyphs scale with length: short resumes use plain titles with `•` details;
@@ -55,6 +56,25 @@ like `First Last` and `first.last@email.com`.
 This is the same format the `build` skill produces, so the two agree: use the
 file if you'd rather start from a document, or the skill if you'd rather be
 interviewed.
+
+## Download the worked example
+
+A completed one-page resume in the same format, so you can see what the writing
+should look like, not just the structure:
+
+**[⬇ SoftwareEngineer_AlexMoreno.docx](assets/SoftwareEngineer_AlexMoreno.docx)** — 9 KB
+
+```
+https://github.com/huskar20/huskar20-plugins/raw/main/plugins/resume-forge/assets/SoftwareEngineer_AlexMoreno.docx
+```
+
+**Alex Moreno is not a real person.** The name, schools, employers, projects, and
+every number in it are invented for illustration. Study how the bullets are
+written; do not copy them into your own resume.
+
+It shows the short-resume glyph scheme (plain titles, `•` details), one-line
+bullets, `TECHNICAL SKILLS` as the header for a technical field, and the file
+naming convention `JobTitle_FirstNameLastName`.
 
 ## Requirements
 

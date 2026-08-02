@@ -101,10 +101,10 @@ on the preceding paragraph. Either matches the shipped template.
 
 ## Section order
 
-**0–3 years / student:** header → target title → summary → Core Competencies →
+**0–3 years / student:** header → target title → summary → skills section →
 **Education** → **Projects** → Professional Experience → Certifications
 
-**3+ years:** header → target title → summary → Core Competencies →
+**3+ years:** header → target title → summary → skills section →
 **Professional Experience** → Education → Certifications → optional Projects
 
 Move Education and Projects back down once the user has roughly two years of
@@ -139,7 +139,16 @@ Two to four sentences, third person, never "I." Write it last.
 Banned words: passionate, motivated, hardworking, guru, ninja, self-starter,
 team player, dynamic.
 
-## Core Competencies
+## Skills section — the header depends on the field
+
+| Resume type | Header |
+|---|---|
+| Technical (engineering, IT, security, data) | **TECHNICAL SKILLS** |
+| Everything else (education, program, operations, clinical) | **CORE COMPETENCIES** |
+
+`TECHNICAL SKILLS` is the more standard header for ATS keyword extraction and is
+what a technical reader expects. `CORE COMPETENCIES` carries the same content for
+fields where "technical" would read oddly. Pick one and use it once.
 
 Bold category label, colon, then items. Three to five categories, most relevant
 first. Never a flat wall of comma-separated tools.
@@ -149,7 +158,7 @@ Languages: Python, Java, JavaScript, SQL, Bash
 Cloud & DevOps: AWS (EC2, S3, Lambda, RDS), Docker, GitHub Actions, Linux
 ```
 
-Category labels adapt to the field — Program Leadership / Operations & Data /
+Category labels adapt to the field: Program Leadership / Operations & Data /
 Community Engagement work identically for non-technical roles. Only list what
 the user could discuss for two minutes in an interview.
 

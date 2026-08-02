@@ -37,7 +37,7 @@ The tells are structural, not lexical. Report these with the offending text quot
 |---|---|---|
 | 17 | Target title line present | Bold, centered, under the contact line, naming the role being applied for |
 | 18 | Summary quality | 2–4 sentences, no "I", no banned words: passionate, motivated, hardworking, guru, ninja, self-starter, team player, dynamic |
-| 19 | Skills grouped | Bold category labels, not one flat comma-separated wall |
+| 19 | Skills grouped, header fits the field | Bold category labels, not a flat wall. TECHNICAL SKILLS on technical resumes, CORE COMPETENCIES otherwise |
 | 20 | Bullets containing a number | At least four across the whole document. Zero is the single most common failure |
 | 21 | Bullet length | One line is the target; a second only to save a number or tool. Three lines is a paragraph |
 | 22 | Bullets per role | 4–6 for the most recent, 2–3 for older, 1–2 beyond ten years |
