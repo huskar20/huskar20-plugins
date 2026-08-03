@@ -54,9 +54,8 @@ That is intended, not a crash.
 Skip this if you are on a free plan.
 
 **If you have a paid plan (Pro, Max, Team, Enterprise), this is highly
-recommended** — it fixes the font on your finished resume and exports your PDF
-for you. Without it, both are quick manual jobs (see
-[Troubleshooting](#troubleshooting)).
+recommended** — it exports your PDF for you and can edit a Doc in place. Without
+it, both are quick manual jobs (see [Troubleshooting](#troubleshooting)).
 
 1. Open **Google Chrome** (Chrome only — not Edge, Safari, or Firefox)
 2. Chrome Web Store → search **Claude in Chrome**
@@ -273,7 +272,7 @@ Everything that matters works on paper.
 | The `/resume-forge:` commands are not in the `/` menu | You did not restart. Quit Claude completely and reopen |
 | "Drive is not connected" | Settings → Connectors → enable Google Drive |
 | Cannot find **Customize** | Left sidebar of the Claude app |
-| My resume is in **Arial**, not Calibri | Docs sometimes drops the font. Select all, pick Calibri. Ten seconds |
+| My resume is in **Arial**, not Calibri | Should not happen — the resume is built as a .docx with Calibri set throughout. If it does, select all and pick Calibri, ten seconds |
 | The **dates are not flush right** | Should not happen now. They sit on a real 7.50" tab stop. If they do not, the resume was built as HTML instead of .docx — say so and rebuild |
 | **Margins look wrong** | Should be 0.5" all round, ruler 0.00" to 7.50". Check under File → Page setup |
 | No PDF appeared | Correct. File → Download → PDF Document |

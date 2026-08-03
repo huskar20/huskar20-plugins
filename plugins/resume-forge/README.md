@@ -102,8 +102,10 @@ copies.
 
 - **Google Drive connector** enabled — required. Creates the Doc.
 - **Claude-in-Chrome extension** connected — optional but recommended. Needed to
-  edit an existing Doc, fix the font after import, and export a PDF. The Drive
-  connector can create files but has no update, rename, or delete tool.
+  edit an existing Doc and to export a PDF. The Drive connector can create files
+  but has no update, rename, or delete tool. It is not needed for the font: the
+  resume is built as a `.docx` with Calibri set throughout, so it never arrives
+  in Arial.
 
 Installing the plugin cannot turn connectors on for you, so every skill checks
 before it collects anything: if Drive isn't connected, it stops and tells you,

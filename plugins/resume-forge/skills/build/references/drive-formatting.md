@@ -87,6 +87,18 @@ Neither risk is a reason to accept wrong margins and ragged dates, which are
 *certain* on the HTML route rather than merely possible. Both failure modes are
 also invisible unless the result is read back — so read it back, every time.
 
+---
+
+# The HTML fallback route
+
+**Everything below this line applies only to the HTML fallback**, not to the
+`.docx` route above. These are defects of Google Docs' HTML importer. None of
+them occur when the resume is built as a `.docx`: the font is set per run, the
+margins are real page margins, and the dates sit on real tab stops.
+
+In particular, **do not tell a user they need Chrome to fix the font** unless
+the document was actually built from HTML.
+
 ## Google Docs ignores some CSS on import — set the font afterward
 
 Docs' HTML importer applies class-based CSS reliably but **drops
@@ -224,6 +236,10 @@ pad = (column_width_pt - bold_chars x 4.72 - date_chars x 4.53) / 2.49 - 2
 with `column_width_pt` = **468** at Docs' imported 1" margins, 540 at 0.5". The
 trailing `- 2` is deliberate: undershoot leaves the date slightly left of flush,
 which is cosmetic, while overshoot wraps the line and costs a whole line.
+
+---
+
+# Applies to both routes
 
 ## Always read the document back
 
