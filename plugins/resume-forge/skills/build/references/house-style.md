@@ -13,7 +13,7 @@ agreement: a change here means regenerating that file.
 | Setting | Value | Why |
 |---|---|---|
 | Paper | US Letter, 8.5" × 11" | Set explicitly — defaults vary by machine |
-| Margins | 0.75" all four sides | Leaves a 7.0" text column |
+| Margins | 0.5" all four sides | Leaves a **7.5" text column**: the ruler runs 0.00" to 7.50" |
 | Font | Calibri, black only | One family for the whole document |
 | Body size | 11pt | 10.5pt to save a page. **Never below 10pt** |
 | Line spacing | 1.0 (single) | Everywhere, no exceptions |
@@ -32,8 +32,10 @@ Empty paragraphs do **not** break parsing; do not claim otherwise.
 | City, State | 11pt | Regular | Centered |
 | Contact line | 11pt | Regular | Centered |
 | Target job title | 16pt | Bold | Centered |
-| Summary | 11pt | Regular | Left |
+| Summary | 11pt | Regular | Centered |
 | Section headers | 11pt | Bold, ALL CAPS, underlined | Left |
+| Role / institution line | 11pt | Bold | Left |
+| Dates on those lines | 11pt | **Bold** | Right, on the 7.50" tab stop |
 | Body and bullets | 11pt | Regular | Left |
 
 The name and the target title line are the only elements above 11pt. Section
@@ -58,19 +60,20 @@ whole document; never mix the two.
 **Short resume — one page, or fewer than about fifteen detail bullets:**
 
 ```
-Software Engineer Intern, Northstar Analytics – (Reston, VA)      May 2025 – Aug 2025
+Software Engineer Intern, Northstar Analytics (Reston, VA)		May 2025 – Aug 2025
    •  Built three production REST endpoints in Python and FastAPI for 12 accounts.
    •  Cut median API response 610ms to 380ms (38%) with PostgreSQL indexes and Redis.
 ```
 
-Titles sit flush at the left margin, aligned with the section headers, and carry
-no glyph. Details indent beneath with a round bullet. The titles form a clean
-vertical spine down the left edge.
+The title, organisation and date are all bold, and that gap is a real tab landing
+on the 7.50" right stop. Titles sit flush at the left margin, aligned with the
+section headers, and carry no glyph, so they form a clean vertical spine down the
+left edge. Details indent beneath with a round bullet.
 
 **Long resume — two or more pages, or many roles stacked together:**
 
 ```
-•  Software Engineer Intern, Northstar Analytics – (Reston, VA)   May 2025 – Aug 2025
+•  Software Engineer Intern, Northstar Analytics (Reston, VA)		May 2025 – Aug 2025
       -  Built three production REST endpoints in Python and FastAPI for 12 accounts.
       -  Cut median API response 610ms to 380ms (38%) with PostgreSQL indexes and Redis.
 ```
@@ -94,6 +97,17 @@ keeps `space before = 0` and `space after = 0`; the blank line is the gap.
 | **7pt** | before every section header |
 | **3pt** | before and after the target role line |
 
+**These three values are the whole spacing system. Use only 1, 3 and 7, and use
+them every single time.** A resume where one section header has a 7pt gap above
+it and the next has none reads as careless before a word is read. Apply the gap
+at every occurrence, not just the first.
+
+**It must be an empty paragraph carrying that font size, not paragraph
+spacing.** `space after = 7pt` is not the same thing and does not match the
+shipped template: an empty 7pt paragraph occupies its own line box, so the gap
+is a genuine blank line. Setting a margin instead produces a visibly tighter
+document that no longer matches the reference rendering.
+
 To set one: press Enter once, click the empty line, and type the size into the
 font-size box. The size lives on the paragraph mark, so an empty line really is
 1pt or 7pt tall.
@@ -102,9 +116,9 @@ The equivalent paragraph-property route is Format → Line & paragraph spacing �
 **Custom spacing**, where exact points can be typed. Avoid the one-click "Add
 space after paragraph" — it applies a fixed chunk far too big for a resume.
 
-When generating the document programmatically via HTML, the same result comes
-from an empty paragraph carrying the target `font-size`, or from `margin-bottom`
-on the preceding paragraph. Either matches the shipped template.
+When generating the document programmatically, `build_resume_docx.py` emits the
+empty paragraph for you and refuses any gap that is not 1, 3, 5 or 7 point, so
+the spacing cannot drift document to document.
 
 ## Section order
 
@@ -155,6 +169,14 @@ highest-leverage line on the page.
 The paragraph flows directly out of the title line. Do **not** type the word
 "Summary" — it saves a line and reads faster.
 
+**Centre the paragraph.** It is the one body block that is centred; every
+section below it is left aligned. The summary belongs to the header group —
+name, city, contact line, target title — and centring keeps that whole opening
+block reading as a single unit before the page switches to left-aligned
+sections. Left-aligning it makes it collide visually with the first section
+header. This holds for every resume the skill produces, at every experience
+level.
+
 Formula: *what you are + field and scale + tools you actually know + one result
 with a number in it.*
 
@@ -192,8 +214,17 @@ the user could discuss for two minutes in an interview.
 
 ## Experience
 
-Role line: `Job Title, Organization – (City, State)` with dates flush right on a
-**right tab stop at 7.0"**. Use a real tab, never spaces.
+Role line: `Job Title, Organization (City, State)` with the date flush right on a
+**right tab stop at 7.50"**. Use a real tab, never spaces.
+
+**The title, the organization and the date are all bold.** The date is not a
+secondary detail set in regular weight — it sits at the far right of the line
+and carries the same weight as the title, so the eye can run down the right edge
+and read the chronology on its own. The same holds for education and
+certification lines.
+
+A date that is merely *near* the right margin is wrong. It must land **on** the
+7.50" stop, which is why this needs a real tab and a real tab stop.
 
 Detail lines use the glyph scheme chosen above, as literal text plus a tab, with
 a hanging indent so wrapped lines align under the first word rather than under
@@ -202,7 +233,7 @@ the glyph.
 - **Formula:** strong verb + what you did + the tool or method + the result or scale
 - **How many:** 4–6 for the current or most relevant role, 2–3 for older roles,
   1–2 for anything over ten years old
-- **Length:** **one line is the target.** At 11pt across a 7.0" column that is
+- **Length:** **one line is the target.** At 11pt across a 7.5" column that is
   roughly 100 characters. Take a second line only when it carries a number or a
   tool name that would otherwise be cut. Three lines is a paragraph — cut it.
 - **Tense:** present for the current role, past for everything else, never mixed

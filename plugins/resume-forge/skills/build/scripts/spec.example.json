@@ -1,0 +1,85 @@
+{
+  "contact": {
+    "name": "First Last",
+    "location": "City, State",
+    "links": ["(000) 000-0000", "first.last@email.com", "linkedin.com/in/yourhandle"]
+  },
+  "target_title": "Target Job Title  |  Specialty or Top Credential",
+  "summary": "Two to four sentences. Start with a noun phrase describing what you are, then the field and the scale you work at, then the tools you genuinely know, and close with one result that has a number in it. Third person, never \"I\". Write this last, after every other section exists.",
+  "sections": [
+    {
+      "header": "TECHNICAL SKILLS",
+      "kind": "skills",
+      "items": [
+        ["Category One:", "item, item, item, item, item"],
+        ["Category Two:", "item, item, item, item, item"],
+        ["Category Three:", "item, item, item, item, item"],
+        ["Category Four:", "item, item, item, item"]
+      ]
+    },
+    {
+      "header": "PROFESSIONAL EXPERIENCE",
+      "entries": [
+        {
+          "left": "Job Title, Organization Name (City, State)",
+          "date": "Mon Year – Present",
+          "bullets": [
+            "Action verb + what you did + the tool or method + the result or scale.",
+            "Keep each one to a single line. Vary the length and the opening verb.",
+            "Do not force a number into every bullet. Two or three per role is human.",
+            "Present tense for the current role, past tense for every other one."
+          ]
+        },
+        {
+          "left": "Job Title, Organization Name (City, State)",
+          "date": "Mon Year – Mon Year",
+          "bullets": [
+            "Action verb + what you did + the tool or method + the result or scale.",
+            "Two to three bullets is right for an older role.",
+            "One to two for anything more than ten years old."
+          ]
+        }
+      ]
+    },
+    {
+      "header": "PROJECTS",
+      "entries": [
+        {
+          "left": "Project Name",
+          "bullets": [
+            "What you built, the tools you used, who it served, and what it achieved.",
+            "One technical detail that shows depth, plus a number if you have one."
+          ]
+        },
+        {
+          "left": "Project Name",
+          "bullets": [
+            "Two strong projects beat five weak ones. Cut any you cannot walk through."
+          ]
+        }
+      ]
+    },
+    {
+      "header": "EDUCATION",
+      "entries": [
+        {
+          "left": "Institution Name (City, State)",
+          "date": "Expected Mon Year",
+          "lines": ["Degree, Major — GPA X.X / 4.0"]
+        },
+        {
+          "left": "Previous Institution (City, State)",
+          "date": "Year – Year",
+          "lines": ["Degree or Program, Major"]
+        }
+      ]
+    },
+    {
+      "header": "CERTIFICATIONS",
+      "entries": [
+        { "left": "Certification Name, Issuing Body", "date": "Year" },
+        { "left": "Certification Name, Issuing Body", "date": "In Progress (Expected Mon Year)" }
+      ]
+    }
+  ]
+}
