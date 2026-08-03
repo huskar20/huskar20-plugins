@@ -274,6 +274,8 @@ Everything that matters works on paper.
 | "Drive is not connected" | Settings → Connectors → enable Google Drive |
 | Cannot find **Customize** | Left sidebar of the Claude app |
 | My resume is in **Arial**, not Calibri | Docs sometimes drops the font. Select all, pick Calibri. Ten seconds |
+| The **dates are not flush right** | Expected. Google Docs cannot import a tab stop. Cosmetic, and recruiters do not care |
+| **Margins look wide** and bullets wrap | Docs ignores the 0.75" setting and uses 1". File → Page setup → 0.75" all sides |
 | No PDF appeared | Correct. File → Download → PDF Document |
 | It asks for a number I do not have | Working as intended. Give a real estimate, or leave the placeholder |
 | Cannot sign in at all | Go to [No laptop, no account](#no-laptop-no-account) |

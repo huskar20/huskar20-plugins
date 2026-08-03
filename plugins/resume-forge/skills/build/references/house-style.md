@@ -32,7 +32,7 @@ Empty paragraphs do **not** break parsing; do not claim otherwise.
 | City, State | 11pt | Regular | Centered |
 | Contact line | 11pt | Regular | Centered |
 | Target job title | 16pt | Bold | Centered |
-| Summary | 11pt | Regular | Left |
+| Summary | 11pt | Regular | Centered |
 | Section headers | 11pt | Bold, ALL CAPS, underlined | Left |
 | Body and bullets | 11pt | Regular | Left |
 
@@ -154,6 +154,14 @@ highest-leverage line on the page.
 
 The paragraph flows directly out of the title line. Do **not** type the word
 "Summary" — it saves a line and reads faster.
+
+**Centre the paragraph.** It is the one body block that is centred; every
+section below it is left aligned. The summary belongs to the header group —
+name, city, contact line, target title — and centring keeps that whole opening
+block reading as a single unit before the page switches to left-aligned
+sections. Left-aligning it makes it collide visually with the first section
+header. This holds for every resume the skill produces, at every experience
+level.
 
 Formula: *what you are + field and scale + tools you actually know + one result
 with a number in it.*

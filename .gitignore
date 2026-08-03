@@ -16,3 +16,6 @@ career-hunter-state/
 career-profile.md
 **/state/seen_jobs.json
 **/state/last_run.json
+
+# Fonts fit.py downloads at runtime. Monotype-licensed to Google — never commit
+**/.fontcache/

@@ -134,15 +134,36 @@ creating it if needed.
 
 Name the Doc `JobTitle_FirstNameLastName`.
 
+Decide the **column width before writing any line**, because it sets the
+character budget for every detail line. Docs' importer drops `@page`, so the Doc
+lands at 1" margins and a 6.5" column unless the margins get fixed by hand. See
+"Docs also drops `@page`" in `drive-formatting.md` and commit to one option
+there. In an observed build, writing to the 7.0" budget and importing at 6.5"
+wrapped 6 of 11 detail lines, and 2 of those were long enough to wrap at either
+width. Every one looked correct when written.
+
+Do not eyeball the fit. `scripts/fit.py` measures against the real Calibri and
+reports both the `&nbsp;` count for a right-hand date and which lines will wrap.
+
 Then, in order:
 
 1. **Read the document back** with `read_file_content` and compare against the
    intended text. Silent character corruption is a known failure mode.
 2. **Verify the font** actually imported as Calibri; if not, fix it (select all,
-   set Calibri) via the browser.
+   set Calibri) via the browser. `download_file_content` with
+   `exportMimeType: "text/html"` verifies this without a browser — every text
+   run should carry `font-family:"Calibri"`. The same export reports the real
+   margins and column width, so it checks step 4 at the same time.
 3. **Check it fits** the page budget — one page under five years of experience.
    If it runs over, tighten wording before shrinking type, and never go below
    10pt.
+4. **Check no line wrapped that should not have.** Detail lines are meant to be
+   one line, and role and education lines must never wrap, since a wrapped date
+   reads as a formatting error.
+
+Get this right before creating the file. The Drive connector has no update,
+rename, or delete tool, so a rebuild leaves a duplicate the user has to trash by
+hand.
 
 ## Step 7 — Report, then offer the PDF
 
