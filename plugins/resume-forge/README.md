@@ -18,9 +18,9 @@ your contact details and target titles.
 
 ## The format it produces
 
-Calibri throughout, US Letter, 0.75" margins, single column. No tables, text
-boxes, columns, or horizontal rules — those are what actually break applicant
-tracking parsers.
+Calibri throughout, US Letter, 0.5" margins for a 7.5" text column, single
+column. No tables, text boxes, columns, or horizontal rules — those are what
+actually break applicant tracking parsers.
 
 - Name 20pt bold, centered, in title case
 - City/State, then a one-line contact block
@@ -29,7 +29,10 @@ tracking parsers.
 - Underlined ALL-CAPS section headers at 11pt; 11pt body throughout
 - Skills grouped by category, never a flat wall of tool names (TECHNICAL SKILLS on
   technical resumes, CORE COMPETENCIES elsewhere)
-- Experience with dates flush right, verb + tool + result, one line per bullet
+- Experience with **dates flush right on a real 7.50" tab stop**, bold alongside
+  the job title, so the right edge reads as a chronology on its own
+- Verb + tool + result, one line per bullet
+- Gaps of exactly 1, 3 or 7 point, applied the same way every time
 - Projects: name only, tools inside the bullets where they carry evidence
 - Bullet glyphs scale with length: short resumes use plain titles with `•` details;
   longer ones use `•` on titles and `-` on details
@@ -43,7 +46,7 @@ Full spec: [`skills/build/references/house-style.md`](skills/build/references/ho
 
 A ready-to-use Word copy of the format, with placeholders instead of content:
 
-**[⬇ Resume_Template_Clean.docx](assets/Resume_Template_Clean.docx)** — 8 KB
+**[⬇ Resume_Template_Clean.docx](assets/Resume_Template_Clean.docx)** — 2 KB
 
 Direct link, safe to share with anyone:
 
@@ -64,7 +67,7 @@ interviewed.
 A completed one-page resume in the same format, so you can see what the writing
 should look like, not just the structure:
 
-**[⬇ SoftwareEngineer_AlexMoreno.docx](assets/SoftwareEngineer_AlexMoreno.docx)** — 9 KB
+**[⬇ SoftwareEngineer_AlexMoreno.docx](assets/SoftwareEngineer_AlexMoreno.docx)** — 3 KB
 
 ```
 https://github.com/huskar20/huskar20-plugins/raw/main/plugins/resume-forge/assets/SoftwareEngineer_AlexMoreno.docx

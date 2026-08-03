@@ -10,8 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history so the version-bump check can reach the merge base.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Run structural validator
         run: python3 scripts/validate.py
+      - name: Check version bumps
+        # Pull requests only. A push to main has already been through this.
+        if: github.event_name == 'pull_request'
+        # base.sha is a concrete commit already present thanks to fetch-depth 0,
+        # so no extra fetch and no remote-tracking ref is needed.
+        run: python3 scripts/check_version_bump.py "${{ github.event.pull_request.base.sha }}"
