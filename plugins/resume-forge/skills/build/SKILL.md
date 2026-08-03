@@ -53,7 +53,7 @@ every measurement, the section order for each experience level, and the rules
 for each block. Do not improvise the format from memory.
 
 Read `references/drive-formatting.md` before touching Drive. It documents the
-HTML upload route, the font-import defect, and the tab-stop limitation.
+.docx build route, why HTML cannot carry the format, and the verification steps.
 
 ## Step 4 — Collect what is missing
 
@@ -111,7 +111,7 @@ title. This document is used to get hired; a number the user cannot defend in an
 interview is worse than no number. The same applies to tools — never list
 something the user did not say they know.
 
-**Keep it one line.** A detail line should fit one line at 11pt across the 7.0"
+**Keep it one line.** A detail line should fit one line at 11pt across the 7.5"
 column, roughly 100 characters. Take a second line only when it carries a number
 or tool that would otherwise be cut.
 
@@ -126,24 +126,33 @@ has the full list.
 
 ## Step 6 — Create the Google Doc
 
-Generate HTML per `references/drive-formatting.md` and create the file with the
-Drive connector, `contentMimeType: "text/html"`.
+Write a spec JSON and build a `.docx` with `scripts/build_resume_docx.py`, then
+upload it with `base64Content` per `references/drive-formatting.md`. Drive
+converts it to a Google Doc.
+
+Do **not** hand-write HTML. Page margins and the 7.50" right tab stop cannot
+survive the HTML importer, so dates land near the right margin instead of on it
+and the page comes out at the wrong width. The script carries the house style —
+margins, tab stop, bold dates, and the 1 / 3 / 7 point gaps — so it does not
+have to be re-derived per document. It is standard library only and runs the
+same on macOS, Windows and Linux.
 
 Ask where it should go. Default to a `Resumes` folder in the user's Drive,
 creating it if needed.
 
 Name the Doc `JobTitle_FirstNameLastName`.
 
-Decide the **column width before writing any line**, because it sets the
-character budget for every detail line. Docs' importer drops `@page`, so the Doc
-lands at 1" margins and a 6.5" column unless the margins get fixed by hand. See
-"Docs also drops `@page`" in `drive-formatting.md` and commit to one option
-there. In an observed build, writing to the 7.0" budget and importing at 6.5"
-wrapped 6 of 11 detail lines, and 2 of those were long enough to wrap at either
-width. Every one looked correct when written.
+The `.docx` route gives a **7.5" column, 540pt**, so a detail line fits about
+118 characters and a one-line bullet is comfortable. That is headroom, not
+permission: `house-style.md` still sets a one-line target of roughly 100
+characters, and that remains the writing goal.
 
-Do not eyeball the fit. `scripts/fit.py` measures against the real Calibri and
-reports both the `&nbsp;` count for a right-hand date and which lines will wrap.
+Do not eyeball whether a line fits. `scripts/fit.py` measures against the real
+Calibri that Docs renders — `fit.py --col 540 wrap "<line>"` says which lines
+spill onto a second line. It needs fontTools and network on first run; without
+them, fall back to its documented constants and say estimates were used. The
+`pad` mode is only for the HTML fallback, since the `.docx` route uses real tab
+stops and needs no padding at all.
 
 Then, in order:
 
