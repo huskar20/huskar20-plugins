@@ -23,10 +23,13 @@ List the available tools and confirm each is actually present — do not assume:
 1. **Google Drive connector** — required. Creates the document. Without it there
    is nowhere to put the result: stop, and tell the user to enable it in their
    Claude app's connector settings.
-2. **Claude-in-Chrome extension** — optional but recommended. Needed to fix the
-   font after import, to edit an existing Doc, and to export a PDF. If missing,
-   say so and continue; the Doc still gets created and the manual steps get
-   handed over at the end.
+2. **Claude-in-Chrome extension** — optional but recommended. Needed to edit an
+   existing Doc, and to export a PDF. If missing, say so and continue; the Doc
+   still gets created and the manual steps get handed over at the end.
+
+   It is **not** needed for the font. The `.docx` route sets Calibri on every
+   run, so nothing lands in Arial, and `download_file_content` confirms it
+   without a browser. Do not tell the user they need Chrome to fix a font.
 
 A plugin cannot gate its own installation on connectors, so this check is the
 real gate. Be thorough, and stop if Drive is absent.
