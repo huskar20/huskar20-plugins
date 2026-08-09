@@ -73,7 +73,12 @@ Required:
    in `house-style.md` produce genuinely different documents. Part-time and
    campus jobs held while studying do not count toward the total.
 3. **Contact block** — name, city and state, phone, email, LinkedIn. GitHub or
-   portfolio for technical roles.
+   portfolio for technical roles. If the email is a nickname or carries a birth
+   year, or the LinkedIn URL still has the default random suffix
+   (`linkedin.com/in/name-8a2b91354`), say so once: suggest a
+   `first.last@gmail.com`-style address and claiming the custom URL (LinkedIn →
+   Settings → Public profile) before applications go out. Then build with
+   whatever the user confirms — it is their call.
 4. **Experience** — for each role: title, organization, city/state, start and
    end dates, and what they actually did.
 5. **Education** — institution, degree, dates. GPA only if 3.5+ and within three

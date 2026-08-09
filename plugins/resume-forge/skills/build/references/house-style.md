@@ -160,6 +160,14 @@ Target Job Title  |  Specialty or Top Credential
 Never include: street address, photo, age, date of birth, marital status,
 nationality, or "References available upon request."
 
+The email is the candidate's name — `first.last@` — never a nickname, and never
+a birth year, which leaks the age the rule above excludes. Dots are fine;
+underscores are a trap, because the hyperlink underline swallows them. The
+LinkedIn link is the claimed custom URL (`linkedin.com/in/handle`), not the
+unclaimed default with its random suffix (`linkedin.com/in/name-8a2b91354`).
+Print every link in display form — no `https://www.` — and keep it hyperlinked
+in the exported PDF.
+
 The **target title line** names the job being applied for, not the job currently
 held. Rewrite it per application so it echoes the posting's own words. It is the
 highest-leverage line on the page.

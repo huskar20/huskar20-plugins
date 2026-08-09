@@ -18,7 +18,7 @@ fail with the offending text quoted, not a generic warning.
 | 9 | Every bullet opens with a verb | Flag "Responsible for", "Helped with", "Worked on", "Duties included", "Tasked with" |
 | 10 | Tense is consistent | Present for the current role, past for all others, never mixed inside one role |
 | 11 | Name is title case (`First Last`), not ALL CAPS | Section headers are the only all-caps text |
-| 12 | Spelling of tools and certifications | CompTIA not CompTia · CrowdStrike not Crowdstrike · VirusTotal not Virus Total · PostgreSQL not Postgresql · JavaScript not Javascript · GitHub not Github · Kubernetes not Kubernets |
+| 12 | Spelling of tools and certifications | CompTIA not CompTia · CrowdStrike not Crowdstrike · VirusTotal not Virus Total · PostgreSQL not Postgresql · JavaScript not Javascript · GitHub not Github · LinkedIn not Linkedin · Kubernetes not Kubernets |
 
 ## Reads as machine-written
 
@@ -47,18 +47,21 @@ The tells are structural, not lexical. Report these with the offending text quot
 | 26 | Section order | 0–3 years: Education directly under the summary, then skills, then Projects, then Experience. 3+ years: skills, then Experience, then Education |
 | 27 | Project lines | Name only, no stack list and no printed URL |
 | 28 | Bullet glyph scheme consistent | One scheme per document. Short: plain titles + • details. Long: • titles + - details. Never mixed |
+| 29 | Email address is professional | Recognizably the candidate's name — `first.last@` is the standard, and dots are fine. Flag nicknames or slang, birth years (leaks the age #7 prohibits), and underscores, which vanish under a hyperlink underline. The fix is a new `first.last@gmail.com`-style address; remind the user the new inbox must be live before applications go out |
+| 30 | LinkedIn URL is claimed | The default URL ends in a random suffix — `linkedin.com/in/name-8a2b91354`. The fix is claiming the custom URL (LinkedIn → Settings → Public profile), not retyping the link. Hyphens alone are fine. Same standard for the GitHub username on technical resumes |
 
 ## Advisory
 
 | # | Check |
 |---|---|
-| 29 | Vague quantifiers: "many", "various", "several", "numerous", "etc." |
-| 30 | Passive constructions: "was tasked with", "was responsible for" |
-| 31 | Filler adjectives with no evidence behind them |
-| 32 | Acronyms never expanded — spell out once, e.g. "Security Information and Event Management (SIEM)" |
-| 33 | Dead or malformed URLs in the header |
-| 34 | Inconsistent date formats between roles |
-| 35 | File name is `JobTitle_FirstNameLastName.pdf` |
+| 31 | Vague quantifiers: "many", "various", "several", "numerous", "etc." |
+| 32 | Passive constructions: "was tasked with", "was responsible for" |
+| 33 | Filler adjectives with no evidence behind them |
+| 34 | Acronyms never expanded — spell out once, e.g. "Security Information and Event Management (SIEM)" |
+| 35 | Dead or malformed URLs in the header |
+| 36 | Header links in display form — `linkedin.com/in/handle`, no printed `https://www.`, and still hyperlinked in the exported PDF |
+| 37 | Inconsistent date formats between roles |
+| 38 | File name is `JobTitle_FirstNameLastName.pdf` |
 
 ## Reporting format
 
@@ -79,7 +82,7 @@ End with a count by severity and the single highest-impact fix.
 
 ## What not to do
 
-- **Do not invent the numbers the resume is missing.** Item 11 failing means
+- **Do not invent the numbers the resume is missing.** Item 21 failing means
   telling the user which bullets need a figure and asking them for it — never
   supplying a plausible one.
 - **Do not produce an "ATS score."** No real scoring engine is available, so any
