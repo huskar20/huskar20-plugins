@@ -47,12 +47,33 @@ Without a right tab stop the only fallback is padding the gap with non-breaking
 spaces, which lands dates *near* the margin instead of on it and leaves the
 right edge visibly ragged. That is a downgrade, not an equivalent.
 
-### On the size risk
+### On the size risk — and the transcription risk
 
 A resume built by this script is **under 3KB**, about 4KB of base64. The
 corruption and `invalid argument` failures previously recorded against
-`base64Content` were at far larger payloads. At this size the round trip has
-been clean. Read the document back regardless — see below.
+`base64Content` were at far larger payloads, and at this size the Drive round
+trip itself has been clean. Read the document back regardless — see below.
+
+**The dominant failure at this size is transcription, not transport.** The
+payload reaches the connector by being reproduced as literal text inside the
+tool call, and that reproduction has corrupted single characters in practice:
+in an observed build (2026-08-08), three characters of a 3.7KB payload came out
+wrong, producing a deterministic `Request contains an invalid argument` until
+the exact bytes were found and patched. Corrupted base64 can also still decode,
+which is worse, because then the upload succeeds and the document is wrong.
+
+So verify the payload **before** the upload, every time:
+
+1. Build with the payload going to a file:
+   `python3 scripts/build_resume_docx.py spec.json out.docx --base64 > built.b64`
+2. Write the exact string you are about to pass as `base64Content` to a second
+   file, `pasted.b64`, with the file-writing tool.
+3. `python3 scripts/build_resume_docx.py --verify built.b64 pasted.b64`
+   prints `IDENTICAL` or lists every differing position, correct and corrupted
+   context side by side. Patch `pasted.b64` and re-verify until it passes.
+4. Only then call `create_file`, reproducing the verified string exactly, with
+   the same corrections applied. If the call still fails, repeat from step 2
+   rather than retrying blind.
 
 If you ever do fall back to HTML, everything from "Structuring the HTML"
 onward still applies, and **say plainly that margins and date alignment are
@@ -81,7 +102,9 @@ the reason HTML used to be the default:
 Both were seen at payloads far larger than a resume. `build_resume_docx.py`
 emits **under 3KB**, and it writes only three parts into the zip, so there is
 very little compressed stream to corrupt. Round trips at this size have been
-clean.
+clean — but the same symptoms have been produced at this size by transcription
+errors in the tool call itself, which is why the `--verify` step above is
+mandatory rather than optional.
 
 Neither risk is a reason to accept wrong margins and ragged dates, which are
 *certain* on the HTML route rather than merely possible. Both failure modes are
