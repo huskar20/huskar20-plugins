@@ -15,11 +15,20 @@ Usage
 -----
     python3 build_resume_docx.py spec.json out.docx          # write the .docx
     python3 build_resume_docx.py spec.json out.docx --base64 # also print base64
+    python3 build_resume_docx.py --verify built.b64 pasted.b64
 
 Pass the printed base64 to the Drive connector as `base64Content` with
 contentMimeType
 `application/vnd.openxmlformats-officedocument.wordprocessingml.document`.
 Drive converts it to a Google Doc automatically.
+
+Verify before uploading. An agent composing the connector call has to reproduce
+the payload as literal text, and that transcription step has corrupted single
+characters in practice even at 4KB. Save the payload you are about to send to a
+file, run `--verify` against the built payload, and only upload once it prints
+IDENTICAL. On a mismatch it lists every differing position with the correct and
+the corrupted context side by side, so each error can be patched directly.
+Whitespace and line breaks are ignored; only the base64 characters count.
 
 Spec format: see spec.example.json next to this file.
 """
@@ -151,9 +160,39 @@ def write_docx(paragraphs, path):
         z.writestr("word/document.xml", doc)
 
 
+def verify(built_path, pasted_path):
+    """Compare two base64 payload files, ignoring whitespace. Exit 0 only if
+    the base64 characters match exactly; otherwise report every mismatch with
+    enough surrounding context to patch the pasted copy."""
+    def load(path):
+        with open(path, encoding="utf-8") as fh:
+            return "".join(fh.read().split())
+    built, pasted = load(built_path), load(pasted_path)
+    if built == pasted:
+        print(f"IDENTICAL ({len(built)} base64 chars)")
+        return 0
+    if len(built) != len(pasted):
+        print(f"LENGTH MISMATCH: built {len(built)} chars, "
+              f"pasted {len(pasted)} chars")
+    diffs = [i for i, (a, b) in enumerate(zip(built, pasted)) if a != b]
+    for i in diffs[:20]:
+        lo, hi = max(0, i - 15), i + 16
+        print(f"char {i}: built '{built[i]}' vs pasted '{pasted[i]}'")
+        print(f"  built:  ...{built[lo:hi]}...")
+        print(f"  pasted: ...{pasted[lo:hi]}...")
+    if len(diffs) > 20:
+        print(f"...and {len(diffs) - 20} more differing positions")
+    print("DO NOT UPLOAD. Patch the pasted copy and verify again.")
+    return 1
+
+
 def main():
     if len(sys.argv) < 3:
         sys.exit(__doc__)
+    if sys.argv[1] == "--verify":
+        if len(sys.argv) < 4:
+            sys.exit(__doc__)
+        sys.exit(verify(sys.argv[2], sys.argv[3]))
     with open(sys.argv[1], encoding="utf-8") as fh:
         spec = json.load(fh)
     out = sys.argv[2]

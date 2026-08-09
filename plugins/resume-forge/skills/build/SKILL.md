@@ -138,6 +138,12 @@ Write a spec JSON and build a `.docx` with `scripts/build_resume_docx.py`, then
 upload it with `base64Content` per `references/drive-formatting.md`. Drive
 converts it to a Google Doc.
 
+Before the upload, run the script's `--verify` step from that reference:
+reproducing a 4KB payload inside a tool call has corrupted single characters in
+practice, and `--verify` catches that before the connector sees it. Do not skip
+it because the payload "looks right" — a wrong character is invisible by eye
+and can survive all the way into the finished document.
+
 Do **not** hand-write HTML. Page margins and the 7.50" right tab stop cannot
 survive the HTML importer, so dates land near the right margin instead of on it
 and the page comes out at the wrong width. The script carries the house style —
