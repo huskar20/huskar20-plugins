@@ -234,9 +234,10 @@ unlogged rows.
 1. Update `seen_jobs.json` with every candidate touched (applied/skipped/
    flagged/failed) and `last_run_utc`. Include a short `run_notes` field with
    anything the next run should know (blocked domains, ATS quirks discovered).
-2. If config `push_on_interview`-style notifications are enabled and anything
-   was applied or flagged, send one push: `Job hunt: applied to N roles (…).
-   M flagged for manual finish.`
+2. If config `push_on_apply` is true and anything was applied or flagged, send
+   one push: `Job hunt: applied to N roles (…). M flagged for manual finish.`
+   (Config missing the key → treat as false; `push_on_interview` belongs to the
+   sync skill and does not govern this.)
 3. Report a summary table: applied (company, role, source), skipped + why,
    flagged + why, sources unavailable. In `prepare` mode, report the queue file
    path and the count of prepared roles instead of applications.

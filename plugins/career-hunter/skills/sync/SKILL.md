@@ -14,8 +14,9 @@ From the working folder (missing → route to `career-hunter: setup`):
 - `career-hunter-state/config.json` — `spreadsheet_id`, `spreadsheet_url`,
   `push_on_interview`, `create_calendar_events`.
 - `career-hunter-state/last_run.json` — `{ "last_run_utc": "...",
-  "last_run_date": "YYYY/MM/DD" }`. Missing/unreadable → default to the last
-  7 days and say so.
+  "last_run_date": "YYYY/MM/DD", "note": "..." }` (`note` is the previous run's
+  summary, written in step 6). Missing, unreadable, or null fields → default to
+  the last 7 days and say so.
 - The user's email address (from `career-profile.md`) — needed to detect replies.
 
 ## Workflow
@@ -68,7 +69,8 @@ a new one. Never delete rows; never double-add.
 
 Navigate to the edit URL from config, confirm the `Applications` tab is active,
 and use the Name Box method in `references/sheet-writing.md` — one row or one
-row-update per `browser_batch`, ending with a screenshot to verify. Re-read the
+row-update per `browser_batch`, then verify by re-reading the written cells as
+text (screenshots only if a cell's state genuinely can't be read). Re-read the
 header row (row 2) first and map columns by NAME; the owner edits the schema by
 hand. Notes stay short, factual, dated, appended with ` | `.
 

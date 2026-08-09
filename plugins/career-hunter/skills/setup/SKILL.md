@@ -16,7 +16,7 @@ Re-running setup is safe: offer to update the existing profile instead of starti
 | `career-profile.md` | Canonical answers for every application form. The user edits it by hand afterward; other skills re-read it every run. |
 | `career-hunter-state/config.json` | Spreadsheet ID, resume path, submission mode, caps, schedule, notification prefs. |
 | `career-hunter-state/seen_jobs.json` | Created empty; the apply skill's dedupe memory. |
-| `career-hunter-state/last_run.json` | Created empty; the sync skill's watermark. |
+| `career-hunter-state/last_run.json` | Created with null fields; the sync skill's watermark. |
 
 ## Step 1 — Check prerequisites
 
@@ -112,7 +112,8 @@ user didn't give; leave the field marked `TODO (ask owner)` instead.
 10. **Caps & cadence** — daily application cap (default 10), per-company cap
     (default 2 per rolling 7 days), which days of the week apply runs are allowed.
 11. **Notifications & calendar** — (a) push notification when an interview invite
-    is detected? (default yes); (b) may sync auto-create a Google Calendar event
+    is detected? (default yes); (b) push a summary notification after each apply
+    run? (default no; record as `push_on_apply`); (c) may sync auto-create a Google Calendar event
     on the user's own calendar for each confirmed interview? (default yes; record
     as `create_calendar_events`). Note it only creates events for interviews the
     user has confirmed, on their own calendar, with no external invitees.
@@ -187,6 +188,7 @@ Write `career-hunter-state/config.json`:
   "per_company_cap_7d": 2,
   "apply_days": ["Tue", "Wed", "Thu"],
   "push_on_interview": true,
+  "push_on_apply": false,
   "create_calendar_events": true,
   "google_sso_allowed": true,
   "created_utc": "<ISO-8601>"
@@ -194,7 +196,8 @@ Write `career-hunter-state/config.json`:
 ```
 
 Create `career-hunter-state/seen_jobs.json` as `{"last_run_utc": null, "jobs": {}}`
-and `career-hunter-state/last_run.json` as `{}`.
+and `career-hunter-state/last_run.json` as
+`{"last_run_utc": null, "last_run_date": null, "note": null}`.
 
 Close with a short summary: what was created, where the profile lives, how to edit
 it, the two invocation phrases, and any TODOs (missing resume, unanswered fields).
