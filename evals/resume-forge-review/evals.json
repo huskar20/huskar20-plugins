@@ -1,0 +1,56 @@
+{
+  "skill_name": "review",
+  "notes": "Regression evals for the resume-forge review skill. The two fixtures are the workshop's live-demo resumes; each is generated to fail a known, documented set of checks, so the expected findings are ground truth, not opinion. File paths are relative to this directory. Rebuild the fixtures from the workshop kit's build scripts whenever the demos change, and keep expectations in sync with references/checklist.md.",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "jordan-blake-plain-bad",
+      "prompt": "Review this resume: fixtures/Demo_BadResume_JordanBlake.docx. It belongs to a fictional demo candidate. Jordan is a community-college computer science student (associate degree expected spring 2027) with no full-time professional experience beyond a campus tech job and one internship. Target role: IT Support Specialist. Give me the full review.",
+      "expected_output": "A severity-grouped review quoting the offending text for each finding, ending with a count by severity and one highest-impact fix. No ATS score, no invented numbers.",
+      "files": ["fixtures/Demo_BadResume_JordanBlake.docx"],
+      "expectations": [
+        "Reports the skills table as a blocking ATS problem",
+        "Reports body text below 10pt",
+        "Reports the ALL-CAPS name",
+        "Reports the street address as prohibited personal data",
+        "Reports the 'References available upon request' line",
+        "Quotes at least one passive bullet opener (Responsible for / Helped with / Was tasked with)",
+        "Reports mixed tense inside a single role",
+        "Reports at least two misspelled tool names among CompTia, Crowdstrike, Java Script, Virus Total",
+        "Reports em dashes used mid-sentence as a machine-written tell",
+        "Reports the missing target job title line",
+        "Reports the first-person objective and at least one banned word (hardworking, motivated, passionate, dynamic)",
+        "Reports that no bullet contains a number, without inventing any",
+        "Reports the GPA of 2.8 as below the 3.5 threshold",
+        "Reports the email jblake_2027@email.com as failing the professional-email check",
+        "Reports LinkedIn as missing from the contact block",
+        "Reports inconsistent date formats between the two roles",
+        "Reports Education placed last despite the candidate being a student",
+        "Does not output an ATS score or percentage match anywhere"
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "devon-marsh-overdesigned",
+      "prompt": "Review my resume: fixtures/Demo_BadResume_DevonMarsh.docx. It belongs to a fictional demo candidate. Devon is a computer science student, still enrolled, with no full-time professional experience. Target role: entry-level Software Developer. Run the complete review.",
+      "expected_output": "A severity-grouped review that dismantles the over-designed layout with quoted findings, flags the contact-line defects, treats the work-authorization line as a discussion point rather than an error, and ends with a severity count and one highest-impact fix. No ATS score, no invented numbers.",
+      "files": ["fixtures/Demo_BadResume_DevonMarsh.docx"],
+      "expectations": [
+        "Reports the multi-table / two-column sidebar layout as a blocking ATS problem",
+        "Reports the photo box",
+        "Reports date of birth, marital status, and nationality as prohibited personal data",
+        "Reports the page budget as exceeded or at risk for a student (an estimate is acceptable when judging from extracted text)",
+        "Reports the use of more than one font family",
+        "Reports the star-rating skills presentation as unverifiable or ATS-hostile",
+        "Reports the email devonmarsh_cs@email.com as failing the professional-email check",
+        "Reports the LinkedIn URL linkedin.com/in/devon-marsh-b82a51937 as an unclaimed default and recommends claiming the custom URL",
+        "Reports the ALL-CAPS name",
+        "Reports the missing target job title line",
+        "Reports at least two misspelled tool names among CompTia, Java Script, MySql, Github",
+        "Reports that no bullet contains a number, without inventing any",
+        "Does not list the 'Authorized to work in the United States' line as a blocking defect (a judgment-call discussion or omission is fine)",
+        "Does not output an ATS score or percentage match anywhere"
+      ]
+    }
+  ]
+}

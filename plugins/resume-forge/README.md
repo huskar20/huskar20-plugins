@@ -14,7 +14,7 @@ your contact details and target titles.
 |---|---|---|
 | **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text) **or** interviews you from scratch → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
 | **tailor** | "tailor my resume to this job" | Takes a job description → rewrites the target title line, reorders bullets and skill categories, aligns wording with the posting, and reports keyword coverage as a table. Always produces a new copy; never edits your master. |
-| **review** | "review my resume" | Audits a resume against a 38-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, unprofessional email addresses, unclaimed LinkedIn URLs, length problems. |
+| **review** | "review my resume" | Audits a resume against a 38-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, unprofessional email addresses, unclaimed LinkedIn URLs, length problems. On a `.docx` it also verifies each hyperlink's real target against its display text. |
 
 ## The format it produces
 

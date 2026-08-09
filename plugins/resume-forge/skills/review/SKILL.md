@@ -40,6 +40,13 @@ Some checks need a whole-document view rather than a line-by-line pass:
 - **Page budget** — estimate from content volume if the source is text rather
   than a rendered document, and say the estimate is an estimate.
 - **Section order** — depends on the years-of-experience answer from Step 1.
+- **Header links** — for a `.docx` source, run `scripts/check_links.py <file>`
+  (standard library only, no install). It compares every hyperlink's display
+  text with its real target, and lists URL-looking text that carries no
+  hyperlink at all. A link whose text says one address while pointing at
+  another cannot be seen on the rendered page, so never skip the script when
+  the source is a `.docx`. Covers advisory items 35 and 36; for other source
+  formats those two stay an eyeball check.
 
 ## Step 3 — Report
 

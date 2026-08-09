@@ -58,8 +58,8 @@ The tells are structural, not lexical. Report these with the offending text quot
 | 32 | Passive constructions: "was tasked with", "was responsible for" |
 | 33 | Filler adjectives with no evidence behind them |
 | 34 | Acronyms never expanded — spell out once, e.g. "Security Information and Event Management (SIEM)" |
-| 35 | Dead or malformed URLs in the header |
-| 36 | Header links in display form — `linkedin.com/in/handle`, no printed `https://www.`, and still hyperlinked in the exported PDF |
+| 35 | Dead or malformed URLs in the header — including a link whose display text says one address while the target points at another. On a `.docx`, `scripts/check_links.py` verifies this; it cannot be seen on the page |
+| 36 | Header links in display form — `linkedin.com/in/handle`, no printed `https://www.`, and still hyperlinked in the exported PDF (`check_links.py` reports these too) |
 | 37 | Inconsistent date formats between roles |
 | 38 | File name is `JobTitle_FirstNameLastName.pdf` |
 
