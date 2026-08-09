@@ -198,6 +198,15 @@ can defend is fine.
 It asks for your target job title, how many years of experience you have, and
 your contact details. Then it writes a formatted Google Doc into your Drive.
 
+**Two contact details worth fixing first:**
+
+- **Email** — it should be your name: `first.last@gmail.com`. No nicknames, no
+  birth year, no underscores (the link underline hides them). If yours fails
+  that test, make the new address now — applications get replies.
+- **LinkedIn** — if your URL ends in random characters like
+  `linkedin.com/in/you-8a2b91354`, you never claimed your custom URL. LinkedIn →
+  **Settings** → **Public profile** → edit the URL. Takes one minute.
+
 **No resume at all?** Start from the blank template, fill it in, then run the
 command and hand it that file:
 
@@ -254,11 +263,11 @@ Everything that matters works on paper.
 
 - [ ] Name is the biggest text, in title case — `First Last`, not `FIRST LAST`
 - [ ] A **bold job title line** under your contact info, naming the job you *want*
+- [ ] Email is your name, LinkedIn URL is claimed — no nicknames, no `-8a2b91354` tail
 - [ ] Summary is 2–4 sentences, no "I", no "hardworking and motivated"
 - [ ] Skills **grouped** by category, not one long comma list
-- [ ] Every bullet opens with a strong verb
+- [ ] Every bullet opens with a strong verb and fits one line
 - [ ] At least four bullets contain a number
-- [ ] Every bullet fits one line
 - [ ] No dashes in the middle of a sentence
 - [ ] No italic, no tables, no columns, no photo
 - [ ] One page, saved as `JobTitle_FirstNameLastName.pdf`
