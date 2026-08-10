@@ -44,14 +44,15 @@ may have inserted columns.
   {"name":"computer","input":{"action":"type","text":"Applied","tabId":TAB}},
   {"name":"computer","input":{"action":"key","text":"Tab","tabId":TAB}},
   {"name":"computer","input":{"action":"type","text":"Applied","tabId":TAB}},
-  {"name":"computer","input":{"action":"key","text":"Enter","tabId":TAB}},
-  {"name":"computer","input":{"action":"screenshot","tabId":TAB}}
+  {"name":"computer","input":{"action":"key","text":"Enter","tabId":TAB}}
 ]
 ```
 
-Replace `TAB` with the real numeric tab id. One row per batch; read the
-screenshot to confirm placement before the next row. If the active cell after
-`Enter` isn't where you expect, re-anchor via the Name Box rather than guessing.
+Replace `TAB` with the real numeric tab id. One row per batch. **Verify by
+text, not by screenshot:** re-read the row (`get_page_text`, or Name-Box to a
+key cell and read its value) to confirm placement before the next row. If the
+active cell after `Enter` isn't where you expect, re-anchor via the Name Box
+rather than guessing.
 
 ## Writing the Notes column
 

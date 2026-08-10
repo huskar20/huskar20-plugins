@@ -95,8 +95,9 @@ left open, and the user is given the exact URL and the remaining steps.
   requirements, citizenship demands, or consent clauses the listing omitted.
   Any contradiction with the profile's filters → do not submit; flag with
   specifics.
-- Screenshot the review page before submit and the confirmation page after —
-  both go in the run record.
+- Verify the review page and the confirmation page by reading their text
+  (`get_page_text` / `find`), not by screenshotting. The only mandated image is
+  the single pre-submit screenshot in `auto` mode — that is the run record.
 - Salary fields: follow the profile's compensation section exactly (blank/
   "Negotiable" when optional; the profile's numbers when required).
 - Demographic/EEO sections: use the profile's recorded defaults; anything the
