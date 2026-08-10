@@ -16,6 +16,10 @@ The job-hunt work is Steps 6–9.
 | A Claude account | Check you can sign in **before** you start |
 | A Google account | Gmail, Drive, and Calendar are all used |
 | Your resume as a PDF | No resume? The **Resume forge** plugin from the same marketplace builds one — ideally do that workshop first |
+
+> **About your resume:** in today's `prepare` mode the plugin never uploads
+> your resume anywhere — you attach it yourself when you apply from the queue.
+> It just needs to read it to answer screening questions well.
 | Claude desktop app + Claude in Chrome extension | Needed for the job search itself (Step 7 onward) |
 
 ### What a plugin is, in 30 seconds
@@ -148,9 +152,21 @@ check my email for job updates
 
 ---
 
-## Step 6 — The setup interview
+## Step 6 — Make your job-search folder, then run setup
 
-Open (or create) a folder to be your job-search workspace, then type:
+Everything the plugin creates lives in one folder you own. Make it first:
+
+- **Mac:** Finder → **Documents** → File → New Folder → name it `job-search`
+- **Windows:** File Explorer → **Documents** → right-click → New → Folder → `job-search`
+
+**Move your resume PDF into it.** Then open Claude *in* that folder:
+
+- **Claude app:** start a new chat and add the folder to it (drag `job-search`
+  into the chat, or use the **+** → add-folder option), so Claude can read and
+  write there
+- **Claude Code:** `cd Documents/job-search`, then run `claude`
+
+Now type:
 
 ```
 /career-hunter:setup

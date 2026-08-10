@@ -15,6 +15,11 @@ resume work is Steps 6–9.
 | A laptop | |
 | A Claude account | Check you can sign in **before** you start |
 | Your resume | Any format. No resume? See Step 8 |
+
+> **Worth one minute now:** make a `job-search` folder in **Documents**
+> (Finder → New Folder on Mac, File Explorer → New → Folder on Windows) and
+> keep your resume there. The companion **Career hunter** workshop uses the
+> same folder as its workspace, so everything ends up in one place.
 | Google Drive | Required — the plugin writes your resume there |
 | Claude in Chrome extension | Optional. **Highly recommended if you have a paid plan** |
 
