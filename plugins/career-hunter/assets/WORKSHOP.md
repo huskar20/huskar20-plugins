@@ -123,8 +123,28 @@ If they are not there, you did not restart. Quit Claude and reopen.
 | `/career-hunter:apply` | Hunts matching roles and prepares (or submits) applications |
 | `/career-hunter:sync` | Reads your Gmail and updates the tracker — confirmations, rejections, interviews |
 
-Plain sentences work too — "run the job hunt" does the same as
-`/career-hunter:apply` — but the slash commands are faster.
+Plain sentences work too — the slash commands are just faster. All of these
+work as typed:
+
+```
+set up career hunter
+```
+
+```
+run the job hunt
+```
+
+```
+find me remote data analyst internships
+```
+
+```
+sync my job search
+```
+
+```
+check my email for job updates
+```
 
 ---
 
@@ -166,7 +186,15 @@ Open the sheet and keep it in a tab. It fills up in Step 7.
 
 In `prepare` mode it searches **LinkedIn Jobs, Indeed, and company career
 boards** (Greenhouse, Lever, Ashby) in your Chrome, scores every role against
-your profile, and writes the best matches to a queue file:
+your profile, and writes the best matches to a queue file.
+
+**Hunting for an internship?** If you picked **intern** or **new-grad** as your
+level in Step 6, it also searches **Handshake** — the campus board where many
+internships are posted nowhere else. Two things must be true first: you are
+signed in to your school's Handshake in Chrome, and your resume is uploaded to
+your Handshake profile.
+
+The queue file lands here:
 
 ```
 career-hunter-state/prepared/<today>.md

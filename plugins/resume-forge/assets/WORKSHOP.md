@@ -128,8 +128,28 @@ If they are not there, you did not restart. Quit Claude and reopen.
 | `/resume-forge:build` | Writes a properly formatted resume into your Google Drive |
 | `/resume-forge:tailor` | Aims a copy at one specific job posting |
 
-Typing the plain sentence works too — "review my resume" does the same thing —
-but the slash commands are faster and you can see them in the `/` menu.
+Typing the plain sentence works too — the slash commands are just faster and
+visible in the `/` menu. All of these work as typed:
+
+```
+review my resume
+```
+
+```
+build my resume — I'm targeting junior data analyst roles
+```
+
+```
+turn this old resume into a clean one-page version
+```
+
+```
+tailor my resume for this posting: <paste the job description>
+```
+
+```
+is my resume any good for an IT support internship?
+```
 
 ---
 
