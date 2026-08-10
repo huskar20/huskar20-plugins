@@ -1,6 +1,6 @@
 ---
 name: apply
-description: Hunt for roles matching the user's career profile and submit applications end to end — searches LinkedIn Jobs, Indeed, and company ATS boards (Greenhouse/Lever/Ashby) in Chrome, filters against career-profile.md, fills and submits forms, stages them for review, or prepares ready-to-paste answers without opening a form, per the user's configured submission mode, logs every application to the Google Sheets tracker, and sends a summary. Use when the user says "run the job hunt", "find me jobs", "apply to jobs", "run career hunter", or a scheduled apply task fires.
+description: Hunt for roles matching the user's career profile and submit applications end to end — searches LinkedIn Jobs, Indeed, company ATS boards (Greenhouse/Lever/Ashby), and Handshake for internship/new-grad profiles, in Chrome, filters against career-profile.md, fills and submits forms, stages them for review, or prepares ready-to-paste answers without opening a form, per the user's configured submission mode, logs every application to the Google Sheets tracker, and sends a summary. Use when the user says "run the job hunt", "find me jobs", "apply to jobs", "run career hunter", or a scheduled apply task fires.
 ---
 
 # Career Hunter — Apply
@@ -125,7 +125,8 @@ applications cost less and land more than twenty scattered ones.
 Browser site access is granted per domain and varies by session. Probe each
 source family with a **standalone** `navigate` call (denials inside
 `browser_batch` never prompt the user): `linkedin.com`, `indeed.com`, one ATS
-domain (e.g. `job-boards.greenhouse.io`), and `docs.google.com` for the tracker.
+domain (e.g. `job-boards.greenhouse.io`), `app.joinhandshake.com` if the
+profile's level is intern/new-grad, and `docs.google.com` for the tracker.
 A flat denial = that source is unavailable this run; don't retry it. If nothing
 is reachable, mark strong candidates `queued-blocked-domain` and tell the user
 the fix: site access lives in the Claude app / Chrome extension "Allowed sites"
@@ -156,6 +157,14 @@ the last ~3 days (first run: 14 days):
 - **ATS x-ray** — Google/Bing: `site:job-boards.greenhouse.io OR
   site:jobs.lever.co OR site:jobs.ashbyhq.com "<top title>" <2-3 profile
   keywords>` with a recency filter.
+- **Handshake** (`app.joinhandshake.com`) — **only when the profile's level is
+  intern or new-grad**: it is the primary campus-recruiting board and lists
+  roles the other sources never carry. Requires the user's school-linked
+  Handshake session in Chrome (no session → skip the source and note it).
+  Search the title query with the Internship (or Full-time for new-grad) job
+  type filter. Handshake postings apply via the employer's own ATS or
+  Handshake's Quick Apply; treat Quick Apply like LinkedIn Easy Apply —
+  resume must already be uploaded to the user's Handshake profile.
 
 Collect candidates as (company, title, location/mode, comp if posted, JD URL,
 source). Normalize URLs (strip tracking params) before using as state keys.

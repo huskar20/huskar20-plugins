@@ -77,7 +77,11 @@ user didn't give; leave the field marked `TODO (ask owner)` instead.
    - a list of 4–8 acceptable job titles (draft it for them from the role — e.g.
      data engineer → Data Engineer, Senior Data Engineer, Analytics Engineer,
      Data Platform Engineer — and let them edit),
-   - level (junior / mid / senior / staff / lead) and whether management roles are acceptable,
+   - level (intern / new-grad / junior / mid / senior / staff / lead) and whether
+     management roles are acceptable — intern/new-grad additionally unlocks
+     Handshake as a search source in apply; if chosen, ask whether they have a
+     school-linked Handshake account (and note their resume should be uploaded
+     to their Handshake profile for Quick Apply),
    - 5–10 key skills/keywords from their background for search queries and form
      keyword fields (ask them to list their real stack — do not guess).
 3. **Location** — fully remote only? Or also onsite/hybrid within a metro area

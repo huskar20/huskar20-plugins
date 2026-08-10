@@ -11,7 +11,7 @@ work-authorization answers.
 | Skill | Invoke with | What it does |
 |---|---|---|
 | **setup** | "set up career hunter" | Guided interview → generates your personal `career-profile.md`, creates the Google Sheets tracker from scratch, configures caps/schedule/notifications, and asks the key safety question: fully-automatic submission, or review-each-application-before-submit. |
-| **apply** | "run the job hunt" | Searches LinkedIn Jobs, Indeed, and Greenhouse/Lever/Ashby boards for roles matching your profile, scores them, then — depending on your submission mode — submits applications, stages them for your review, or just prepares every answer for you to paste. Logs submissions to the tracker and reports a summary. |
+| **apply** | "run the job hunt" | Searches LinkedIn Jobs, Indeed, Greenhouse/Lever/Ashby boards — plus Handshake when your profile targets internships or new-grad roles — for roles matching your profile, scores them, then — depending on your submission mode — submits applications, stages them for your review, or just prepares every answer for you to paste. Logs submissions to the tracker and reports a summary. |
 | **sync** | "sync my job search" | Scans Gmail since the last sync for confirmations, rejections, interview invites, and engaged recruiter threads; appends/updates tracker rows; creates a calendar event for each confirmed interview; and pushes a notification when an interview lands. |
 
 ## Requirements
