@@ -42,6 +42,20 @@
       ]
     },
     {
+      "header": "ADDITIONAL EXPERIENCE",
+      "entries": [
+        {
+          "left": "Job Title, Organization Name (City, State)",
+          "date": "Year – Year",
+          "bullets": ["One line, or none. Only on a career too long for the page budget."]
+        },
+        {
+          "left": "Job Title, Organization Name (City, State)",
+          "date": "Year – Year"
+        }
+      ]
+    },
+    {
       "header": "PROJECTS",
       "entries": [
         {
@@ -77,9 +91,10 @@
     {
       "header": "CERTIFICATIONS",
       "entries": [
-        { "left": "Certification Name, Issuing Body", "date": "Year" },
-        { "left": "Certification Name, Issuing Body", "date": "In Progress (Expected Mon Year)" }
-      ]
+        { "left": "Certification Name", "issuer": "Issuing Body", "date": "Year" },
+        { "left": "Certification Name", "issuer": "Issuing Body", "date": "In Progress (Expected Mon Year)" }
+      ],
+      "_note_five_or_more": "Past four certifications, drop entries and use the grouped form instead: \"kind\": \"grouped\" with \"items\": [[\"Category:\", \"Cert Name (Year), Cert Name (Year)\"]]"
     }
   ]
 }

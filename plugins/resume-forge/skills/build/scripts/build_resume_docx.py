@@ -92,10 +92,17 @@ def section(name):
     return para([run(name, bold=True, underline=True)])
 
 
-def dated(left, date):
+def dated(left, date, issuer=None):
     """Role, institution or certification line. Left text AND date both bold,
-    date flush right on the 7.50" stop."""
+    date flush right on the 7.50" stop.
+
+    `issuer` is the certifying body, set in regular weight after the bold name.
+    Bold marks the entity that owns the date; the issuer describes it, the same
+    way a degree line describes an institution. Bolding it too turns a long
+    certifications block into a slab of bold with no contrast left to spend."""
     runs = [run(left, bold=True)]
+    if issuer:
+        runs.append(run(", " + issuer))
     if date:
         runs.append(run(date, bold=True, tab=True))
     return para(runs, tabstop=True)
@@ -122,14 +129,19 @@ def build_paragraphs(spec):
         P.append(gap(GAP_SECTION))
         P.append(section(sec["header"]))
         kind = sec.get("kind", "entries")
-        if kind == "skills":
+        # "grouped" renders like skills: a bold label and regular items. It is
+        # what a certifications block collapses to once it is too long to list
+        # one per line. Same rendering, different name, so the spec reads as
+        # what it is rather than borrowing the skills label.
+        if kind in ("skills", "grouped"):
             for label, items in sec["items"]:
                 P.append(para([run(label, bold=True), run(" " + items)]))
             continue
         for i, entry in enumerate(sec["entries"]):
             if i:
                 P.append(gap(GAP_JOB))
-            P.append(dated(entry["left"], entry.get("date", "")))
+            P.append(dated(entry["left"], entry.get("date", ""),
+                           entry.get("issuer")))
             for line in entry.get("lines", []):
                 P.append(para([run(line)]))
             for b in entry.get("bullets", []):

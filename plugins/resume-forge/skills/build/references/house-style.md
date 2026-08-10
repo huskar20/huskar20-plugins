@@ -140,7 +140,8 @@ builds, hackathons, home labs, and volunteer work all count.
 **3+ years:**
 
 header → target title → summary → skills section →
-**Professional Experience** → Education → Certifications → optional Projects
+**Professional Experience** → Additional Experience (only on a long career) →
+Education → Certifications → optional Projects
 
 Once there is a real track record it leads, and Education drops below it.
 
@@ -257,6 +258,34 @@ Getting to one line is mostly deletion, and it rarely costs the evidence:
 The verb, the tool, and the number all survive. What goes is the secondary
 clause. That is the right thing to lose.
 
+### Additional Experience — the compressed block for a long career
+
+A candidate with fifteen or more years, or more than five or six roles, cannot
+give every job four bullets without blowing the page budget. Give the recent and
+relevant roles the full treatment, then collapse the rest under a second header:
+
+```
+ADDITIONAL EXPERIENCE
+Systems Administrator, Meridian Health (Columbus, OH)                2011 – 2014
+   •  Ran Active Directory and VMware for 600 staff across three sites.
+Desktop Support Technician, Calloway Group (Dayton, OH)              2008 – 2011
+```
+
+Use it when the full history runs past the page budget, and put in it anything
+older than roughly the last ten to fifteen years, plus any role unrelated to the
+target title however recent. One detail bullet each, often none. The most recent
+role in this block should still be the least interesting thing on the page.
+
+**The role line does not change.** Same `Job Title, Organization (City, State)`,
+same bold, same date flush right on the 7.50" tab stop. It is tempting to run
+the location and dates inline in parentheses to save room, but that surrenders
+the right-edge chronology, which is the one thing a reader scanning a long
+career actually uses. Compress the bullets, never the spine.
+
+**Compressing is not hiding.** Every role keeps its real dates and its real
+title. A block that drops dates to disguise a gap, or to make a career look
+shorter, is a different thing entirely and this skill does not produce it.
+
 ## Writing that does not read as machine-written
 
 A resume that reads as generated gets discounted, and the tells are structural
@@ -315,9 +344,44 @@ weight underneath. Reverse chronological.
 - Community college, transfer credit, bootcamps, and certificate programs belong
   here and are legitimate
 
-Certifications: bold name, then issuing body. Order by prestige and relevance,
-not date. "In Progress (Expected Nov 2026)" is honest — use it. Spell exactly:
-CompTIA not CompTia, CrowdStrike not Crowdstrike.
+Certifications: **the name is bold, the issuing body is not.** Put the issuer in
+the spec's `issuer` field, which sets it in regular weight after the name. Order
+by prestige and relevance, not date. "In Progress (Expected Nov 2026)" is honest
+— use it. Spell exactly: CompTIA not CompTia, CrowdStrike not Crowdstrike.
+
+Bold marks the entity that owns the date, not the important thing. That is why
+the institution is bold and the degree beneath it is not, even though the degree
+matters more. A certification owns its date the way a job does, so the name
+takes the same weight, and the issuer describes it the way a degree line
+describes a school.
+
+### Two forms, chosen by count
+
+**Up to four certifications — one dated line each:**
+
+```
+CompTIA Security+, CompTIA                                                  2024
+AWS Certified Solutions Architect – Associate       In Progress (Expected Nov 2026)
+```
+
+**Five or more — collapse to grouped lines** with `"kind": "grouped"`, which
+renders a bold category label and regular items, exactly like the skills block:
+
+```
+Cloud: AWS Solutions Architect Associate (2025), Azure Fundamentals (2024)
+Security: CompTIA Security+ (2024), CompTIA Network+ (2024), CySA+ (2023)
+```
+
+Past four entries the one-per-line form becomes a wall of bold with a bold date
+beside each, and bold that covers a whole block has stopped marking anything.
+The grouped form drops eight lines to three, keeps every certification name
+intact for keyword matching, and puts the year in parentheses instead of on the
+tab stop. Cert dates carry far less than job dates — nobody reconstructs a
+career from exam years — so losing the right-edge alignment costs little here
+and would cost a lot in Professional Experience.
+
+Count the certifications and pick the form before writing the section. Do not
+mix the two.
 
 ## File naming
 
