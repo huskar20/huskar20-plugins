@@ -1,7 +1,7 @@
 # Job-Hunt Workshop — Student Handout
 
-Follow the steps in order. Setup is Steps 1–5 and takes about fifteen minutes.
-The job-hunt work is Steps 6–9.
+Follow the steps in order. Setup is Steps 1–6 and takes about fifteen minutes.
+The job-hunt work is Steps 7–10.
 
 **Stuck for more than three minutes? Put your hand up, or jump to
 [No laptop, no account](#no-laptop-no-account) and keep going on paper.**
@@ -16,7 +16,11 @@ The job-hunt work is Steps 6–9.
 | A Claude account | Check you can sign in **before** you start |
 | A Google account | Gmail, Drive, and Calendar are all used |
 | Your resume as a PDF | No resume? The **Resume forge** plugin from the same marketplace builds one — ideally do that workshop first |
-| Claude desktop app + Claude in Chrome extension | Needed for the job search itself (Step 7 onward) |
+| Claude desktop app + Claude in Chrome extension | Needed for the job search itself (Step 8 onward) |
+
+> **About your resume:** in today's `prepare` mode the plugin never uploads
+> your resume anywhere — you attach it yourself when you apply from the queue.
+> It just needs to read it to answer screening questions well.
 
 ### What a plugin is, in 30 seconds
 
@@ -28,15 +32,52 @@ You are installing one called **Career hunter**. It has three skills.
 
 ---
 
-## Step 1 — Open Claude
+## Step 1 — Make your job-search folder
 
-For this workshop you want the **Claude desktop app** — the job search drives
-your own Chrome browser, and that needs the app plus the extension. Claude Code
-(the terminal) works for setup too, but Steps 7–9 need the app.
+Everything the plugin creates — your profile, your run state, your prepared
+applications — lives in one folder that you own. Make it **before** you open
+Claude, so Claude starts in the right place.
+
+- **Mac:** Finder → **Documents** → File → **New Folder** → name it `job-search`
+- **Windows:** File Explorer → **Documents** → right-click → **New** →
+  **Folder** → name it `job-search`
+
+Then **move your resume PDF into that folder.** One folder, everything in it.
 
 ---
 
-## Step 2 — Turn on the Google connectors
+## Step 2 — Open Claude in that folder
+
+This is the step people skip, and then Claude writes your profile somewhere you
+cannot find. **Claude only works in a folder you point it at.**
+
+For this workshop you want the **Claude desktop app** — the job search drives
+your own Chrome browser, and that needs the app plus the extension. Claude Code
+(the terminal) works for setup too, but Steps 8–10 need the app.
+
+### In the Claude app
+
+Start a new chat and give it the folder: drag `job-search` from Finder/File
+Explorer into the chat window, or use the **+** button → add folder. You should
+see the folder's name attached to the conversation before you continue.
+
+### In Claude Code
+
+Open a terminal and go to the folder first, then start Claude:
+
+```
+cd Documents/job-search
+```
+
+```
+claude
+```
+
+Everything from here on happens in that session.
+
+---
+
+## Step 3 — Turn on the Google connectors
 
 1. Open **Settings** → **Connectors**
 2. Enable **Gmail**, **Google Drive**, and **Google Calendar**
@@ -47,7 +88,7 @@ stops and tells you which — that is intended, not a crash.
 
 ---
 
-## Step 3 — Chrome extension
+## Step 4 — Chrome extension
 
 1. Open **Google Chrome** (Chrome only — not Edge, Safari, or Firefox)
 2. Chrome Web Store → search **Claude in Chrome**
@@ -59,7 +100,7 @@ own logged-in LinkedIn/Google sessions. Nothing runs on someone else's account.
 
 ---
 
-## Step 4 — Install the plugin
+## Step 5 — Install the plugin
 
 ### In Claude Code
 
@@ -73,7 +114,10 @@ Type these two, one at a time:
 /plugin install career-hunter
 ```
 
-Then **quit Claude Code and reopen it.** People forget this and nothing works.
+Then **quit Claude Code and reopen it — from the same folder.** (`cd
+Documents/job-search` again if you need to, then `claude`.) People forget the
+restart and nothing works; people forget the folder and their files land
+somewhere random.
 
 ### In the Claude app
 
@@ -95,7 +139,7 @@ https://github.com/huskar20/huskar20-plugins
 
 ---
 
-## Step 5 — Check it worked
+## Step 6 — Check it worked
 
 Type a single forward slash:
 
@@ -148,9 +192,10 @@ check my email for job updates
 
 ---
 
-## Step 6 — The setup interview
+## Step 7 — The setup interview
 
-Open (or create) a folder to be your job-search workspace, then type:
+You should still be in the `job-search` folder from Steps 1–2 — that is where
+your profile gets written. Type:
 
 ```
 /career-hunter:setup
@@ -164,7 +209,7 @@ Two moments matter:
 
 - **When it asks for a submission mode, pick `prepare`.** That is the
   try-it-safely mode: the plugin never opens or submits a form. The other two
-  modes are explained in Step 8 — you can switch any time.
+  modes are explained in Step 9 — you can switch any time.
 - **Salary floor** — the number below which it never even shows you a role.
   Look up a realistic entry figure for your title and city first.
 
@@ -174,11 +219,11 @@ Setup creates two things you own:
 - a **Job_Search_Tracker** Google Sheet in your Drive, with Applications,
   Interview Notes, Contacts, and Dashboard tabs
 
-Open the sheet and keep it in a tab. It fills up in Step 7.
+Open the sheet and keep it in a tab. It fills up in Step 8.
 
 ---
 
-## Step 7 — Run the hunt
+## Step 8 — Run the hunt
 
 ```
 /career-hunter:apply
@@ -189,7 +234,7 @@ boards** (Greenhouse, Lever, Ashby) in your Chrome, scores every role against
 your profile, and writes the best matches to a queue file.
 
 **Hunting for an internship?** If you picked **intern** or **new-grad** as your
-level in Step 6, it also searches **Handshake** — the campus board where many
+level in Step 7, it also searches **Handshake** — the campus board where many
 internships are posted nowhere else. Two things must be true first: you are
 signed in to your school's Handshake in Chrome, and your resume is uploaded to
 your Handshake profile.
@@ -215,7 +260,7 @@ actual submission is your own click.
 
 ---
 
-## Step 8 — The three modes (read before changing anything)
+## Step 9 — The three modes (read before changing anything)
 
 | Mode | What happens | Who clicks Submit |
 |---|---|---|
@@ -233,7 +278,7 @@ from your profile gets skipped and flagged for you instead.
 
 ---
 
-## Step 9 — Sync your inbox
+## Step 10 — Sync your inbox
 
 After you have applied to something (today or later), type:
 
@@ -274,11 +319,12 @@ exactly what `career-profile.md` stores.
 |---|---|
 | The `/career-hunter:` commands are not in the `/` menu | You did not restart. Quit Claude completely and reopen |
 | Setup says a connector is missing | Settings → Connectors → enable Gmail, Drive, and Calendar |
-| "No browser connected" during apply | Desktop app + Claude in Chrome extension (Step 3), then click **Connect** when asked |
-| Apply or sync sends you back to setup | Intended — they need the profile setup creates. Run Step 6 first, in your workspace folder |
+| "No browser connected" during apply | Desktop app + Claude in Chrome extension (Step 4), then click **Connect** when asked |
+| Apply or sync sends you back to setup | Intended — they need the profile setup creates. Run Step 7 first, from your `job-search` folder |
 | A site won't load during the hunt | Allow it in the extension's site permissions when Chrome asks |
 | It skipped a role and "flagged" it | Working as intended — the form asked something your profile can't answer. The summary tells you which and why |
 | The queue file is empty | Your filters may be too tight — check the salary floor and titles in `career-profile.md`, edit by hand, re-run |
+| I cannot find `career-profile.md` on my laptop | Claude wrote it wherever it was pointed. Open your `job-search` folder (Steps 1–2) and re-run setup from there — or ask Claude "where did you save my career profile?" |
 
 ---
 
