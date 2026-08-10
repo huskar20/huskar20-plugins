@@ -12,6 +12,7 @@ Checks:
     semver version matching its marketplace entry
   * each plugin has a README.md
   * each skills/<skill>/SKILL.md exists and has YAML frontmatter with name+description
+  * the root README's "Available plugins" table shows each plugin's current version
   * a light scan for obvious secret/PII leaks
 
 Exit code 0 = all good, 1 = problems found.
@@ -164,6 +165,25 @@ def main() -> int:
             for fn in files:
                 if fn.endswith((".md", ".json", ".txt", ".yml", ".yaml", ".py", ".js", ".ts", ".sh")):
                     scan_secrets(os.path.join(dirpath, fn))
+
+    # root README version table must match marketplace.json
+    readme_path = os.path.join(ROOT, "README.md")
+    try:
+        with open(readme_path, encoding="utf-8") as f:
+            readme = f.read()
+    except OSError:
+        readme = ""
+        warn("no root README.md")
+    if readme:
+        for name, entry in registered.items():
+            row = re.search(
+                r"^\|\s*\*\*" + re.escape(name) + r"\*\*\s*\|.*\|\s*(\d+\.\d+\.\d+)\s*\|\s*$",
+                readme, re.MULTILINE)
+            if row is None:
+                warn(f"README.md: no 'Available plugins' table row found for '{name}'")
+            elif row.group(1) != str(entry.get("version", "")):
+                err(f"README.md: table shows {name} {row.group(1)} but marketplace.json "
+                    f"has {entry.get('version')} — update the README's version column")
 
     # report
     for w in warnings:
