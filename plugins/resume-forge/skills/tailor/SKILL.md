@@ -112,3 +112,10 @@ and a resume that silently spills onto a second page is a regression.
   not confirmed.
 - Never keyword-stuff — no white text, hidden layers, or trailing keyword dumps.
   Automated systems detect it and it ends the candidacy.
+- **Never answer the posting's eligibility questions on the resume.** A listing
+  that says "must be authorized to work without sponsorship" or asks about
+  clearance, salary expectations, or start date is describing what the
+  *application form* will ask. Adding a work-authorization, sponsorship, visa,
+  citizenship, clearance, salary, or availability line is never the tailoring
+  move — see "Never on a resume" in `../build/references/house-style.md`.
+  Report it as an open question in Step 5 instead.

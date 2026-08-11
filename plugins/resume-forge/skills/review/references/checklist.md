@@ -13,7 +13,7 @@ fail with the offending text quoted, not a generic warning.
 | 4 | One font family throughout | Calibri in this house style; any second family is a defect |
 | 5 | No italic anywhere | Bold, underlined section headers, and regular weight only. Flag any italic run |
 | 6 | Contact block complete | Name, city/state, phone, email, LinkedIn. GitHub for technical roles |
-| 7 | No prohibited personal data | Street address, photo, age, DOB, marital status, nationality |
+| 7 | No prohibited personal data | Street address, photo, age, DOB, marital status, nationality. Also work authorization, sponsorship, visa type, citizenship, clearance, salary history or expectations, EEO answers (gender, race, disability, veteran status), and availability or notice period. Anywhere on the page, any wording — "U.S. Work Authorization: Eligible for Summer 2027 internship" under Education is the common form. Quote the line and say it belongs on the application form, not the resume |
 | 8 | No "References available upon request" | Assumed; wastes a line |
 | 9 | Every bullet opens with a verb | Flag "Responsible for", "Helped with", "Worked on", "Duties included", "Tasked with" |
 | 10 | Tense is consistent | Present for the current role, past for all others, never mixed inside one role |
