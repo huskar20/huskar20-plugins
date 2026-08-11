@@ -54,8 +54,18 @@ needs to stand out, make it bold or move it, never slant it.
 
 ## Bullet glyphs — pick one scheme per document
 
-Which scheme depends on how much is on the page. Choose once and hold it for the
-whole document; never mix the two.
+**Decide this before writing a line, and say which you picked.** Count the
+detail lines and pages first; the answer follows from density, not taste:
+
+| The document is | Titles | Details |
+|---|---|---|
+| One page, or under ~15 detail lines | flush left, **no glyph** | `•` |
+| Two-plus pages, or many stacked roles | `•` | `-` |
+
+Choose once and hold it for the whole document — Education and Projects
+included. Never mix the two; a mixed document is a defect `review` reports. If
+the user brought a resume that already holds one scheme consistently, keep
+theirs rather than converting it.
 
 **Short resume — one page, or fewer than about fifteen detail bullets:**
 

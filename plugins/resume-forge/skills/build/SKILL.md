@@ -93,6 +93,20 @@ For a student or career changer with thin work history, push on projects,
 coursework, internships, part-time and campus jobs, and volunteer work. These
 count and belong on the page.
 
+**Then decide the bullet-glyph scheme, and state it before writing.** It is a
+document-wide decision like section order, not a per-line choice, and mixing
+the two is a defect `review` flags. Count the roles and detail lines collected
+above, then pick per `house-style.md`:
+
+- **One page, or fewer than about fifteen detail lines** → titles flush left
+  with **no glyph**, details indented with `•`.
+- **Two or more pages, or many roles stacked together** → `•` marks the role
+  and project title lines, `-` marks the details beneath them.
+
+Borderline, or the user supplied a resume that already uses one scheme
+consistently? Keep theirs. Hold whichever you pick for every section of the
+document, Education and Projects included.
+
 ## Step 5 — Write the content
 
 Follow `house-style.md` for structure, including **the section order for the
