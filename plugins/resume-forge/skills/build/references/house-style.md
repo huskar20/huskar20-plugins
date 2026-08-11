@@ -350,9 +350,26 @@ weight underneath. Reverse chronological.
 
 - **GPA:** only if 3.5+ **and** within three years of graduation
 - "Expected May 2026" is normal for students
-- A coursework line is useful at 0–2 years, delete it after
 - Community college, transfer credit, bootcamps, and certificate programs belong
   here and are legitimate
+
+**Relevant coursework is a last resort, not a default section.** Everyone in the
+major took the same classes, so it differentiates nobody; one project using the
+skill outranks any list of course titles. It earns a line only when all of these
+hold:
+
+- the user is at 0–2 years — delete it after that;
+- the page still has room once real evidence is placed. A project bullet always
+  wins the same line;
+- the work history is genuinely thin. An internship plus two projects means
+  coursework adds nothing — leave it off;
+- the courses are specific and role-relevant. `Data Structures, Database
+  Systems, Network Security` earns its place because those terms appear nowhere
+  else on a thin resume and an ATS reads them. `Intro to Programming,
+  Calculus I` is noise that signals there was nothing better to say.
+
+One line, four to six courses, comma-separated under the degree. Never a
+bulleted list, never a second line.
 
 Certifications: **the name is bold, the issuing body is not.** Put the issuer in
 the spec's `issuer` field, which sets it in regular weight after the name. Order

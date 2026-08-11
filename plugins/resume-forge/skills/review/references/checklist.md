@@ -62,6 +62,7 @@ The tells are structural, not lexical. Report these with the offending text quot
 | 36 | Header links in display form — `linkedin.com/in/handle`, no printed `https://www.`, and still hyperlinked in the exported PDF (`check_links.py` reports these too) |
 | 37 | Inconsistent date formats between roles |
 | 38 | File name is `JobTitle_FirstNameLastName.pdf` |
+| 39 | Coursework that has not earned its line — present alongside real experience, past 0–2 years, running over one line, or listing generic courses ("Intro to Programming", "Calculus I"). A project using the skill outranks any course list |
 
 ## Reporting format
 

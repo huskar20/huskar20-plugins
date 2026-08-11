@@ -90,8 +90,10 @@ Optional, ask once: certifications (including in-progress), projects, languages,
 publications, volunteering.
 
 For a student or career changer with thin work history, push on projects,
-coursework, internships, part-time and campus jobs, and volunteer work. These
-count and belong on the page.
+internships, part-time and campus jobs, and volunteer work. These count and
+belong on the page. Ask about coursework last and only if the page still looks
+thin after all of those — it is a space filler of last resort, and
+`house-style.md` sets the bar it has to clear.
 
 **Then decide the bullet-glyph scheme, and state it before writing.** It is a
 document-wide decision like section order, not a per-line choice, and mixing

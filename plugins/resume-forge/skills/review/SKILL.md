@@ -23,7 +23,7 @@ posting-specific comparison, and keep this review about the document itself.
 
 ## Step 2 — Run the checklist
 
-Read `references/checklist.md` and work through all 38 items. Check every one;
+Read `references/checklist.md` and work through all 39 items. Check every one;
 do not sample. Each is written to be objectively testable against the text.
 
 Some checks need a whole-document view rather than a line-by-line pass:
