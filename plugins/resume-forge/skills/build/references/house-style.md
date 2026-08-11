@@ -159,6 +159,31 @@ Move Education and Projects down once the user has roughly two years of
 full-time work. Part-time and campus jobs held while studying do not count
 toward that two years.
 
+## Never on a resume
+
+None of the following goes on the page, in any section, in any wording, for any
+candidate — not in the header, not under Education, not in the summary:
+
+- **Work authorization, sponsorship status, visa type, citizenship, security
+  clearance.** Including CPT/OPT eligibility, "authorized to work without
+  sponsorship", and "eligible for a Summer 2027 internship".
+- **Salary history or expectations.**
+- **Gender, race, ethnicity, religion, age, date of birth, marital status,
+  disability, veteran status, or a photo.**
+- **Availability, start date, or notice period.**
+
+Employers ask what they legitimately need on the **application form**, where the
+answer is expected and sits beside everyone else's. On a resume the same
+sentence reads as a flag the candidate raised about themselves: it invites a
+question nobody asked, opens the door to bias, and spends a line that could have
+carried evidence. A resume argues that the person can do the work. Nothing else
+belongs on it.
+
+This applies even when the data is sitting right there in a
+`career-hunter` `career-profile.md` — that file exists to fill forms. If a
+resume handed to `build` or `review` already contains one of these lines,
+remove it and tell the user why.
+
 ## The header block — four lines
 
 ```

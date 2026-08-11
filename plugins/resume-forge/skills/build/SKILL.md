@@ -44,10 +44,24 @@ Ask which the user has, or infer it if they already said:
 - **Nothing** — run the interview in Step 4.
 
 Also check for `career-profile.md` in the working folder or its parents. That
-file is written by the `career-hunter` plugin and already contains name, email,
-phone, city/state, LinkedIn, portfolio, target titles, and level. If it exists,
-**read it and use it** rather than re-asking; confirm the values instead of
-collecting them again. Never write to that file.
+file is written by the `career-hunter` plugin. If it exists, read it and use it
+rather than re-asking; confirm the values instead of collecting them again.
+Never write to that file.
+
+**Take only these fields from it — the rest of the file must never reach the
+resume:**
+
+| Use | Ignore completely |
+|---|---|
+| Name, email, phone, city and state | Work authorization, sponsorship, citizenship, security clearance |
+| LinkedIn, GitHub, portfolio | Compensation and salary expectations |
+| Target titles and level | Availability, start date, notice period |
+| | Voluntary/EEO answers — gender, race, disability, veteran status |
+
+That file exists to answer **application forms**, which ask legitimate questions
+a resume must never carry. Everything in the right-hand column either invites
+discrimination or hands over negotiating position; see the "Never on a resume"
+rule in `house-style.md`.
 
 ## Step 3 — Load the format
 
