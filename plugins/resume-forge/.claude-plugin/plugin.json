@@ -1,6 +1,6 @@
 {
   "name": "resume-forge",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Build, tailor, and review resumes in a single-column ATS-safe house style: generates a formatted Google Doc from an interview or an existing resume file, aims a copy at a specific job description, and audits any resume against a pre-submission checklist without ever inventing achievements.",
   "author": {
     "name": "Huseyin Karaarslan"
