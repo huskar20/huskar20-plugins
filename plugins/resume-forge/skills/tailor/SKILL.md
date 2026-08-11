@@ -59,6 +59,12 @@ In order of impact:
 Every one of these is a reordering or a rewording of something already true.
 None adds a claim.
 
+Rewrites must land in the house style the document already uses — consult
+`../build/references/house-style.md` for the bullet rules before editing text:
+keep the document's existing bullet-glyph scheme exactly as found (never
+convert or mix schemes), keep a rewritten bullet to roughly one line, and use
+no dashes inside a sentence.
+
 ## Step 5 — Surface what needs the user
 
 Anything absent from the resume is a **question**, not an edit:
