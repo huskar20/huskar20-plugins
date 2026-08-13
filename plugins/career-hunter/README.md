@@ -10,7 +10,7 @@ work-authorization answers.
 
 | Skill | Invoke with | What it does |
 |---|---|---|
-| **setup** | "set up career hunter" | Guided interview → generates your personal `career-profile.md`, creates the Google Sheets tracker from scratch, configures caps/schedule/notifications, and asks the key safety question: fully-automatic submission, or review-each-application-before-submit. |
+| **setup** | "set up career hunter" | Guided interview → generates your personal `career-profile.md`, creates your Google Sheets tracker by copying the plugin's template into your Drive, configures caps/schedule/notifications, and asks the key safety question: fully-automatic submission, or review-each-application-before-submit. |
 | **apply** | "run the job hunt" | Searches LinkedIn Jobs, Indeed, Greenhouse/Lever/Ashby boards — plus Handshake when your profile targets internships or new-grad roles — for roles matching your profile, scores them, then — depending on your submission mode — submits applications, stages them for your review, or just prepares every answer for you to paste. Logs submissions to the tracker and reports a summary. |
 | **sync** | "sync my job search" | Scans Gmail since the last sync for confirmations, rejections, interview invites, and engaged recruiter threads; appends/updates tracker rows; creates a calendar event for each confirmed interview; and pushes a notification when an interview lands. |
 
@@ -18,7 +18,7 @@ work-authorization answers.
 
 - **Claude desktop app** with the **Claude-in-Chrome extension** connected
   (all form-filling and sheet edits happen in your own Chrome, with your own
-  logged-in sessions).
+  logged-in sessions). Setup doesn't need it; `apply` and `sync` do.
 - **Gmail**, **Google Drive**, and **Google Calendar** connectors enabled.
 - A resume PDF.
 
@@ -42,6 +42,29 @@ work-authorization answers.
      Contacts, and Dashboard** tabs
 4. Say **"run the job hunt"** to apply, **"sync my job search"** to reconcile
    Gmail with the tracker — or let setup schedule both.
+
+## How the tracker gets created
+
+Setup copies a published, view-only template sheet into your Drive with a single
+Drive API call. The copy is yours — the template is never touched, and nobody
+else can see your applications. It arrives with all four tabs, the dropdowns and
+their color chips, and the live Dashboard formulas already in place.
+
+| | |
+|---|---|
+| Template file ID | `11CJOGqPsBG-zgDBd-wu-uQUxMzB1W97ZYl-LTlENFWs` |
+| Where your copy lands | your Drive root, named `Job_Search_Tracker_<year>` |
+
+The template contains only empty structure — headers and formatting, no data.
+
+Earlier versions built the sheet cell by cell through Chrome, which meant a couple
+hundred browser actions and was the most fragile part of onboarding. That path
+still exists as a fallback for when the template can't be reached, so setup never
+hard-fails; it's just slow. If the copy fails, setup tells you why before falling
+back.
+
+Prefer to keep a tracker you already have? Setup can connect an existing sheet
+instead — it maps columns by header name, so your layout doesn't have to match.
 
 ## Submission modes — and what they cost
 

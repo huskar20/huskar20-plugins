@@ -1,7 +1,9 @@
 # Tracker spreadsheet schema (Applications tab)
 
-Row layout: **row 1 = title banner** (merged or plain, cosmetic), **row 2 = header
-row**, **data starts at row 3**. Entry number N lives on sheet row N+2.
+Row layout: **row 1 = banner row**, **row 2 = header row**, **data starts at row 3**.
+Entry number N lives on sheet row N+2. Row 1 is reserved and cosmetic — a merged
+title, a plain colored strip, or blank are all fine; nothing reads it. What is
+load-bearing is headers on row 2 and data from row 3.
 
 **The owner may edit this schema by hand later** (insert columns, add statuses).
 The apply and sync skills must therefore **re-read the header row (row 2) at the
@@ -79,8 +81,12 @@ paints the Status cells; it is NOT conditional formatting):
 All coloring below is plain cell fill / text formatting, applied once at setup.
 Exact hex isn't critical; match the semantic color.
 
-- **Row 1 title banner (every tab):** dark navy fill, **white bold centered** title
-  (the tab's name, e.g. `JOB SEARCH DASHBOARD`, `RECRUITER & CONTACT DIRECTORY`).
+- **Row 1 banner (every tab):** dark navy fill spanning the used columns. A
+  **white bold centered** title (the tab's name, e.g. `JOB SEARCH DASHBOARD`,
+  `RECRUITER & CONTACT DIRECTORY`) is optional — if used, merge the row first, or
+  the text clips to its own column instead of centering across the banner. Keep the
+  fill uniform across row 1 so column tints (e.g. Interview Date green) don't bleed
+  into it.
 - **Row 2 header row (all data tabs):** dark navy fill, white bold text.
 - **Applications — column C (Interview Date):** light green fill on the header and
   its cells, so interview rows stand out at a glance.
@@ -91,7 +97,7 @@ Exact hex isn't critical; match the semantic color.
 - **Row 1 banner:** dark navy, white bold `JOB SEARCH DASHBOARD`.
 - **Summary cards — row 3 header cells, each a distinct fill:** Total Applied =
   navy, Active = green, Rejected = red, Offers = amber/gold, In Final Round =
-  blue, Stalled = orange. Row 4 (the formula values) sits on light gray with large
+  blue, Withdrawn = dark navy. Row 4 (the formula values) sits on light gray with large
   bold numbers.
 - **Row 6 banner:** dark navy, white bold `PIPELINE FUNNEL`.
 - **Funnel rows 7–13:** bold stage labels in column B on light gray, counts in
@@ -99,11 +105,26 @@ Exact hex isn't critical; match the semantic color.
 
 ## Creating the sheet
 
-The full create-then-populate procedure is in this skill's `SKILL.md` (**Step 4**):
-the Google Drive MCP `create_file` makes the spreadsheet, then Chrome populates the
-tabs, the dropdowns + Status chip colors above, the fills above, the supporting-tab
-layouts below, and the Dashboard formulas below. The apply/sync skills only ever
-write to `Applications`; the three supporting tabs are for the user's manual use.
+Setup's default path is **copying the published template** with the Drive MCP
+`copy_file` — one call, and everything on this page comes with the copy, including
+the dropdowns and their chip colors (which cannot be pasted or scripted from
+outside Sheets). See this skill's `SKILL.md` (**Step 4**).
+
+So this page has two jobs now:
+
+1. **The spec the template must satisfy.** Whoever maintains the template checks it
+   against this page after editing it.
+2. **The build-from-scratch fallback**, used only when the template is unavailable:
+   `create_file` makes a blank spreadsheet, then Chrome populates the tabs, the
+   dropdowns + Status chip colors above, the fills above, the supporting-tab layouts
+   below, and the Dashboard formulas below.
+
+The apply/sync skills only ever write to `Applications`; the three supporting tabs
+are for the user's manual use.
+
+**The template must ship empty:** row 1 banner, row 2 headers, nothing from row 3
+down, on every tab. Apply and sync append after the last populated row, so a stray
+sample row in the template silently offsets every user's first entries.
 
 ## Supporting tabs (exact layout, mirrored from the reference tracker)
 
@@ -137,7 +158,7 @@ with the same formulas so it auto-updates as applications are logged. Layout:
   | D | Rejected | `=COUNTIF(Applications!N3:N180,"Rejected")` |
   | E | Offers | `=COUNTIF(Applications!N3:N180,"Offer")` |
   | F | In Final Round | `=COUNTIF(Applications!M3:M180,"Final Round")` |
-  | G | Stalled | `=COUNTIF(Applications!N3:N180,"Stalled")` |
+  | G | Withdrawn | `=COUNTIF(Applications!N3:N180,"Withdrawn")` |
 
 - Row 6 banner: `PIPELINE FUNNEL`
 - **Funnel** — label in column B, count in column C (rows 7–13), each count
@@ -155,6 +176,6 @@ with the same formulas so it auto-updates as applications are logged. Layout:
 
 The `…3:180` ranges intentionally extend far past current data so new rows are
 counted automatically without touching the Dashboard. The summary "Active/
-Rejected/Offer/Stalled" cards read the **Status** column (N); "In Final Round"
+Rejected/Offer/Withdrawn" cards read the **Status** column (N); "In Final Round"
 and the whole funnel read the **Stage** column (M). If you rearranged the
 Applications columns, point these at the correct letters.

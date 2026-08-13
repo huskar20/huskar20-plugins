@@ -24,6 +24,14 @@ in `marketplace.json`.
    spreadsheet/document IDs, file paths outside the repo, or customer data. A
    plugin's *users* generate their own data locally at runtime — it must never
    land in this repo. CI scans for common leak patterns; do not defeat it.
+
+   **One exception: a public template document ID that the plugin itself owns.**
+   A plugin may hardcode the ID of a Google Doc/Sheet it publishes as a starting
+   template (view-only, link-shared, containing no user data) so setup can copy it
+   in one call instead of rebuilding it through the browser. Such an ID must be
+   documented in the plugin's README, and the template must contain nothing but
+   empty structure. This exception covers **only** template IDs the marketplace
+   publishes — a user's own spreadsheet ID never belongs in the repo.
 3. **Validate before every PR:** `python3 scripts/validate.py` must pass. If you
    have the Claude CLI, also run `claude plugin validate plugins/<name>/.claude-plugin/plugin.json`.
 4. **Bump versions on every change.** Update the plugin's `plugin.json` `version`
