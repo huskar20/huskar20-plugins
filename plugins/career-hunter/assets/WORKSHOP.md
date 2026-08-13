@@ -121,11 +121,12 @@ somewhere random.
 
 ### In the Claude app
 
-1. **Customize** in the left sidebar
-2. **Plugins** tab
-3. Under **Personal plugins**, click **+**
+1. Open **Settings**
+2. In the sidebar, under **Customize**, click **Plugins**
+3. Click **Add** at the top right
 4. **Add marketplace**
-5. **Add from a repository**
+5. **Add from a repository** — the second option. Not **Browse Anthropic
+   sources**, which only lists Anthropic's own plugins and will not find ours
 6. Paste this:
 
 ```
@@ -318,6 +319,8 @@ exactly what `career-profile.md` stores.
 | What you see | Fix |
 |---|---|
 | The `/career-hunter:` commands are not in the `/` menu | You did not restart. Quit Claude completely and reopen |
+| Cannot find **Plugins** | Open **Settings** first — **Plugins** sits in the settings sidebar under the **Customize** heading, below **Skills** and **Connectors** |
+| The repository is not in **Browse Anthropic sources** | Correct, it never will be — that list is Anthropic's own. Back up and choose **Add from a repository** |
 | Setup says a connector is missing | Settings → Connectors → enable Gmail, Drive, and Calendar |
 | "No browser connected" during apply | Desktop app + Claude in Chrome extension (Step 4), then click **Connect** when asked |
 | Apply or sync sends you back to setup | Intended — they need the profile setup creates. Run Step 7 first, from your `job-search` folder |
