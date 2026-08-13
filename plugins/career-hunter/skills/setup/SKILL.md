@@ -1,6 +1,6 @@
 ---
 name: setup
-description: One-time Career Hunter onboarding — interview the user about their target role, salary, location, work authorization, and preferences; generate their personal career-profile.md; create the Google Sheets job tracker from scratch; and configure automation options. Use when the user says "set up career hunter", "set up my job search", "onboard me", "create my job tracker", or invokes the plugin for the first time (the apply and sync skills also redirect here when no profile exists).
+description: One-time Career Hunter onboarding — interview the user about their target role, salary, location, work authorization, and preferences; generate their personal career-profile.md; create the Google Sheets job tracker; and configure automation options. Use when the user says "set up career hunter", "set up my job search", "onboard me", "create my job tracker", or invokes the plugin for the first time (the apply and sync skills also redirect here when no profile exists).
 ---
 
 # Career Hunter — Setup
@@ -26,16 +26,17 @@ later. A plugin cannot gate its own installation on connectors — this check is
 the real gate, so do it thoroughly and stop if a required piece is absent.
 
 1. **Gmail connector** — needed by sync (and apply, for email verification codes).
-2. **Google Drive connector** — **creates** the tracker spreadsheet file
-   (`create_file`) and **reads** it for dedupe in apply/sync.
+2. **Google Drive connector** — **creates** the tracker spreadsheet by copying the
+   published template (`copy_file`) and **reads** it for dedupe in apply/sync.
 3. **Google Calendar connector** — needed so sync can create an event when it
    detects a confirmed interview. If it's missing, say so; the user can still
    proceed (sync will fall back to notification-only) but flag it as a TODO.
-4. **Claude-in-Chrome extension, connected** — `list_connected_browsers`;
-   **populates** the new tracker's tab structure/dropdowns/formulas and **writes**
-   application rows, and fills application forms. All in the user's own Chrome
-   session. (The Drive MCP makes the file; there is no Sheets-cell MCP, so the
-   in-sheet structure is built in Chrome.)
+4. **Claude-in-Chrome extension, connected** — `list_connected_browsers`; **writes**
+   application rows and fills application forms, in the user's own Chrome session.
+   Setup itself no longer needs it for the tracker (the template copy brings the
+   structure with it), but apply and sync do — there is no Sheets-cell MCP, so
+   every cell write goes through Chrome. If it's missing, setup can still finish;
+   flag it as a TODO.
 5. **Resume file** — ask the user to place their resume PDF in the working folder
    (or a subfolder) and confirm its path. Record it in config. If they don't have
    it ready, continue setup and leave a TODO in the summary.
@@ -133,19 +134,38 @@ Tell the user this file is theirs to edit by hand any time.
 
 Ask: create a new Google Sheets tracker, or connect an existing one (paste URL/ID)?
 
-**Creating new:** the Google Drive MCP creates the spreadsheet **file**; Chrome
-then populates its structure. (There is no Sheets-cell MCP, so the multi-tab
-layout, dropdowns, and Dashboard formulas are filled in via Chrome — but the file
-itself is made by the MCP, which is reliable and doesn't depend on the browser.)
-Full per-tab headers and the Dashboard formulas are in `references/tracker-schema.md`.
+**Creating new — copy the published template. This is the default path and it is
+one MCP call.** The template already contains all four tabs, the banners and
+fills, the three dropdowns *with* their Status chip colors, and the live Dashboard
+formulas. Copying carries all of that over; building the same thing through the
+browser takes a couple hundred UI actions and is the most failure-prone step in
+setup. Do not build by hand when the copy is available.
 
-1. **Create the file — Google Drive MCP `create_file`:** `title:
-   "Job_Search_Tracker_<year>"`, `contentMimeType:
-   application/vnd.google-apps.spreadsheet` (no content needed — returns a new blank
-   spreadsheet). Capture the returned file **id**, build the edit URL
-   `https://docs.google.com/spreadsheets/d/<id>/edit`, and store both in
-   `config.json` **now**, before populating — so a later failure still leaves a
-   usable, recorded sheet.
+**Template file ID:** `11CJOGqPsBG-zgDBd-wu-uQUxMzB1W97ZYl-LTlENFWs`
+
+1. **Copy it — Google Drive MCP `copy_file`:** `fileId: <template id above>`,
+   `title: "Job_Search_Tracker_<year>"`. The user only has view access to the
+   template, so the copy lands in **their own Drive root** — that is expected;
+   tell them where it is rather than hunting for it.
+2. **Record it before anything else.** Capture the returned file **id**, build
+   `https://docs.google.com/spreadsheets/d/<id>/edit`, and write both to
+   `config.json` immediately, so a later failure still leaves a usable sheet.
+3. **Verify the copy in one read** (`read_file_content` on the new id): confirm the
+   `Applications` tab exists, its row-2 header row matches
+   `references/tracker-schema.md`, and **row 3 is empty**. If the copy arrived with
+   sample rows, the template is dirty — tell the user to delete rows 3+ before the
+   first apply run, since apply/sync append after the last populated row.
+4. **If the copy fails** — template deleted, sharing revoked, copy disabled on the
+   template, or Drive returning a permission error — say which, then use the
+   fallback. Do not retry the same call.
+
+**Fallback — build it from scratch** (only when the template is unavailable or the
+placeholder above is unfilled). Full per-tab headers and Dashboard formulas are in
+`references/tracker-schema.md`.
+
+1. **Create the file — `create_file`:** `title: "Job_Search_Tracker_<year>"`,
+   `contentMimeType: application/vnd.google-apps.spreadsheet` (no content needed —
+   returns a new blank spreadsheet). Record id and URL in `config.json` now.
 2. **Populate the structure — Chrome**, all per `references/tracker-schema.md`:
    - rename the default tab to `Applications`; add its row-1 navy banner and row-2
      white-bold headers (Name Box method in `../sync/references/sheet-writing.md`),
@@ -158,11 +178,11 @@ Full per-tab headers and the Dashboard formulas are in `references/tracker-schem
      banners/headers; on Dashboard, apply the per-card fill colors and enter the
      `COUNTA`/`COUNTIF` formulas exactly as listed so it stays live.
    The apply/sync skills only ever write to `Applications`.
-3. **If Chrome isn't connected:** the spreadsheet still exists (the MCP made it),
-   just empty — record it and flag in the summary that its tabs/headers/Dashboard
-   need populating in Chrome before apply/sync can use it. (Optional shortcut to at
-   least seed the `Applications` header row without Chrome: create the file via
-   `create_file` with the 20 column headers as `textContent` CSV and
+3. **If Chrome isn't connected either:** the spreadsheet still exists (the MCP made
+   it), just empty — record it and flag in the summary that its tabs/headers/
+   Dashboard need populating in Chrome before apply/sync can use it. (Optional
+   shortcut to at least seed the `Applications` header row without Chrome: create
+   the file via `create_file` with the 20 column headers as `textContent` CSV and
    `contentMimeType: text/csv`, which converts into a single populated sheet.)
 
 **Connecting existing:** read the sheet via the Drive connector, read its header
@@ -185,6 +205,7 @@ Write `career-hunter-state/config.json`:
 {
   "spreadsheet_id": "...",
   "spreadsheet_url": "...",
+  "tracker_created_from": "template | scratch | existing",
   "resume_path": "...",
   "resume_uploadable": true,
   "submission_mode": "auto | review | prepare",
