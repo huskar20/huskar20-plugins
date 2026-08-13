@@ -151,17 +151,30 @@ setup. Do not build by hand when the copy is available.
    `https://docs.google.com/spreadsheets/d/<id>/edit`, and write both to
    `config.json` immediately, so a later failure still leaves a usable sheet.
 3. **Verify the copy in one read** (`read_file_content` on the new id): confirm the
-   `Applications` tab exists, its row-2 header row matches
-   `references/tracker-schema.md`, and **row 3 is empty**. If the copy arrived with
-   sample rows, the template is dirty — tell the user to delete rows 3+ before the
-   first apply run, since apply/sync append after the last populated row.
-4. **If the copy fails** — template deleted, sharing revoked, copy disabled on the
-   template, or Drive returning a permission error — say which, then use the
-   fallback. Do not retry the same call.
+   `Applications` tab exists and its row-2 header row matches
+   `references/tracker-schema.md`, and check whether **row 3 is empty**.
+   - Missing tab, or headers that don't match → the template has been damaged.
+     **Build from scratch instead** (fallback below), and say why.
+   - Sample rows below the header → the template is dirty but usable. Keep the
+     copy; tell the user to delete rows 3+ before the first apply run, since
+     apply/sync append after the last populated row.
 
-**Fallback — build it from scratch** (only when the template is unavailable or the
-placeholder above is unfilled). Full per-tab headers and Dashboard formulas are in
-`references/tracker-schema.md`.
+**Never leave the user with no tracker.** Any failure on the template path — the
+copy erroring out, or a copy that lands damaged — means **build it from scratch**,
+in the same run, without asking. Say plainly what went wrong and that setup fell
+back; don't retry the failing call, and don't stop and wait for the user to fix the
+template. The tracker is a hard requirement for every other skill.
+
+**Fallback — build it from scratch.** Full per-tab headers and Dashboard formulas
+are in `references/tracker-schema.md`. Reasons this path runs: `copy_file` returned
+an error (template deleted, sharing revoked, copying disabled on the template, Drive
+permission error), the copy verified as damaged, or the Drive connector isn't
+available at all.
+
+**If a bad copy was already recorded in `config.json` at step 2, overwrite both
+`spreadsheet_id` and `spreadsheet_url` with the newly built sheet**, and set
+`tracker_created_from: "scratch"`. Mention the abandoned copy's URL so the user can
+delete it — never delete it yourself.
 
 1. **Create the file — `create_file`:** `title: "Job_Search_Tracker_<year>"`,
    `contentMimeType: application/vnd.google-apps.spreadsheet` (no content needed —

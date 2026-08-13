@@ -57,7 +57,7 @@ already have or interviews you from scratch.
 
 | Plugin | What it does | Version |
 |---|---|---|
-| **career-hunter** | End-to-end job-search automation: guided onboarding builds your profile + a Google Sheets tracker, then auto-apply and Gmail-sync skills hunt roles, submit applications, keep the tracker current, and add confirmed interviews to your calendar. | 0.4.0 |
+| **career-hunter** | End-to-end job-search automation: guided onboarding builds your profile + a Google Sheets tracker, then auto-apply and Gmail-sync skills hunt roles, submit applications, keep the tracker current, and add confirmed interviews to your calendar. | 0.4.1 |
 | **resume-forge** | Build, tailor, and review resumes in a single-column ATS-safe house style: writes a formatted Google Doc from an interview or an existing resume file, aims a copy at a specific job description, and audits any resume against a pre-submission checklist — without ever inventing achievements. | 0.6.4 |
 
 The two work well together: `resume-forge` produces the resume `career-hunter`
