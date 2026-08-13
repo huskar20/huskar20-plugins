@@ -15,6 +15,8 @@ resume work is Steps 6–9.
 | A laptop | |
 | A Claude account | Check you can sign in **before** you start |
 | Your resume | Any format. No resume? See Step 8 |
+| Google Drive | Required — the plugin writes your resume there |
+| Claude in Chrome extension | Optional. **Highly recommended if you have a paid plan** |
 
 > **Worth one minute now:** make a `job-search` folder in **Documents**
 > (Finder → New Folder on Mac, File Explorer → New → Folder on Windows), put
@@ -22,8 +24,6 @@ resume work is Steps 6–9.
 > a new chat in the Claude app, or `cd Documents/job-search` then `claude` in
 > the terminal. Claude only reads and writes where you point it. The companion
 > **Career hunter** workshop uses the same folder, so everything stays together.
-| Google Drive | Required — the plugin writes your resume there |
-| Claude in Chrome extension | Optional. **Highly recommended if you have a paid plan** |
 
 ### What a plugin is, in 30 seconds
 
@@ -89,11 +89,12 @@ Then **quit Claude Code and reopen it.** People forget this and nothing works.
 
 ### In the Claude app
 
-1. **Customize** in the left sidebar
-2. **Plugins** tab
-3. Under **Personal plugins**, click **+**
+1. Open **Settings**
+2. In the sidebar, under **Customize**, click **Plugins**
+3. Click **Add** at the top right
 4. **Add marketplace**
-5. **Add from a repository**
+5. **Add from a repository** — the second option. Not **Browse Anthropic
+   sources**, which only lists Anthropic's own plugins and will not find ours
 6. Paste this:
 
 ```
@@ -307,7 +308,8 @@ Everything that matters works on paper.
 |---|---|
 | The `/resume-forge:` commands are not in the `/` menu | You did not restart. Quit Claude completely and reopen |
 | "Drive is not connected" | Settings → Connectors → enable Google Drive |
-| Cannot find **Customize** | Left sidebar of the Claude app |
+| Cannot find **Plugins** | Open **Settings** first — **Plugins** sits in the settings sidebar under the **Customize** heading, below **Skills** and **Connectors** |
+| The repository is not in **Browse Anthropic sources** | Correct, it never will be — that list is Anthropic's own. Back up and choose **Add from a repository** |
 | My resume is in **Arial**, not Calibri | Should not happen — the resume is built as a .docx with Calibri set throughout. If it does, select all and pick Calibri, ten seconds |
 | The **dates are not flush right** | Should not happen now. They sit on a real 7.50" tab stop. If they do not, the resume was built as HTML instead of .docx — say so and rebuild |
 | **Margins look wrong** | Should be 0.5" all round, ruler 0.00" to 7.50". Check under File → Page setup |
