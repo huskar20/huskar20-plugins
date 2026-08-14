@@ -12,9 +12,33 @@ your contact details and target titles.
 
 | Skill | Invoke with | What it does |
 |---|---|---|
+| **experience-record** | "start my experience record" | Interviews you across many sittings and keeps one honest markdown record of everything you have done — roles, projects, skills, stories, including the informal work people forget. Exports a tagged, filtered copy for `build` to work from. Needs no connectors. |
 | **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text) **or** interviews you from scratch → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
 | **tailor** | "tailor my resume to this job" | Takes a job description → rewrites the target title line, reorders bullets and skill categories, aligns wording with the posting, and reports keyword coverage as a table. Always produces a new copy; never edits your master. |
 | **review** | "review my resume" | Audits a resume against a 38-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, unprofessional email addresses, unclaimed LinkedIn URLs, length problems. On a `.docx` it also verifies each hyperlink's real target against its display text. |
+
+## Starting from an experience record
+
+`experience-record` is the collection step that comes before `build`. It
+interviews you over several sittings and maintains `experience-record.md` in
+your working folder — the full, honest inventory a resume gets built from,
+including material that should never appear on one.
+
+Say **"give me material for my resume"** and it writes `exports/resume-source.md`:
+everything safe to use outwardly, with defensibility tags intact, and
+unsupported claims quarantined in a "Not resume-ready" section. Hand that file
+to `build` as your existing material.
+
+In Claude Code, point `build` straight at the path. In the desktop app — where
+there may be no working folder, and the record is handed back to you as a file —
+drag the export into the `build` session, or put it in Drive first.
+
+Salary, work authorization, confidential detail, and anything the record marks
+private never reach that file — the same boundary `build` already applies to
+`career-profile.md`.
+
+Unlike the other three skills, this one requires **no connectors at all** and
+sends nothing anywhere. Everything stays in your folder.
 
 ## The format it produces
 
@@ -106,6 +130,7 @@ copies.
   but has no update, rename, or delete tool. It is not needed for the font: the
   resume is built as a `.docx` with Calibri set throughout, so it never arrives
   in Arial.
+- **`experience-record` needs neither.** It reads and writes only local files.
 
 Installing the plugin cannot turn connectors on for you, so every skill checks
 before it collects anything: if Drive isn't connected, it stops and tells you,

@@ -1,7 +1,7 @@
 # Resume Workshop — Student Handout
 
 Follow the steps in order. Setup is Steps 1–5 and takes about ten minutes. The
-resume work is Steps 6–9.
+resume work is Steps 6–10.
 
 **Stuck for more than three minutes? Put your hand up, or jump to
 [No laptop, no account](#no-laptop-no-account) and keep going on paper.**
@@ -31,7 +31,7 @@ resume work is Steps 6–9.
 telling it how to do one job properly. **A plugin** is a bundle of skills
 someone already wrote and tested, that you install once.
 
-You are installing one called **Resume forge**. It has three skills.
+You are installing one called **Resume forge**. It has four skills.
 
 ---
 
@@ -122,19 +122,21 @@ A menu appears. You should see:
 /resume-forge:review
 /resume-forge:build
 /resume-forge:tailor
+/resume-forge:experience-record
 ```
 
 If they are not there, you did not restart. Quit Claude and reopen.
 
 ---
 
-## The three commands
+## The four commands
 
 | Command | What it does |
 |---|---|
 | `/resume-forge:review` | Checks your resume and tells you exactly what is wrong |
 | `/resume-forge:build` | Writes a properly formatted resume into your Google Drive |
 | `/resume-forge:tailor` | Aims a copy at one specific job posting |
+| `/resume-forge:experience-record` | Interviews you over several sittings and keeps one honest file of everything you have done |
 
 Typing the plain sentence works too — the slash commands are just faster and
 visible in the `/` menu. All of these work as typed:
@@ -262,6 +264,54 @@ differently, and which are missing.
 
 Missing ones come back as **questions**, not edits. If you have the experience,
 say where. If you do not, leave it.
+
+---
+
+## Step 10 — Keep a record for next time
+
+The hardest part of a resume is remembering what you did.
+
+```
+/resume-forge:experience-record
+```
+
+It interviews you across several sittings and keeps one honest file —
+`experience-record.md` — holding every role, project and story, including the
+small informal work most people forget. Nothing is lost between sittings. Come
+back any time with:
+
+```
+continue my experience record
+```
+
+Two things make it different from the other three:
+
+- **It needs no connectors.** No Google Drive, no Chrome. If you could not get
+  Drive working today, start here.
+- **It keeps what a resume must never show** — salary, work under NDA, claims
+  you cannot yet back up. Filtering happens only when you export.
+
+> **In the desktop app it may hand you the file back instead of saving it.**
+> That is normal, not a failure — the app cannot always write to a folder. Keep
+> the file it gives you and bring it to the next session. In Claude Code it
+> saves into your job-search folder on its own.
+
+When you want a resume out of it:
+
+```
+give me material for my resume
+```
+
+That writes `resume-source.md` — everything safe to use outwardly, with the
+private material left behind. Then hand it to `build`:
+
+- **Claude Code** — point straight at the file:
+  `/resume-forge:build exports/resume-source.md`
+- **Desktop app** — drag the file into the chat, or put it in your Drive first
+
+You are back at Step 8, this time with your whole history behind it.
+
+**No resume at all?** Start here rather than with a blank template.
 
 ---
 
