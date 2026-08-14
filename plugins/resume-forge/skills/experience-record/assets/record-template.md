@@ -1,7 +1,7 @@
 # Experience Record
 
 FORMAT: experience-record v1
-SKILL: experience-record 1.0.0
+SKILL: experience-record 1.2.0
 UPDATED: not yet
 SESSIONS: 0
 STAGE: 1
@@ -52,6 +52,12 @@ disk, **save into it yourself** — insert entries above the matching `:end`
 anchor, update the header, and add a session-log line. Ignore section J below;
 the copy-and-paste block exists only for assistants that cannot write files.
 Never make the person paste anything they don't have to.
+
+Three rules when you do. **Let at least five exchanges pass between saves**
+rather than writing after every answer, unless a large batch arrives at once.
+**Replace only the anchor string** — never reproduce the whole file to save it.
+And **read back what you wrote before telling them it is saved**: a tool
+reporting success is not proof the change reached their disk.
 
 ### C. Start of every session
 

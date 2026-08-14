@@ -42,12 +42,13 @@ The anchors are the contract. Never remove, rename, or reorder them.
 ## The header
 
 Exactly these eight lines, directly under the `# Experience Record` title.
-Rewrite the whole block whenever any of it changes — it is small enough that
-this costs nothing.
+Rewrite the whole block at a save point, and again at the end of the session —
+it is small enough that rewriting it whole costs nothing. Do not rewrite it
+after every entry; see the cadence rules in `file-operations.md`.
 
 ```
 FORMAT: experience-record v1
-SKILL: experience-record 1.0.0
+SKILL: experience-record 1.2.0
 UPDATED: 2026-08-15
 SESSIONS: 3
 STAGE: 2
@@ -56,18 +57,37 @@ NEXT FOCUS: the two years of volunteer work at the community centre
 OPEN QUESTIONS: rough dates for the first support job
 ```
 
-- **SKILL** — the version of the skill that last wrote the file. Leave the
-  value that is there if you do not know your own version.
+- **SKILL** — the version of the skill that last wrote the file. Write **your
+  own** version here, stated at the top of `SKILL.md`; do not carry forward
+  the value already in the file. A record that cannot say which version wrote
+  it cannot be debugged.
 - **UPDATED** — ISO date, `YYYY-MM-DD`, set on every save.
 - **SESSIONS** — incremented once per sitting, at the first save of that
   sitting, not at every save.
-- **STAGE** — 1, 2 or 3, from the interview engine. Advance it when that
-  stage's exit condition is met: **1 → 2** once a first-pass self-portrait
-  exists; **2 → 3** once their history is listed at one line each and they
-  confirm nothing is missing. Never go backwards.
-- **COUNTS** — literal counts of entries in Part 3. Check them against the file
-  rather than remembering. There is deliberately no word count; you cannot
-  count words reliably, so do not pretend to.
+- **STAGE** — 1, 2 or 3, from the interview engine. **Each advance has a gate
+  you have to actually ask. If you have not asked it, the stage has not
+  advanced** — write the lower number and carry on. Never go backwards.
+  - **1 → 2** — a first-pass self-portrait exists *in the record*, in their own
+    words. A resume you mined is not a self-portrait; it is paper.
+  - **2 → 3** — their history is listed at one line each **and you have asked,
+    in these words or close to them:** *"Before we go deeper — is that the whole
+    list? Anything current, anything unpaid, anything you left off?"* — and they
+    have answered. This is the gate that catches the job they forgot to
+    mention, including the one they are in right now.
+- **COUNTS** — literal counts of entries in Part 3. **Compute them; never recall
+  them.** In Mode A, run this from the record's folder and use what it prints:
+
+  ```bash
+  for s in roles projects stories education; do
+    printf "%s " "$s"
+    awk "/<!-- $s:start -->/,/<!-- $s:end -->/" experience-record.md | grep -c '^### '
+  done
+  printf "skills "
+  awk '/<!-- skills:start -->/,/<!-- skills:end -->/' experience-record.md | grep -c '^- '
+  ```
+
+  There is deliberately no word count; you cannot count words reliably, so do
+  not pretend to.
 - **NEXT FOCUS** — one line, what you would cover next sitting.
 - **OPEN QUESTIONS** — one line. Separate multiple with `;`. Keep at most three
   — the three most useful. If more accumulate, fold the rest into NEXT FOCUS or
