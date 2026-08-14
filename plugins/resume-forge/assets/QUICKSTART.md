@@ -2,6 +2,9 @@
 
 Four steps to a finished resume. About twenty minutes.
 
+Written for the **Claude desktop app**. If you use the terminal instead, look
+for the *Using the terminal?* boxes.
+
 **Stuck for more than three minutes? Put your hand up.**
 
 ---
@@ -10,7 +13,7 @@ Four steps to a finished resume. About twenty minutes.
 
 | | |
 |---|---|
-| A Claude account | Check you can sign in |
+| The Claude desktop app | Downloaded and signed in |
 | Google Drive turned on | **Settings** → **Connectors** → enable **Google Drive** |
 | Your resume | Any format. No resume? Fine — Step 4 asks you questions instead |
 
@@ -18,11 +21,9 @@ Four steps to a finished resume. About twenty minutes.
 
 ## Step 1 — Install the plugin
 
-### Claude app
-
 1. **Settings** → under **Customize**, click **Plugins**
 2. **Add** (top right) → **Add marketplace**
-3. **Add from a repository**
+3. **Add from a repository** — the second option, not **Browse Anthropic sources**
 4. Paste:
 
 ```
@@ -31,17 +32,11 @@ https://github.com/huskar20/huskar20-plugins
 
 5. **Install** on the **Resume forge** card
 
-### Claude Code (terminal)
-
-```
-/plugin marketplace add huskar20/huskar20-plugins
-```
-
-```
-/plugin install resume-forge
-```
-
 **Then quit Claude and reopen it.** Nothing works until you do.
+
+> **Using the terminal?** Run these in Claude Code instead, then restart it:
+> `/plugin marketplace add huskar20/huskar20-plugins` and
+> `/plugin install resume-forge`
 
 ---
 
@@ -58,8 +53,11 @@ https://github.com/huskar20/huskar20-plugins
 
 Claude only reads and writes where you point it.
 
-- **Claude app:** start a new chat, drag the `job-search` folder into it
-- **Claude Code:** `cd Documents/job-search`, then run `claude`
+Start a new chat and **drag the `job-search` folder into the chat window**
+(or use the **+** button → add folder). You should see the folder's name
+attached to the conversation before you carry on.
+
+> **Using the terminal?** `cd Documents/job-search`, then run `claude`.
 
 ---
 
@@ -71,7 +69,14 @@ Type:
 /resume-forge:build
 ```
 
-Give it your resume when it asks — drag the file in, or paste the text.
+No slash menu in your app? Type this instead — it does the same thing:
+
+```
+build my resume
+```
+
+Your resume is already in the folder, so it should find it. If it asks, drag
+the file into the chat.
 
 It asks a few things: the job title you want, how many years you have worked,
 your contact details. Answer plainly.
@@ -88,6 +93,8 @@ You get a formatted Google Doc in your Drive.
 ```
 /resume-forge:review
 ```
+
+Or just: **"review my resume"**.
 
 It quotes the exact lines that need work:
 
@@ -112,6 +119,8 @@ Find a real posting you would apply to.
 ```
 /resume-forge:tailor
 ```
+
+Or just: **"tailor my resume for this job"**.
 
 Paste the posting. You get a table:
 
@@ -139,7 +148,8 @@ If you do not, leave it.
 
 | What you see | Fix |
 |---|---|
-| The `/resume-forge:` commands are missing | You did not restart. Quit Claude and reopen |
+| The `/resume-forge:` commands are missing | You did not restart. Quit Claude and reopen. Still missing? Type the plain sentence instead — **"build my resume"** works the same |
+| Claude cannot see my resume | The folder is not attached. Redo Step 3 — you should see `job-search` on the conversation |
 | "Drive is not connected" | **Settings** → **Connectors** → enable **Google Drive** |
 | Cannot find **Plugins** | Open **Settings** first — it is under the **Customize** heading |
 | Our repo is not in **Browse Anthropic sources** | It never will be. Go back and pick **Add from a repository** |
