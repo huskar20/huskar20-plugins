@@ -1,7 +1,8 @@
 # Job-Hunt Workshop — Student Handout
 
 Follow the steps in order. Setup is Steps 1–6 and takes about fifteen minutes.
-The job-hunt work is Steps 7–10.
+The job-hunt work is Steps 7–9. Everything after that is reference — read it
+when you need it.
 
 **Stuck for more than three minutes? Put your hand up, or jump to
 [No laptop, no account](#no-laptop-no-account) and keep going on paper.**
@@ -16,7 +17,7 @@ The job-hunt work is Steps 7–10.
 | A Claude account | Check you can sign in **before** you start |
 | A Google account | Gmail, Drive, and Calendar are all used |
 | Your resume as a PDF | No resume? The **Resume forge** plugin from the same marketplace builds one — ideally do that workshop first |
-| Claude desktop app + Claude in Chrome extension | Needed for the job search itself (Step 8 onward) |
+| Claude desktop app + Claude in Chrome extension | **Required from Step 8 on** — the job search, the applications, and every write to your tracker all run in your own Chrome |
 
 > **About your resume:** in today's `prepare` mode the plugin never uploads
 > your resume anywhere — you attach it yourself when you apply from the queue.
@@ -51,29 +52,15 @@ Then **move your resume PDF into that folder.** One folder, everything in it.
 This is the step people skip, and then Claude writes your profile somewhere you
 cannot find. **Claude only works in a folder you point it at.**
 
-For this workshop you want the **Claude desktop app** — the job search drives
-your own Chrome browser, and that needs the app plus the extension. Claude Code
-(the terminal) works for setup too, but Steps 8–10 need the app.
-
-### In the Claude app
+Use the **Claude desktop app** for this workshop. The job search drives your
+own Chrome, and that needs the app plus the extension.
 
 Start a new chat and give it the folder: drag `job-search` from Finder/File
 Explorer into the chat window, or use the **+** button → add folder. You should
 see the folder's name attached to the conversation before you continue.
 
-### In Claude Code
-
-Open a terminal and go to the folder first, then start Claude:
-
-```
-cd Documents/job-search
-```
-
-```
-claude
-```
-
-Everything from here on happens in that session.
+> **Using the terminal?** `cd Documents/job-search`, then run `claude`. Setup
+> works fine there, but Steps 8 and 9 need the desktop app.
 
 ---
 
@@ -90,36 +77,25 @@ stops and tells you which — that is intended, not a crash.
 
 ## Step 4 — Chrome extension
 
+Do not skip this. From Step 8 on, everything happens in your own Chrome: the
+job search, the applications, and every row written to your tracker.
+
 1. Open **Google Chrome** (Chrome only — not Edge, Safari, or Firefox)
 2. Chrome Web Store → search **Claude in Chrome**
 3. **Add to Chrome**
-4. Sign in, then pin it: puzzle-piece icon → thumbtack next to **Claude**
+4. **Sign in to the extension**, then pin it: puzzle-piece icon → thumbtack
+   next to **Claude**
+5. In that same Chrome, make sure you are **signed in to LinkedIn and to
+   Google** — the plugin uses your own logged-in sessions
 
-The plugin does its searching and any form work in **your** Chrome, with your
-own logged-in LinkedIn/Google sessions. Nothing runs on someone else's account.
+Nothing runs on someone else's account, and nothing is posted without you.
+
+> Extension not working? You can still finish Steps 5–7 — setup does not need
+> Chrome. Come back to this before Step 8.
 
 ---
 
 ## Step 5 — Install the plugin
-
-### In Claude Code
-
-Type these two, one at a time:
-
-```
-/plugin marketplace add huskar20/huskar20-plugins
-```
-
-```
-/plugin install career-hunter
-```
-
-Then **quit Claude Code and reopen it — from the same folder.** (`cd
-Documents/job-search` again if you need to, then `claude`.) People forget the
-restart and nothing works; people forget the folder and their files land
-somewhere random.
-
-### In the Claude app
 
 1. Open **Settings**
 2. In the sidebar, under **Customize**, click **Plugins**
@@ -135,8 +111,15 @@ https://github.com/huskar20/huskar20-plugins
 
 7. Click **Install** on the **Career hunter** card
 
+**Then quit Claude and reopen it.** Nothing works until you do.
+
 > The card says **Career hunter** with a space. The hyphenated `career-hunter`
 > is only used in commands.
+
+> **Using the terminal?** Run
+> `/plugin marketplace add huskar20/huskar20-plugins` and
+> `/plugin install career-hunter`, then quit and reopen **from the same
+> folder** (`cd Documents/job-search`, then `claude`).
 
 ---
 
@@ -202,6 +185,8 @@ your profile gets written. Type:
 /career-hunter:setup
 ```
 
+No slash menu in your app? Type **"set up career hunter"** instead — same thing.
+
 It interviews you: target job titles, salary floor, location, work
 authorization, notice period. Answer honestly — **every application answer
 comes from this profile**, so a wrong answer here goes on real forms later.
@@ -210,7 +195,7 @@ Two moments matter:
 
 - **When it asks for a submission mode, pick `prepare`.** That is the
   try-it-safely mode: the plugin never opens or submits a form. The other two
-  modes are explained in Step 9 — you can switch any time.
+  modes are explained in **The three modes** below — you can switch any time.
 - **Salary floor** — the number below which it never even shows you a role.
   Look up a realistic entry figure for your title and city first.
 
@@ -229,6 +214,8 @@ Open the sheet and keep it in a tab. It fills up in Step 8.
 ```
 /career-hunter:apply
 ```
+
+Or just: **"run the job hunt"**.
 
 In `prepare` mode it searches **LinkedIn Jobs, Indeed, and company career
 boards** (Greenhouse, Lever, Ashby) in your Chrome, scores every role against
@@ -261,7 +248,27 @@ actual submission is your own click.
 
 ---
 
-## Step 9 — The three modes (read before changing anything)
+## Step 9 — Sync your inbox
+
+After you have applied to something (today or later), type:
+
+```
+/career-hunter:sync
+```
+
+Or just: **"sync my job search"**.
+
+It scans your Gmail since the last run and updates the tracker: application
+confirmations, rejections, interview invites. Cold recruiter spam and
+job-board alert noise are filtered out, not logged. A confirmed interview can
+land straight on your Google Calendar, with a push notification.
+
+This is the habit that makes the tracker worth having: **apply → sync →
+Dashboard tab tells you the truth** about your funnel.
+
+---
+
+## The three modes
 
 | Mode | What happens | Who clicks Submit |
 |---|---|---|
@@ -276,24 +283,6 @@ applications you personally finish tend to be better applications. Whatever
 the mode, the plugin **never** invents an answer, never enters SSN/DOB/IDs,
 never types a password, and never touches a captcha — anything it can't answer
 from your profile gets skipped and flagged for you instead.
-
----
-
-## Step 10 — Sync your inbox
-
-After you have applied to something (today or later), type:
-
-```
-/career-hunter:sync
-```
-
-It scans your Gmail since the last run and updates the tracker: application
-confirmations, rejections, interview invites. Cold recruiter spam and
-job-board alert noise are filtered out, not logged. A confirmed interview can
-land straight on your Google Calendar, with a push notification.
-
-This is the habit that makes the tracker worth having: **apply → sync →
-Dashboard tab tells you the truth** about your funnel.
 
 ---
 
