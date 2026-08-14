@@ -108,10 +108,15 @@ naming convention `JobTitle_FirstNameLastName`.
 ## Running a workshop with this
 
 [`assets/WORKSHOP.md`](assets/WORKSHOP.md) is a student handout written for
-people who have never used Claude, a plugin, or a terminal. It covers what a
-plugin actually is, both install paths, enabling the Drive connector, the three
-skills in order, the ten checks, a troubleshooting table, and a paper-only
-fallback lane for anyone who cannot get signed in.
+people who have never used Claude or a plugin. Six steps get them to a finished
+resume in about twenty minutes — install, a `job-search` folder, `build`, then
+`review` and `tailor` with worked examples of what each hands back. It is
+written for the **desktop app**, with terminal commands kept as short asides.
+
+Everything after Step 6 is optional and can be taken home: a bullet-rewriting
+exercise, the `experience-record` skill, the ten checks, a troubleshooting
+table, blank and worked-example templates, and a paper-only lane for anyone who
+cannot get signed in.
 
 Share it as a single link:
 
