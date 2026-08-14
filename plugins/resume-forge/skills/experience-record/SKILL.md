@@ -204,12 +204,16 @@ service, a shared drive — say once that it contains material never meant to
 leave the file, and get a yes. Never change sharing permissions on anything.
 
 **Say before you start that this step is worth a stronger model.** You cannot
-change models yourself, so tell them and let them decide:
+change models yourself, so tell them and let them decide. **Never name a model
+or a plan tier** — availability differs by plan, and telling someone their
+document would be better if only they paid more is not a thing to say to
+someone writing their career history:
 
 > "Before I build this — the interview runs fine on a fast model, but turning
 > the whole record into a readable document is the part that benefits most from
-> a more capable one. If you can switch to Opus for this step, it will read
-> better. You can switch back afterwards. Either way I'll produce it."
+> a more capable one. If you have one available, switching for this step will
+> make it read better, and you can switch back afterwards. Either way I'll
+> produce it."
 
 Say the same before any large reconciliation — merging a second document into an
 established record, or reorganising one that has grown messy. Ask once, accept
