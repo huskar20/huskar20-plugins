@@ -1,194 +1,177 @@
 # Resume Workshop — Student Handout
 
-Follow the steps in order. Setup is Steps 1–5 and takes about ten minutes. The
-resume work is Steps 6–10.
+Six steps to a finished resume. About twenty minutes. Anything after Step 6 is
+optional — do it if you have time, or take it home.
 
-**Stuck for more than three minutes? Put your hand up, or jump to
-[No laptop, no account](#no-laptop-no-account) and keep going on paper.**
+Written for the **Claude desktop app**. If you use the terminal instead, look
+for the *Using the terminal?* boxes.
+
+**Stuck for more than three minutes? Put your hand up.**
 
 ---
 
-## What you need
+## Before you start
 
 | | |
 |---|---|
-| A laptop | |
-| A Claude account | Check you can sign in **before** you start |
-| Your resume | Any format. No resume? See Step 8 |
-| Google Drive | Required — the plugin writes your resume there |
-| Claude in Chrome extension | Optional. **Highly recommended if you have a paid plan** |
-
-> **Worth one minute now:** make a `job-search` folder in **Documents**
-> (Finder → New Folder on Mac, File Explorer → New → Folder on Windows), put
-> your resume in it, and start Claude *from* that folder — drag the folder into
-> a new chat in the Claude app, or `cd Documents/job-search` then `claude` in
-> the terminal. Claude only reads and writes where you point it. The companion
-> **Career hunter** workshop uses the same folder, so everything stays together.
-
-### What a plugin is, in 30 seconds
-
-**Claude** is an AI assistant. **A skill** is a written set of instructions
-telling it how to do one job properly. **A plugin** is a bundle of skills
-someone already wrote and tested, that you install once.
-
-You are installing one called **Resume forge**. It has four skills.
+| The Claude desktop app | Downloaded and signed in |
+| Google Drive turned on | **Settings** → **Connectors** → enable **Google Drive** |
+| Your resume | A file in any format, **or a Google Doc link**. No resume? Fine — Step 4 asks you questions instead |
 
 ---
 
-## Step 1 — Open Claude
+## Step 1 — Install the plugin
 
-Use whichever you have. Both work.
-
-- **Claude Code** — the terminal one. Run `claude` in a terminal window.
-- **The Claude app** — desktop or web.
-
----
-
-## Step 2 — Turn on Google Drive
-
-The plugin writes your finished resume into your own Google Drive.
-
-1. Open **Settings** → **Connectors**
-2. Enable **Google Drive**
-
-If Drive is off, the plugin stops and tells you before asking any questions.
-That is intended, not a crash.
-
----
-
-## Step 3 — Chrome extension (optional)
-
-Skip this if you are on a free plan.
-
-**If you have a paid plan (Pro, Max, Team, Enterprise), this is highly
-recommended** — it exports your PDF for you and can edit a Doc in place. Without
-it, both are quick manual jobs (see [Troubleshooting](#troubleshooting)).
-
-1. Open **Google Chrome** (Chrome only — not Edge, Safari, or Firefox)
-2. Chrome Web Store → search **Claude in Chrome**
-3. **Add to Chrome**
-4. Sign in, then pin it: puzzle-piece icon → thumbtack next to **Claude**
-
----
-
-## Step 4 — Install the plugin
-
-### In Claude Code
-
-Type these two, one at a time:
-
-```
-/plugin marketplace add huskar20/huskar20-plugins
-```
-
-```
-/plugin install resume-forge
-```
-
-Then **quit Claude Code and reopen it.** People forget this and nothing works.
-
-### In the Claude app
-
-1. Open **Settings**
-2. In the sidebar, under **Customize**, click **Plugins**
-3. Click **Add** at the top right
-4. **Add marketplace**
-5. **Add from a repository** — the second option. Not **Browse Anthropic
-   sources**, which only lists Anthropic's own plugins and will not find ours
-6. Paste this:
+1. **Settings** → under **Customize**, click **Plugins**
+2. **Add** (top right) → **Add marketplace**
+3. **Add from a repository** — the second option, not **Browse Anthropic sources**
+4. Paste:
 
 ```
 https://github.com/huskar20/huskar20-plugins
 ```
 
-7. Click **Install** on the **Resume forge** card
+5. **Install** on the **Resume forge** card
 
-> The card says **Resume forge** with a space. The hyphenated `resume-forge` is
-> only used in commands.
+**Then quit Claude and reopen it.** Nothing works until you do.
 
----
-
-## Step 5 — Check it worked
-
-Type a single forward slash:
-
-```
-/
-```
-
-A menu appears. You should see:
-
-```
-/resume-forge:review
-/resume-forge:build
-/resume-forge:tailor
-/resume-forge:experience-record
-```
-
-If they are not there, you did not restart. Quit Claude and reopen.
+> **Using the terminal?** Run these in Claude Code instead, then restart it:
+> `/plugin marketplace add huskar20/huskar20-plugins` and
+> `/plugin install resume-forge`
 
 ---
 
-## The four commands
+## Step 2 — Make your folder
 
-| Command | What it does |
-|---|---|
-| `/resume-forge:review` | Checks your resume and tells you exactly what is wrong |
-| `/resume-forge:build` | Writes a properly formatted resume into your Google Drive |
-| `/resume-forge:tailor` | Aims a copy at one specific job posting |
-| `/resume-forge:experience-record` | Interviews you over several sittings and keeps one honest file of everything you have done |
+- **Mac:** Finder → **Documents** → File → **New Folder** → name it `job-search`
+- **Windows:** File Explorer → **Documents** → right-click → **New** → **Folder** → `job-search`
 
-Typing the plain sentence works too — the slash commands are just faster and
-visible in the `/` menu. All of these work as typed:
-
-```
-review my resume
-```
-
-```
-build my resume — I'm targeting junior data analyst roles
-```
-
-```
-turn this old resume into a clean one-page version
-```
-
-```
-tailor my resume for this posting: <paste the job description>
-```
-
-```
-is my resume any good for an IT support internship?
-```
+**Put your resume inside it.**
 
 ---
 
-## Step 6 — Review what you already have
+## Step 3 — Open Claude in that folder
+
+Claude only reads and writes where you point it.
+
+Start a new chat and **drag the `job-search` folder into the chat window**
+(or use the **+** button → add folder). You should see the folder's name
+attached to the conversation before you carry on.
+
+> **Using the terminal?** `cd Documents/job-search`, then run `claude`.
+
+---
+
+## Step 4 — Build your resume
 
 Type:
 
 ```
-/resume-forge:review
+/resume-forge:build
 ```
 
-Then give it your resume. Any of these work:
-
-- **Drag the file** into the chat
-- **Paste the text** of your resume
-- **Paste a Google Doc link**
-- **In Claude Code**, put the path straight after the command:
+No slash menu in your app? Type this instead — it does the same thing:
 
 ```
-/resume-forge:review ~/Documents/my-resume.docx
+build my resume
 ```
 
-You get back a list of findings. Each one quotes the actual line that failed.
+Your resume is already in the folder, so it should find it. Any of these also
+work:
 
-**Read them. Do not fix anything yet.**
+- **drag the file** into the chat
+- **paste a Google Doc link** — share it as *anyone with the link can view*
+  first, or make sure it is in the same Google account
+- **paste the text** of your resume
+
+Your original is never changed. You always get a new document.
+
+It asks a few things: the job title you want, how many years you have worked,
+your contact details. Answer plainly.
+
+You get a formatted Google Doc in your Drive.
+
+**Save the PDF yourself:** File → Download → PDF Document. Name it
+`JobTitle_FirstNameLastName.pdf`.
 
 ---
 
-## Step 7 — Fix your three worst bullets
+## Step 5 — Check it
+
+```
+/resume-forge:review
+```
+
+Or just: **"review my resume"**. Same three ways to hand it over — the file, a
+Google Doc link, or pasted text.
+
+It quotes the exact lines that need work:
+
+```
+Bullet opens with a passive phrase (Experience, role 1, bullet 3)
+  "Responsible for monitoring security logs and escalating issues."
+  → Start with a verb: "Monitored and triaged alerts across Splunk."
+
+No number in this role
+  Add one real figure — tickets per week, users supported, hours saved.
+```
+
+Fix your three worst bullets yourself. Shape: **verb + what you did + the tool
++ the result**.
+
+---
+
+## Step 6 — Aim it at one job
+
+Find a real posting you would apply to.
+
+```
+/resume-forge:tailor
+```
+
+Or just: **"tailor my resume for this job"**.
+
+Paste the posting. You get a table:
+
+```
+Python            ✓ already on your resume
+Incident response ~ you have it, worded differently → "triaged alerts"
+Terraform         ✗ missing — do you have this?
+```
+
+Missing items come back as **questions**, not edits. If you have it, say where.
+If you do not, leave it.
+
+---
+
+## Good to know
+
+- **It never invents anything** — no fake numbers, tools, jobs, or dates. If a
+  bullet needs a number you do not have, it asks you.
+- **One page** if you have under five years of experience.
+- Your email should be your name: `first.last@gmail.com`.
+
+---
+
+## Troubleshooting
+
+| What you see | Fix |
+|---|---|
+| The `/resume-forge:` commands are missing | You did not restart. Quit Claude and reopen. Still missing? Type the plain sentence instead — **"build my resume"** works the same |
+| Claude cannot see my resume | The folder is not attached. Redo Step 3 — you should see `job-search` on the conversation |
+| "I can't open that link" | The Doc is private. Share → **anyone with the link can view**, or use the Google account Drive is connected to |
+| "Drive is not connected" | **Settings** → **Connectors** → enable **Google Drive** |
+| Cannot find **Plugins** | Open **Settings** first — it is under the **Customize** heading |
+| Our repo is not in **Browse Anthropic sources** | It never will be. Go back and pick **Add from a repository** |
+| No PDF appeared | Correct — File → Download → PDF Document |
+| It asks for a number I do not have | Working as intended. Give a real estimate, or leave the placeholder |
+| My resume is in **Arial**, not Calibri | Should not happen. If it does, select all and pick Calibri — ten seconds |
+| The **dates are not flush right** | Should not happen. If they are not, say so and ask for a rebuild |
+| Cannot sign in at all | Go to [No laptop, no account](#no-laptop-no-account) |
+
+---
+
+## If you have time — fix your three worst bullets
 
 Do this part yourself. Use this shape:
 
@@ -219,55 +202,7 @@ can defend is fine.
 
 ---
 
-## Step 8 — Build the clean version
-
-```
-/resume-forge:build
-```
-
-It asks for your target job title, how many years of experience you have, and
-your contact details. Then it writes a formatted Google Doc into your Drive.
-
-**Two contact details worth fixing first:**
-
-- **Email** — it should be your name: `first.last@gmail.com`. No nicknames, no
-  birth year, no underscores (the link underline hides them). If yours fails
-  that test, make the new address now — applications get replies.
-- **LinkedIn** — if your URL ends in random characters like
-  `linkedin.com/in/you-8a2b91354`, you never claimed your custom URL. LinkedIn →
-  **Settings** → **Public profile** → edit the URL. Takes one minute.
-
-**No resume at all?** Start from the blank template, fill it in, then run the
-command and hand it that file:
-
-- [Resume_Template_Clean.docx](Resume_Template_Clean.docx) — blank
-- [SoftwareEngineer_AlexMoreno.docx](SoftwareEngineer_AlexMoreno.docx) — a finished example
-
-> Alex Moreno is invented. Study how the bullets are written; do not copy them.
-
-**Then export the PDF yourself:** File → Download → PDF Document. Name it
-`JobTitle_FirstNameLastName.pdf`.
-
----
-
-## Step 9 — Aim it at a real job
-
-Find one posting you would actually apply to.
-
-```
-/resume-forge:tailor
-```
-
-Paste the posting when it asks. You get a table showing which of their
-requirements your resume already demonstrates, which you have but describe
-differently, and which are missing.
-
-Missing ones come back as **questions**, not edits. If you have the experience,
-say where. If you do not, leave it.
-
----
-
-## Step 10 — Keep a record for next time
+## If you have time — keep a record for next time
 
 The hardest part of a resume is remembering what you did.
 
@@ -275,53 +210,25 @@ The hardest part of a resume is remembering what you did.
 /resume-forge:experience-record
 ```
 
-It interviews you across several sittings and keeps one honest file —
-`experience-record.md` — holding every role, project and story, including the
-small informal work most people forget. Nothing is lost between sittings. Come
-back any time with:
+Or just: **"start my experience record"**.
 
-```
-continue my experience record
-```
+It interviews you across several sittings and keeps one honest file holding
+every role, project and story — including the small informal work most people
+forget. Nothing is lost between sittings. Come back any time with **"continue
+my experience record"**.
 
-Two things make it different from the other three:
+It needs **no Google Drive and no Chrome**, so start here if you could not get
+Drive working today. It also keeps things a resume must never show — salary,
+work under NDA, claims you cannot back up yet — and filters them out only when
+you export.
 
-- **It needs no connectors.** No Google Drive, no Chrome. If you could not get
-  Drive working today, start here.
-- **It keeps what a resume must never show** — salary, work under NDA, claims
-  you cannot yet back up. Filtering happens only when you export.
+> In the desktop app it may hand you the file back instead of saving it. That
+> is normal. Keep the file and bring it to the next session.
 
-> **In the desktop app it may hand you the file back instead of saving it.**
-> That is normal, not a failure — the app cannot always write to a folder. Keep
-> the file it gives you and bring it to the next session. In Claude Code it
-> saves into your job-search folder on its own.
-
-When you want a resume out of it:
-
-```
-give me material for my resume
-```
-
-That writes `resume-source.md` — everything safe to use outwardly, with the
-private material left behind. Then hand it to `build`:
-
-- **Claude Code** — point straight at the file:
-  `/resume-forge:build exports/resume-source.md`
-- **Desktop app** — drag the file into the chat, or put it in your Drive first
-
-You are back at Step 8, this time with your whole history behind it.
+When you want a resume out of it, say **"give me material for my resume"**,
+then hand that file to `build`.
 
 **No resume at all?** Start here rather than with a blank template.
-
----
-
-## It will not invent anything about you
-
-Not a number, not a tool, not a job, not a date. If a bullet needs a number and
-you do not have one, it writes `[ADD NUMBER]` and asks you.
-
-It also gives no "ATS score" — nobody outside the employer has their real
-system, so any percentage would be made up.
 
 ---
 
@@ -352,20 +259,14 @@ Everything that matters works on paper.
 
 ---
 
-## Troubleshooting
+## Starting from nothing
 
-| What you see | Fix |
-|---|---|
-| The `/resume-forge:` commands are not in the `/` menu | You did not restart. Quit Claude completely and reopen |
-| "Drive is not connected" | Settings → Connectors → enable Google Drive |
-| Cannot find **Plugins** | Open **Settings** first — **Plugins** sits in the settings sidebar under the **Customize** heading, below **Skills** and **Connectors** |
-| The repository is not in **Browse Anthropic sources** | Correct, it never will be — that list is Anthropic's own. Back up and choose **Add from a repository** |
-| My resume is in **Arial**, not Calibri | Should not happen — the resume is built as a .docx with Calibri set throughout. If it does, select all and pick Calibri, ten seconds |
-| The **dates are not flush right** | Should not happen now. They sit on a real 7.50" tab stop. If they do not, the resume was built as HTML instead of .docx — say so and rebuild |
-| **Margins look wrong** | Should be 0.5" all round, ruler 0.00" to 7.50". Check under File → Page setup |
-| No PDF appeared | Correct. File → Download → PDF Document |
-| It asks for a number I do not have | Working as intended. Give a real estimate, or leave the placeholder |
-| Cannot sign in at all | Go to [No laptop, no account](#no-laptop-no-account) |
+No resume at all? Fill in the blank template, then hand it to `build`:
+
+- [Resume_Template_Clean.docx](Resume_Template_Clean.docx) — blank
+- [SoftwareEngineer_AlexMoreno.docx](SoftwareEngineer_AlexMoreno.docx) — a finished example
+
+> Alex Moreno is invented. Study how the bullets are written; do not copy them.
 
 ---
 
@@ -373,7 +274,5 @@ Everything that matters works on paper.
 
 **github.com/huskar20/huskar20-plugins**
 
-Template, example, this handout, and the plugin.
-
-**Tonight:** rewrite the four bullets you did not get to. Twenty minutes beats a
+**Tonight:** rewrite the bullets you did not get to. Twenty minutes beats a
 perfect resume you never finish.
