@@ -38,8 +38,11 @@ real gate. Be thorough, and stop if Drive is absent.
 
 Ask which the user has, or infer it if they already said:
 
-- **An existing resume** — a path to `.docx`, `.pdf`, `.md`, `.txt`, or text
-  pasted into the conversation. Read it and extract everything present.
+- **An existing resume** — a path to `.docx`, `.pdf`, `.md`, `.txt`, text pasted
+  into the conversation, or a **Google Doc / Drive link** (read it with
+  `read_file_content` using the file id from the URL). Read it and extract
+  everything present. Never edit the document they gave you — the build always
+  produces a new Doc.
 - **A LinkedIn export or profile text** — treat as an existing resume.
 - **Nothing** — run the interview in Step 4.
 

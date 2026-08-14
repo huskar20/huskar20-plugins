@@ -15,7 +15,7 @@ for the *Using the terminal?* boxes.
 |---|---|
 | The Claude desktop app | Downloaded and signed in |
 | Google Drive turned on | **Settings** → **Connectors** → enable **Google Drive** |
-| Your resume | Any format. No resume? Fine — Step 4 asks you questions instead |
+| Your resume | A file in any format, **or a Google Doc link**. No resume? Fine — Step 4 asks you questions instead |
 
 ---
 
@@ -75,8 +75,15 @@ No slash menu in your app? Type this instead — it does the same thing:
 build my resume
 ```
 
-Your resume is already in the folder, so it should find it. If it asks, drag
-the file into the chat.
+Your resume is already in the folder, so it should find it. Any of these also
+work:
+
+- **drag the file** into the chat
+- **paste a Google Doc link** — share it as *anyone with the link can view*
+  first, or make sure it is in the same Google account
+- **paste the text** of your resume
+
+Your original is never changed. You always get a new document.
 
 It asks a few things: the job title you want, how many years you have worked,
 your contact details. Answer plainly.
@@ -94,7 +101,8 @@ You get a formatted Google Doc in your Drive.
 /resume-forge:review
 ```
 
-Or just: **"review my resume"**.
+Or just: **"review my resume"**. Same three ways to hand it over — the file, a
+Google Doc link, or pasted text.
 
 It quotes the exact lines that need work:
 
@@ -150,6 +158,7 @@ If you do not, leave it.
 |---|---|
 | The `/resume-forge:` commands are missing | You did not restart. Quit Claude and reopen. Still missing? Type the plain sentence instead — **"build my resume"** works the same |
 | Claude cannot see my resume | The folder is not attached. Redo Step 3 — you should see `job-search` on the conversation |
+| "I can't open that link" | The Doc is private. Share → **anyone with the link can view**, or use the Google account Drive is connected to |
 | "Drive is not connected" | **Settings** → **Connectors** → enable **Google Drive** |
 | Cannot find **Plugins** | Open **Settings** first — it is under the **Customize** heading |
 | Our repo is not in **Browse Anthropic sources** | It never will be. Go back and pick **Add from a repository** |
