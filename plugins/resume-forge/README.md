@@ -203,3 +203,13 @@ makes it:
 4. `tailor` per posting when a role is worth the extra fifteen minutes
 
 Resume Forge reads `career-profile.md` when it's there, and never writes to it.
+
+## Supporting this work
+
+Resume Forge is free, and stays free. If it was useful and you're in a position
+to give, the author supports the [Generosity
+Foundation](https://www.foundationgenerosity.org/donation-center).
+
+It's a cause the author supports, not one they run, and donations fund the
+foundation rather than this plugin. Entirely optional — nothing here depends on
+it, and the plugin never brings it up while you're working.
