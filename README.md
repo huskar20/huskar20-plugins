@@ -62,7 +62,7 @@ honest inventory a resume gets written from.
 | Plugin | What it does | Version |
 |---|---|---|
 | **career-hunter** | End-to-end job-search automation: guided onboarding builds your profile + a Google Sheets tracker, then auto-apply and Gmail-sync skills hunt roles, submit applications, keep the tracker current, and add confirmed interviews to your calendar. | 0.4.2 |
-| **resume-forge** | Record, build, tailor, and review resumes in a single-column ATS-safe house style: keeps an honest experience record you own, writes a formatted Google Doc from that record, an interview, or an existing resume file, aims a copy at a specific job description, and audits any resume against a pre-submission checklist — without ever inventing achievements. | 0.7.3 |
+| **resume-forge** | Record, build, tailor, and review resumes in a single-column ATS-safe house style: keeps an honest experience record you own, writes a formatted Google Doc from that record, an interview, or an existing resume file, aims a copy at a specific job description, and audits any resume against a pre-submission checklist — without ever inventing achievements. | 0.7.4 |
 
 The two work well together: `resume-forge` produces the resume `career-hunter`
 asks you to supply, and reads its `career-profile.md` when it's there.
@@ -107,6 +107,15 @@ huskar20-plugins/
 ├── CONTRIBUTING.md           # contribution workflow
 └── LICENSE                   # MIT
 ```
+
+## Supporting this work
+
+These plugins are free, and stay free. If they were useful and you're in a
+position to give, the author supports the [Generosity
+Foundation](https://www.foundationgenerosity.org/donation-center) — a cause the
+author supports rather than one they run, and donations fund the foundation
+rather than this marketplace. Entirely optional; the plugins never bring it up
+while you're working.
 
 ## License
 
