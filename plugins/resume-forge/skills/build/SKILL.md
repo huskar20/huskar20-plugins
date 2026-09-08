@@ -44,6 +44,12 @@ Ask which the user has, or infer it if they already said:
   everything present. Never edit the document they gave you — the build always
   produces a new Doc.
 - **A LinkedIn export or profile text** — treat as an existing resume.
+- **A notes file in any language** — a `.txt` or `.md` the user wrote about
+  what they did, often alongside an existing resume. Read it as source material
+  of equal standing with the resume. Translate to English, keep every fact as
+  given, and add nothing the notes do not say. When the notes and the resume
+  disagree, ask which is right rather than picking one. If the user names such
+  a file in their request, read it without asking.
 - **Nothing** — run the interview in Step 4.
 
 Also check for `career-profile.md` in the working folder or its parents. That
