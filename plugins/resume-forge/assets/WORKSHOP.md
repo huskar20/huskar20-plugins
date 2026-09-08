@@ -50,9 +50,11 @@ https://github.com/huskar20/huskar20-plugins
 
 **Put your resume inside it.**
 
-**Recommended:** also create a file called `notes.txt` in the same folder and
-write down what you did, in whatever language you think in. Bullet points are
-fine. Say how many, how often, how long, with which tool. For example:
+**Optional:** is there work your resume does not mention? A summer job, a
+class project, something you did for family? Put it in a file called
+`notes.txt` in the same folder, in whatever language you think in. Bullet
+points are fine. Say how many, how often, how long, with which tool. For
+example:
 
 ```
 Kafe - garson, 2023 yazi. Gunde 80-100 musteri, kasa kapanisi bende.
@@ -60,8 +62,8 @@ Okul projesi - Python ile not takip uygulamasi, 3 kisilik ekip, 2 ay.
 Amcamin dukkani - Excel'de stok listesi yaptim, 400 urun, her hafta guncelledim.
 ```
 
-That is the raw material a good resume is made of, and you know it better in
-your own language.
+If your resume already says everything, skip this. If it does not, this is
+where the missing pieces go, and you know them better in your own language.
 
 ---
 
