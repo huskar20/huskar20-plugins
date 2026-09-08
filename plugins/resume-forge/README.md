@@ -13,7 +13,7 @@ your contact details and target titles.
 | Skill | Invoke with | What it does |
 |---|---|---|
 | **experience-record** | "start my experience record" | Interviews you across many sittings and keeps one honest markdown record of everything you have done — roles, projects, skills, stories, including the informal work people forget. Exports a tagged, filtered copy for `build` to work from. Needs no connectors. |
-| **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text) **or** interviews you from scratch → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
+| **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text), a notes file in any language, **or** interviews you from scratch → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
 | **tailor** | "tailor my resume to this job" | Takes a job description → rewrites the target title line, reorders bullets and skill categories, aligns wording with the posting, and reports keyword coverage as a table. Always produces a new copy; never edits your master. |
 | **review** | "review my resume" | Audits a resume against a 38-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, unprofessional email addresses, unclaimed LinkedIn URLs, length problems. On a `.docx` it also verifies each hyperlink's real target against its display text. |
 
@@ -108,12 +108,14 @@ naming convention `JobTitle_FirstNameLastName`.
 ## Running a workshop with this
 
 [`assets/WORKSHOP.md`](assets/WORKSHOP.md) is a student handout written for
-people who have never used Claude or a plugin. Six steps get them to a finished
-resume in about twenty minutes — install, a `job-search` folder, `build`, then
-`review` and `tailor` with worked examples of what each hands back. It is
-written for the **desktop app**, with terminal commands kept as short asides.
+people who have never used Claude or a plugin. Four steps get them to a finished
+resume in about fifteen minutes — install, a `job-search` folder holding their
+resume and an optional notes file in their own language, open Claude there,
+`build`. It is written for the **desktop app**, with terminal commands kept as
+short asides.
 
-Everything after Step 6 is optional and can be taken home: a bullet-rewriting
+Everything after Step 4 is optional and can be taken home: `review` and
+`tailor` with worked examples of what each hands back, a bullet-rewriting
 exercise, the `experience-record` skill, the ten checks, a troubleshooting
 table, blank and worked-example templates, and a paper-only lane for anyone who
 cannot get signed in.
@@ -136,6 +138,9 @@ copies.
   resume is built as a `.docx` with Calibri set throughout, so it never arrives
   in Arial.
 - **`experience-record` needs neither.** It reads and writes only local files.
+- **Any model works.** The most capable one your plan offers writes better
+  bullets and makes fewer formatting slips, so pick it if you can. Nothing
+  refuses to run on a smaller one.
 
 Installing the plugin cannot turn connectors on for you, so every skill checks
 before it collects anything: if Drive isn't connected, it stops and tells you,

@@ -1,7 +1,7 @@
 # Resume Workshop — Student Handout
 
-Six steps to a finished resume. About twenty minutes. Anything after Step 6 is
-optional — do it if you have time, or take it home.
+Four steps to a finished resume. About fifteen minutes. Anything after Step 4
+is optional — do it if you have time, or take it home.
 
 Written for the **Claude desktop app**. If you use the terminal instead, look
 for the *Using the terminal?* boxes.
@@ -16,7 +16,9 @@ for the *Using the terminal?* boxes.
 |---|---|
 | The Claude desktop app | Downloaded and signed in |
 | Google Drive turned on | **Settings** → **Connectors** → enable **Google Drive** |
+| The model | Pick the most capable one your plan offers. The default works too; a stronger model writes better bullets and makes fewer formatting mistakes |
 | Your resume | A file in any format, **or a Google Doc link**. No resume? Fine — Step 4 asks you questions instead |
+| A notes file (optional) | A plain `.txt` in **your own language** listing what you actually did at each job or project. Numbers, tools, results. It does not need to be tidy, and on its own it is enough to build from |
 
 ---
 
@@ -48,6 +50,19 @@ https://github.com/huskar20/huskar20-plugins
 
 **Put your resume inside it.**
 
+**Recommended:** also create a file called `notes.txt` in the same folder and
+write down what you did, in whatever language you think in. Bullet points are
+fine. Say how many, how often, how long, with which tool. For example:
+
+```
+Kafe - garson, 2023 yazi. Gunde 80-100 musteri, kasa kapanisi bende.
+Okul projesi - Python ile not takip uygulamasi, 3 kisilik ekip, 2 ay.
+Amcamin dukkani - Excel'de stok listesi yaptim, 400 urun, her hafta guncelledim.
+```
+
+That is the raw material a good resume is made of, and you know it better in
+your own language.
+
 ---
 
 ## Step 3 — Open Claude in that folder
@@ -76,6 +91,15 @@ No slash menu in your app? Type this instead — it does the same thing:
 build my resume
 ```
 
+**Wrote a notes file in Step 2?** Say so in the same message:
+
+```
+build my resume, and also read notes.txt
+```
+
+It reads both, keeps your facts, and writes the resume in English. Nothing
+from your notes is invented or changed, only translated and tightened.
+
 Your resume is already in the folder, so it should find it. Any of these also
 work:
 
@@ -94,53 +118,7 @@ You get a formatted Google Doc in your Drive.
 **Save the PDF yourself:** File → Download → PDF Document. Name it
 `JobTitle_FirstNameLastName.pdf`.
 
----
-
-## Step 5 — Check it
-
-```
-/resume-forge:review
-```
-
-Or just: **"review my resume"**. Same three ways to hand it over — the file, a
-Google Doc link, or pasted text.
-
-It quotes the exact lines that need work:
-
-```
-Bullet opens with a passive phrase (Experience, role 1, bullet 3)
-  "Responsible for monitoring security logs and escalating issues."
-  → Start with a verb: "Monitored and triaged alerts across Splunk."
-
-No number in this role
-  Add one real figure — tickets per week, users supported, hours saved.
-```
-
-Fix your three worst bullets yourself. Shape: **verb + what you did + the tool
-+ the result**.
-
----
-
-## Step 6 — Aim it at one job
-
-Find a real posting you would apply to.
-
-```
-/resume-forge:tailor
-```
-
-Or just: **"tailor my resume for this job"**.
-
-Paste the posting. You get a table:
-
-```
-Python            ✓ already on your resume
-Incident response ~ you have it, worded differently → "triaged alerts"
-Terraform         ✗ missing — do you have this?
-```
-
-Missing items come back as **questions**, not edits. If you have it, say where.
-If you do not, leave it.
+**You are done.** Everything below is optional.
 
 ---
 
@@ -165,9 +143,58 @@ If you do not, leave it.
 | Our repo is not in **Browse Anthropic sources** | It never will be. Go back and pick **Add from a repository** |
 | No PDF appeared | Correct — File → Download → PDF Document |
 | It asks for a number I do not have | Working as intended. Give a real estimate, or leave the placeholder |
+| It ignored my notes file | Name the file in the message: **"build my resume, and also read notes.txt"**. Check the file is inside `job-search` |
 | My resume is in **Arial**, not Calibri | Should not happen. If it does, select all and pick Calibri — ten seconds |
 | The **dates are not flush right** | Should not happen. If they are not, say so and ask for a rebuild |
 | Cannot sign in at all | Go to [No laptop, no account](#no-laptop-no-account) |
+
+---
+
+## If you have time — check it
+
+```
+/resume-forge:review
+```
+
+Or just: **"review my resume"**. Same three ways to hand it over — the file, a
+Google Doc link, or pasted text.
+
+It quotes the exact lines that need work:
+
+```
+Bullet opens with a passive phrase (Experience, role 1, bullet 3)
+  "Responsible for monitoring security logs and escalating issues."
+  → Start with a verb: "Monitored and triaged alerts across Splunk."
+
+No number in this role
+  Add one real figure — tickets per week, users supported, hours saved.
+```
+
+Fix your three worst bullets yourself. Shape: **verb + what you did + the tool
++ the result**.
+
+---
+
+## If you have time — aim it at one job
+
+Find a real posting you would apply to.
+
+```
+/resume-forge:tailor
+```
+
+Or just: **"tailor my resume for this job"**.
+
+Paste the posting. You get a table:
+
+```
+Python            ✓ already on your resume
+Incident response ~ you have it, worded differently → "triaged alerts"
+Terraform         ✗ missing — do you have this?
+```
+
+Missing items come back as **questions**, not edits. If you have it, say where.
+If you do not, leave it.
 
 ---
 
