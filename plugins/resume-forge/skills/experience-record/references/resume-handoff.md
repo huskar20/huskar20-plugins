@@ -35,17 +35,23 @@ in `meta` — `session_log`, `open_questions`, `next_focus`, and the
 
 **The filter runs per item, not per entry.** A `public` experience can hold a
 `confidential` accomplishment, and dropping the accomplishment does not drop the
-role. Check `sensitivity` on each accomplishment, story and skill in its own
-right, and check the parent entry too — a `private` experience takes all of its
-children with it.
+role. Check `sensitivity` on each accomplishment, story, skill and project in
+its own right, and check the parent entry too — a `private` or `confidential`
+experience takes all of its children with it, including any skill whose
+`example` describes work done there.
+
+**An item with no `sensitivity` recorded is not automatically public.** The
+field is optional, so absence means nobody decided — not that it is safe. Treat
+an untagged item as `private` and leave it out, then tell the person which items
+you held back so they can tag them. Fail closed: a claim withheld can be added
+next session, a claim leaked cannot be recalled.
 
 ## Tag spelling changes at the export boundary
 
 The record stores `do_not_claim` (JSON, underscores). The export writes
-`[do-not-claim]` (markdown, hyphens), because that is what downstream tools
-match on. Same for the rest: write `[strong]`, `[moderate]`, `[gap]`,
-`[public]` as bracketed lowercase tags, one defensibility and one sensitivity
-per bullet.
+`[do-not-claim]` (markdown, hyphens), matching the hyphenated form `build`
+strips. Same for the rest: write `[strong]`, `[moderate]`, `[gap]`, `[public]`
+as bracketed lowercase tags, one defensibility and one sensitivity per bullet.
 
 Since `private` and `confidential` never leave, `[public]` is the only
 sensitivity tag that ever appears in the export.

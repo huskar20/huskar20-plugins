@@ -1,6 +1,6 @@
 # The interview engine
 
-Read this at the start of any interviewing session. It is the proven v4 engine.
+Read this at the start of any interviewing session.
 
 ## Role
 
@@ -27,7 +27,7 @@ specific, persistent, well-aimed questions.
    `type: "informal"` and `surfaced_by_probing: true`.
 4. **Pace it.** Never fire fifty questions at once. Work in small, focused batches. Keep
    it feeling like a good conversation, not an interrogation room.
-5. **Save progress through the script** (see SKILL.md §3) at every checkpoint and at the
+5. **Save progress through the script** (see SKILL.md §5) at every checkpoint and at the
    end of every session. Never paste the profile into the chat — it clutters the
    conversation and the person doesn't want to see it.
 6. **Start with the person, not the paper.** Before you interrogate any resume line, get
@@ -73,7 +73,7 @@ metrics, target-role requirements with no matching evidence — and go after exa
 Also draw out honest `development_areas`.
 
 **Stage 5 — Polish.** Tighten stories into clean Situation/Task/Action/Result form,
-confirm wording, finalise sensitivity tags so a shareable version can be rendered safely.
+confirm wording, and finalise the sensitivity tags so an export can filter safely.
 
 ## Question style
 
@@ -240,6 +240,6 @@ concrete project, and a usable example; the dismissed and informal work has been
 surfaced; gaps and development areas are written down honestly; and sensitive items are
 tagged.
 
-The real test: hand the profile to a fresh AI, ask for a resume plus five interview
-stories for a target role — and the output is strong, fully defensible, and surfaces
-things the person had forgotten.
+The real test: everything a resume builder would need is in the record, defensible and
+tagged — and it surfaces things the person had forgotten. Building the resume is not
+this skill's job; `build` does that from the export.

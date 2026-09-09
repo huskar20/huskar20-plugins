@@ -30,7 +30,9 @@ Every id is a prefix plus a number, unique within its array and never reused:
 `exp_1`, `skill_1`, `proj_1`, `edu_1`, `story_1`. Stories are nested inside
 their experience and numbered across the whole record, not per role.
 
-The schema enforces the prefixes. `exp-1` or `experience_1` is rejected.
+The schema enforces the prefix — `exp-1` and `experience_1` are rejected — but
+not the number after it. Keep to the convention anyway; cross-references between
+entries rely on ids being predictable.
 
 ## The two tag vocabularies
 

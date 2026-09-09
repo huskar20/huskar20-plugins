@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "master_profile.schema.json",
   "title": "Experience Record — master profile",
-  "description": "REFERENCE/PLACEHOLDER schema reconstructed from the handoff (§7). Replace this file with the AUTHORITATIVE master_profile.schema.json from the old Claude Project Knowledge before trusting it for validation.",
+  "description": "Validation schema for the experience-record skill's master_profile.json. scripts/profile.py validates every save against this file.",
   "type": "object",
-  "required": ["meta", "experiences", "skills", "projects", "target_roles", "development_areas"],
+  "required": ["meta", "experiences", "skills", "projects", "education", "target_roles", "development_areas"],
   "additionalProperties": false,
   "properties": {
     "meta": {
@@ -33,7 +33,27 @@
             "confirmed": { "type": "boolean" }
           }
         },
-        "completeness": { "description": "Rough per-section measure of how full the profile is." },
+        "contact": {
+          "type": "object",
+          "description": "Contact details for the resume header. Never a full street address.",
+          "properties": {
+            "city": { "type": "string" },
+            "state": { "type": "string" },
+            "email": { "type": "string" },
+            "phone": { "type": "string" },
+            "linkedin": { "type": "string" },
+            "portfolio": { "type": "string" },
+            "github": { "type": "string" }
+          }
+        },
+        "years_experience": {
+          "description": "Roughly how long they have been working professionally, plus their own words for it.",
+          "type": "object",
+          "properties": {
+            "number": { "type": "string" },
+            "in_their_words": { "type": "string" }
+          }
+        },
         "next_focus": { "type": "string" },
         "open_questions": { "type": "array", "items": { "type": "string" } },
         "session_log": {
@@ -131,7 +151,9 @@
           "name": { "type": "string" },
           "description": { "type": "string" },
           "experience_ref": { "type": "string" },
-          "skills": { "type": "array", "items": { "type": "string" } }
+          "skills": { "type": "array", "items": { "type": "string" } },
+          "defensibility": { "enum": ["strong", "moderate", "gap", "do_not_claim"] },
+          "sensitivity": { "enum": ["public", "private", "confidential"] }
         }
       }
     },

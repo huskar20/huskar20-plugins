@@ -15,7 +15,8 @@ Usage
   python3 scripts/profile.py validate --file <folder>/master_profile.json
   python3 scripts/profile.py save --dir <folder> --from <new_profile.json>
 
-Exit codes: 0 on success, 1 when a save or validation is refused.
+Exit codes: 0 on success, 1 when a save or validation is refused, 2 when a file
+could not be read or written at all.
 """
 from __future__ import annotations
 
@@ -122,6 +123,19 @@ def _atomic_write(path: Path, payload: str) -> None:
     os.replace(tmp, path)
 
 
+def _backup_target(folder: Path, target: Path) -> Path:
+    backup_dir = folder / BACKUP_DIR
+    backup_dir.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+    backup = backup_dir / f"master_profile_{stamp}.json"
+    n = 2
+    while backup.exists():  # two saves in the same second must not collide
+        backup = backup_dir / f"master_profile_{stamp}-{n}.json"
+        n += 1
+    shutil.copy2(target, backup)
+    return backup
+
+
 def _counts(profile: dict) -> dict[str, int]:
     counts = {k: len(profile.get(k) or []) for k in COUNTED_SECTIONS}
     counts["stories"] = sum(len(e.get("stories") or [])
@@ -183,6 +197,9 @@ def cmd_validate(args) -> int:
     except json.JSONDecodeError as exc:
         print(f"INVALID: {path} is not readable JSON — {exc}")
         return 1
+    except OSError as exc:
+        print(f"ERROR: could not read {path} — {exc}")
+        return 2
     errors = validate_profile(profile)
     if errors:
         print(f"INVALID: {len(errors)} problem(s) in {path}")
@@ -206,6 +223,10 @@ def cmd_save(args) -> int:
         print(f"REFUSED: the new profile is not readable JSON — {exc}")
         print("         Nothing was written. The existing profile is untouched.")
         return 1
+    except OSError as exc:
+        print(f"REFUSED: could not read {source} — {exc}")
+        print("         Nothing was written. The existing profile is untouched.")
+        return 1
 
     errors = validate_profile(new)
     if errors:
@@ -216,12 +237,12 @@ def cmd_save(args) -> int:
         return 1
 
     old = None
+    unreadable = False
     if target.exists():
         try:
             old = _read_json(target)
-        except json.JSONDecodeError:
-            print("WARNING: the existing profile could not be parsed; treating this as a "
-                  "fresh write. The unreadable file is being backed up.")
+        except (json.JSONDecodeError, OSError):
+            unreadable = True
 
     changes: list[str] = []
     if old is not None:
@@ -239,21 +260,31 @@ def cmd_save(args) -> int:
             if new_c[k] != old_c[k]:
                 changes.append(f"{k} {old_c[k]}->{new_c[k]}")
 
-        backup_dir = folder / BACKUP_DIR
-        backup_dir.mkdir(parents=True, exist_ok=True)
-        stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-        backup = backup_dir / f"master_profile_{stamp}.json"
-        n = 2
-        while backup.exists():  # two saves in the same second must not collide
-            backup = backup_dir / f"master_profile_{stamp}-{n}.json"
-            n += 1
-        shutil.copy2(target, backup)
+    # Back up whatever is on disk before overwriting it — an unparseable file is
+    # the case where the copy matters most, so it must not depend on parsing.
+    if target.exists():
+        try:
+            backup = _backup_target(folder, target)
+        except OSError as exc:
+            print(f"REFUSED: could not back up the existing profile — {exc}")
+            print("         Nothing was written. The existing profile is untouched.")
+            return 1
+        if unreadable:
+            print("WARNING: the existing profile could not be parsed, so its contents "
+                  "could not be checked for data loss.")
+            print(f"         The unreadable file was copied to {backup} before writing.")
+            print("         Recover from there if this save was not what you intended.")
 
     new.setdefault("meta", {})["last_updated"] = _now_iso()
 
     for sub in ("sources", "exports", BACKUP_DIR):
         (folder / sub).mkdir(parents=True, exist_ok=True)
-    _atomic_write(target, json.dumps(new, indent=2, ensure_ascii=False) + "\n")
+    try:
+        _atomic_write(target, json.dumps(new, indent=2, ensure_ascii=False) + "\n")
+    except OSError as exc:
+        print(f"REFUSED: the profile could not be written — {exc}")
+        print("         The existing profile is untouched.")
+        return 1
 
     print(f"SAVED: {target}")
     if changes:

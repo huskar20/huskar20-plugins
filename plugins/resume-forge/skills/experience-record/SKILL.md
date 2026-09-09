@@ -101,8 +101,8 @@ Read `references/record-format.md` before your first save of a session.
 
 You must **never** write `master_profile.json` with an editing tool. Every save
 goes through the script, which validates against the schema, backs up the
-previous version, writes atomically, and refuses saves that would silently
-delete their work:
+previous version, writes atomically, and refuses a save that drops whole
+entries:
 
 ```
 python3 scripts/profile.py save --dir "<their folder>" --from <temp file>
@@ -116,6 +116,13 @@ If it refuses because the new version has fewer entries than the old one, **do
 not force it.** You have almost certainly dropped something. Re-read the current
 file, merge properly, and try again. Only pass `--allow-shrink` when the person
 has explicitly asked to delete something.
+
+**The guard counts entries, not their contents.** It cannot see a responsibility
+you dropped from a role, a story you shortened, or an open question you
+overwrote — those save silently. So always build the new version by reading the
+current file and *adding to it*, never by reconstructing it from what you
+remember of this conversation. The script is a backstop, not a substitute for
+merging carefully.
 
 Save at every checkpoint, at the end of each focused block, and at the end of
 every session. Let at least five exchanges pass between saves — or save sooner
