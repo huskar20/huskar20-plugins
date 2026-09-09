@@ -12,7 +12,7 @@ your contact details and target titles.
 
 | Skill | Invoke with | What it does |
 |---|---|---|
-| **experience-record** | "start my experience record" | Interviews you across many sittings and keeps one honest markdown record of everything you have done — roles, projects, skills, stories, including the informal work people forget. Exports a tagged, filtered copy for `build` to work from. Needs no connectors. |
+| **experience-record** | "start my experience record" | Interviews you across many sittings and keeps one honest, structured record of everything you have done — roles, projects, skills, stories, including the informal work people forget. Exports a tagged, filtered copy for `build` to work from. Needs a local folder; no connectors. |
 | **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text), a notes file in any language, **or** interviews you from scratch → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
 | **tailor** | "tailor my resume to this job" | Takes a job description → rewrites the target title line, reorders bullets and skill categories, aligns wording with the posting, and reports keyword coverage as a table. Always produces a new copy; never edits your master. |
 | **review** | "review my resume" | Audits a resume against a 38-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, unprofessional email addresses, unclaimed LinkedIn URLs, length problems. On a `.docx` it also verifies each hyperlink's real target against its display text. |
@@ -20,25 +20,32 @@ your contact details and target titles.
 ## Starting from an experience record
 
 `experience-record` is the collection step that comes before `build`. It
-interviews you over several sittings and maintains `experience-record.md` in
-your working folder — the full, honest inventory a resume gets built from,
-including material that should never appear on one.
+interviews you over several sittings and maintains `master_profile.json` in your
+working folder — the full, honest inventory a resume gets built from, including
+material that should never appear on one.
+
+You never see or edit that file. Every change goes through a small bundled
+script that validates it, keeps a timestamped backup of every previous version
+in `.backups/`, and refuses any save that would silently drop what you already
+recorded.
 
 Say **"give me material for my resume"** and it writes `exports/resume-source.md`:
 everything safe to use outwardly, with defensibility tags intact, and
 unsupported claims quarantined in a "Not resume-ready" section. Hand that file
-to `build` as your existing material.
-
-In Claude Code, point `build` straight at the path. In the desktop app — where
-there may be no working folder, and the record is handed back to you as a file —
-drag the export into the `build` session, or put it in Drive first.
+to `build` as your existing material — point `build` straight at the path.
 
 Salary, work authorization, confidential detail, and anything the record marks
 private never reach that file — the same boundary `build` already applies to
 `career-profile.md`.
 
-Unlike the other three skills, this one requires **no connectors at all** and
-sends nothing anywhere. Everything stays in your folder.
+It needs **no connectors** and sends nothing anywhere. Everything stays in your
+folder. It does need a real working folder, and Python 3 to run the save script.
+
+> **Upgrading from 0.7.x?** The record used to be a markdown file,
+> `experience-record.md`. From 0.8.0 it is `master_profile.json`, and an
+> existing markdown record is **not** picked up automatically. Keep the old file
+> — nothing deletes it — and hand it over when a new session asks what you
+> already have written down; it will be mined into the new record.
 
 ## The format it produces
 
@@ -137,7 +144,10 @@ copies.
   but has no update, rename, or delete tool. It is not needed for the font: the
   resume is built as a `.docx` with Calibri set throughout, so it never arrives
   in Arial.
-- **`experience-record` needs neither.** It reads and writes only local files.
+- **`experience-record` needs neither connector.** It reads and writes only
+  local files. It does need a working folder to save into, and Python 3 for the
+  bundled save script — it stops and says so if either is missing, rather than
+  interviewing you into a file it cannot write.
 - **Any model works.** The most capable one your plan offers writes better
   bullets and makes fewer formatting slips, so pick it if you can. Nothing
   refuses to run on a smaller one.
