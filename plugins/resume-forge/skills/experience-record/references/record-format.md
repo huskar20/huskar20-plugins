@@ -1,272 +1,203 @@
 # The record format
 
-Read this before your first save of a session. It carries the file's structure,
-the anchors you insert at, the tag vocabularies, and every entry format.
+The record is `master_profile.json` in their folder. It is JSON validated
+against `assets/master_profile.schema.json`. **Never write it by hand** — build
+the new version in a temp file and pass it to `scripts/profile.py save`, which
+validates, backs up, and writes atomically.
 
-## File shape
+The person never sees this file. Never show them JSON, field names, or ids.
 
+## Top-level shape
+
+```json
+{
+  "meta": { … },
+  "experiences": [ … ],
+  "skills": [ … ],
+  "projects": [ … ],
+  "education": [ … ],
+  "target_roles": [ … ],
+  "development_areas": [ … ]
+}
 ```
-experience-record.md
-├── header block     ← eight lines, kept current
-├── Part 1  Instructions for the assistant   ← never edit
-├── Part 2  Session log                      ← one line per sitting
-├── Part 3  The record                       ← everything goes here
-└── Part 4  Loose notes                      ← stays empty while a skill is running
-```
 
-Part 4 exists for people using the file by hand with no skill installed. While
-you are running, keep it empty — put entries straight into their Part 3 section.
+`init` creates all seven keys. Never remove one, even when empty — the save
+script counts them to detect data loss.
 
-## Insertion anchors
+## Ids
 
-Every section is bracketed by HTML comments. **Insert new entries immediately
-above the `:end` anchor of the matching section.** Never infer a position from
-surrounding prose.
+Every id is a prefix plus a number, unique within its array and never reused:
+`exp_1`, `skill_1`, `proj_1`, `edu_1`, `story_1`. Stories are nested inside
+their experience and numbered across the whole record, not per role.
 
-| Section | Anchor pair |
+The schema enforces the prefixes. `exp-1` or `experience_1` is rejected.
+
+## The two tag vocabularies
+
+Every claim carries both. They do different jobs and must never be conflated.
+
+**`defensibility`** — how well it survives an interviewer pushing on it.
+
+| Value | Means |
 |---|---|
-| Basics | `<!-- basics:start -->` … `<!-- basics:end -->` |
-| Self-portrait | `<!-- self-portrait:start -->` … `<!-- self-portrait:end -->` |
-| Roles and experience | `<!-- roles:start -->` … `<!-- roles:end -->` |
-| Projects | `<!-- projects:start -->` … `<!-- projects:end -->` |
-| Skills | `<!-- skills:start -->` … `<!-- skills:end -->` |
-| Stories | `<!-- stories:start -->` … `<!-- stories:end -->` |
-| Education and training | `<!-- education:start -->` … `<!-- education:end -->` |
-| Development areas | `<!-- development:start -->` … `<!-- development:end -->` |
-| Source documents | `<!-- sources:start -->` … `<!-- sources:end -->` |
-| Session log (Part 2) | `<!-- sessions:start -->` … `<!-- sessions:end -->` |
-| Loose notes (Part 4) | `<!-- notes:start -->` … `<!-- notes:end -->` |
+| `strong` | They can tell the whole story, with specifics, unprompted |
+| `moderate` | Real, but thin on detail or numbers |
+| `gap` | Partly supported; something material is missing |
+| `do_not_claim` | Not supportable. Kept for their private awareness only |
 
-The anchors are the contract. Never remove, rename, or reorder them.
+**`sensitivity`** — whether it may leave the record at all.
 
-## The header
-
-Exactly these eight lines, directly under the `# Experience Record` title.
-Rewrite the whole block at a save point, and again at the end of the session —
-it is small enough that rewriting it whole costs nothing. Do not rewrite it
-after every entry; see the cadence rules in `file-operations.md`.
-
-```
-FORMAT: experience-record v1
-SKILL: experience-record 1.2.0
-UPDATED: 2026-08-15
-SESSIONS: 3
-STAGE: 2
-COUNTS: roles 4 · projects 2 · stories 6 · skills 11 · education 2
-NEXT FOCUS: the two years of volunteer work at the community centre
-OPEN QUESTIONS: rough dates for the first support job
-```
-
-- **SKILL** — the version of the skill that last wrote the file. Write **your
-  own** version here, stated at the top of `SKILL.md`; do not carry forward
-  the value already in the file. A record that cannot say which version wrote
-  it cannot be debugged.
-- **UPDATED** — ISO date, `YYYY-MM-DD`, set on every save.
-- **SESSIONS** — incremented once per sitting, at the first save of that
-  sitting, not at every save.
-- **STAGE** — 1, 2 or 3, from the interview engine. **Each advance has a gate
-  you have to actually ask. If you have not asked it, the stage has not
-  advanced** — write the lower number and carry on. Never go backwards.
-  - **1 → 2** — a first-pass self-portrait exists *in the record*, in their own
-    words. A resume you mined is not a self-portrait; it is paper.
-  - **2 → 3** — their history is listed at one line each **and you have asked,
-    in these words or close to them:** *"Before we go deeper — is that the whole
-    list? Anything current, anything unpaid, anything you left off?"* — and they
-    have answered. This is the gate that catches the job they forgot to
-    mention, including the one they are in right now.
-- **COUNTS** — literal counts of entries in Part 3. **Compute them; never recall
-  them.** In Mode A, run this from the record's folder and use what it prints:
-
-  ```bash
-  for s in roles projects stories education; do
-    printf "%s " "$s"
-    awk "/<!-- $s:start -->/,/<!-- $s:end -->/" experience-record.md | grep -c '^### '
-  done
-  printf "skills "
-  awk '/<!-- skills:start -->/,/<!-- skills:end -->/' experience-record.md | grep -c '^- '
-  ```
-
-  There is deliberately no word count; you cannot count words reliably, so do
-  not pretend to.
-- **NEXT FOCUS** — one line, what you would cover next sitting.
-- **OPEN QUESTIONS** — one line. Separate multiple with `;`. Keep at most three
-  — the three most useful. If more accumulate, fold the rest into NEXT FOCUS or
-  drop the ones that no longer matter.
-
-## Tags
-
-**Defensibility** — how well a claim survives an interviewer pushing on it:
-
-| Tag | Meaning |
+| Value | Means |
 |---|---|
-| `[strong]` | They can talk about it for ten minutes under questioning |
-| `[moderate]` | Real, but thin on specifics |
-| `[gap]` | Partially supported; needs backing up before it goes anywhere public |
-| `[do-not-claim]` | Must never appear on a resume or in an interview answer |
+| `public` | Safe to use outwardly |
+| `private` | Real, but theirs alone — never exported |
+| `confidential` | Under NDA, or someone else's to disclose — never exported |
 
-**Sensitivity** — whether it may leave this file:
+**Filtering happens at export, never at capture.** Record the true thing, tag
+it honestly, and let `references/resume-handoff.md` decide what leaves. A record
+that only holds resume-safe material has failed at its job.
 
-| Tag | Meaning |
-|---|---|
-| `[public]` | Safe to use outwardly |
-| `[private]` | Personal or negotiating-position — salary, weak spots, home address |
-| `[confidential]` | Employer-confidential, NDA-bound, or client-identifying |
+When you are unsure, tag the more restrictive value and ask. Fail closed.
 
-**Two extra markers, used sparingly:**
+## Entries
 
-- `[inferred]` — you derived this rather than being told it. This is
-  **provenance, not quality.** Confirm it with the person, then delete the
-  marker. An `[inferred]` item that has sat unconfirmed for a whole session
-  should be asked about or removed.
-- `[UNRESOLVED]` — two versions of a fact conflict and the person could not say
-  which is right. Keep both inside the entry, marked. Never quietly pick one.
+### experiences[]
 
-**Where filtering happens.** `[do-not-claim]` and `[confidential]` items stay in
-the record permanently. The file holds the whole truth, including parts that
-must never reach a resume. **Filtering happens at export, never at capture.**
+The core array. Jobs, internships, contracts, volunteering, side projects, and
+informal work all live here, separated by `type`:
+`job` · `internship` · `contract` · `volunteer` · `side_project` · `informal`
 
-When unsure how to tag something, ask — or tag it more cautiously and say so.
+`informal` is load-bearing. Unpaid work for family, a friend's business, a
+club — the work people dismiss — is real experience and belongs in the record.
 
-## Entry formats
-
-Match these exactly. Consistency is what lets the file be read by anything
-later.
-
-### Basics
-
-One block, written in the first session, edited in place afterwards. Anything
-they decline or you have not asked yet stays as `TODO`.
-
-```
-- Name: Jordan Blake
-- Based in: Manchester, UK · can work in: UK
-- Email: jordan.blake@email.com [public]
-- Phone: +44 7700 900000 [public]
-- LinkedIn: linkedin.com/in/jordanblake [public]
-- Portfolio or GitHub: github.com/jblake [public]
-- Target roles: TODO
-- Years of professional experience: 0 — "two years of part-time retail while studying, no full-time yet"
-- Hard constraints: cannot relocate before June
-```
-
-**Years of professional experience** carries both a number and their own words,
-because "zero" and "zero, but two years part-time" produce different resumes.
-
-**Home address:** do not ask for it. If they volunteer a full street address,
-record city and region only. If they insist on the full address, tag it
-`[private]` — it never exports.
-
-### A role
-
-Anything someone paid or supervised them to do, including unpaid and informal
-work.
-
-```
-### Acme Ltd — Support Technician (2019–2022)
-- Type: paid
-- What it was: 40-person print shop, only IT person on site
-- Responsibilities:
-  - Ran the ticket queue for all staff [strong] [public]
-- Accomplishments:
-  - Cut repeat printer faults by roughly half over a year [moderate] [public]
-- Skills used: Windows admin, ticketing, hardware repair
-- Notes:
+```json
+{
+  "id": "exp_1",
+  "org": "Acme Ltd",
+  "title": "Support Analyst",
+  "type": "job",
+  "start": "2020-01",
+  "end": "2022-03",
+  "summary": "Single point of contact for 60 staff.",
+  "source": "user",
+  "surfaced_by_probing": false,
+  "responsibilities": ["Triaged the ticket queue"],
+  "accomplishments": [
+    {
+      "text": "Cut the average ticket backlog",
+      "metrics": "from ~40 open to under 10, over six months",
+      "defensibility": "strong",
+      "scope_note": "",
+      "sensitivity": "public"
+    }
+  ],
+  "stories": [],
+  "skills_used": ["ITSM", "Windows admin"],
+  "scope_note": "",
+  "sensitivity": "public"
+}
 ```
 
-`Type`: paid, internship, contract, volunteer, informal.
+Dates are `YYYY-MM`, or `YYYY` when that is all they remember. `end` is
+`"present"` for current roles. Never guess a date — leave it `""` and put the
+question in `meta.open_questions`.
 
-### A project
+`source` records where the claim came from:
+`user` · `inferred` · `user_note` · `from_material`
 
-Something they decided to build or make themselves.
+`surfaced_by_probing: true` marks experience they first dismissed as not worth
+mentioning. It is worth knowing which parts of their record only exist because
+someone dug.
 
-**The boundary rule:** was someone paying or supervising them to do it? If yes
-it is a role, even if unpaid — volunteering, a club officer position. If they
-scoped it themselves, it is a project — coursework, personal builds,
-hackathons, freelance work they defined.
+`scope_note` right-sizes a claim that would otherwise read bigger than it was —
+"one of four people on the team", "a two-week pilot, not a rollout". Use it
+rather than quietly inflating or deleting the claim.
 
-```
-### Recipe scaling app (2024)
-- Type: personal
-- What it was: React app that rescales recipes; ~200 users after a Reddit post
-- What they did:
-  - Built it solo, front end and API [strong] [public]
-- Tools: React, Node, Postgres
-- Link: github.com/jblake/recipe-scale [public]
-- Notes:
-```
+### stories[]
 
-`Type`: personal, academic, hackathon, freelance, open source.
+Nested inside an experience, in Situation / Task / Action / Result form.
 
-### A story
-
-```
-### Story — The Friday migration
-- Relates to: Acme Ltd
-- Situation:
-- Task:
-- Action:
-- Result:
-- Tags: [strong] [public]
+```json
+{
+  "id": "story_1",
+  "situation": "The queue had built up over a holiday period.",
+  "task": "Clear it without dropping new incoming tickets.",
+  "action": "Triaged by impact, batched the password resets, wrote a short FAQ.",
+  "result": "Backlog cleared in nine days; repeat password tickets fell.",
+  "defensibility": "strong",
+  "sensitivity": "public"
+}
 ```
 
-Never say "STAR method" to the person. Ask what happened, what they did, and
-how it turned out.
+Keep their words. Do not compress a story into a bullet — the whole point is
+that the detail survives to interview day.
 
-### A skill
+### skills[]
 
-```
-- Python — level: working · used at: Acme, recipe app · evidence: built the stock reorder script [moderate] [public]
-```
-
-`level`: aware, working, strong, expert — set from evidence, not from how
-confident they sound.
-
-### Education or training
-
-```
-### BSc Computer Science — University of X (2016–2019)
-- Type: degree
-- Notable: final-year project on network monitoring [moderate] [public]
-```
-
-`Type`: degree, certification, course, training, bootcamp.
-
-### A development area
-
-```
-- Has never worked to a formal ticketing SLA; would need ramp-up [private]
+```json
+{
+  "id": "skill_1",
+  "name": "SQL",
+  "category": "Data",
+  "proficiency": "working",
+  "interview_confidence": "medium",
+  "defensibility": "moderate",
+  "use_cases": ["Ad-hoc reporting"],
+  "project": "exp_1",
+  "example": "Wrote the weekly ticket-volume query.",
+  "sensitivity": "public"
+}
 ```
 
-Honest weak spots, plainly written. Useful, not shameful. `[private]` by
-default.
+A skill with no `example` is a claim with nothing behind it. Ask for one, or
+tag it `gap`.
 
-### A source document
+### education[], projects[], target_roles[], development_areas[]
 
-One line per document they hand over. This section is the index — check it
-before re-reading any source file.
+See the schema for the full field list. Same rules: real dates or `""`, both
+tags on anything claimable, no invented credentials.
 
+`education` covers formal study, bootcamps, certifications, and substantial
+self-teaching. For someone early-career this array often carries more weight
+than `experiences`.
+
+## meta
+
+```json
+"meta": {
+  "owner_label": "Jordan Blake",
+  "created": "2026-01-15T09:00:00Z",
+  "last_updated": "2026-01-15T09:40:00Z",
+  "interrogation_stage": "broad_mapping",
+  "self_portrait": { … },
+  "next_focus": "Deep dive on the Acme role",
+  "open_questions": ["Dates for the 2018 contract"],
+  "session_log": [
+    {"date": "2026-01-15", "covered": "Self-portrait, Acme role", "added": "1 role, 1 story"}
+  ]
+}
 ```
-- `2026-08-15-resume.pdf` — 2-page resume · added 2026-08-15 · captured: 3 roles, education, contact block · status: fully captured
-```
 
-`status`: not yet read, partly captured, fully captured.
+`interrogation_stage` is one of `intake` · `broad_mapping` · `deep_dive` ·
+`gap_filling` · `polish`, and drives where the interview resumes next sitting.
 
-Record what was **extracted**, not just that it was processed — otherwise a
-later pass cannot tell what it missed.
+`next_focus` and `open_questions` are how a future session knows where to pick
+up. Rewrite them at every save — a stale `next_focus` sends the next session
+back over ground already covered.
 
-## Corrections
+`self_portrait` holds their own account of themselves: `in_their_words`,
+`through_line`, `known_for`, `headed_toward`, `moving_away_from`,
+`constraints`, `source`, `confirmed`. Collect it before mining any document
+they hand over.
 
-When something new contradicts the file, ask about it, then **edit the existing
-entry in place** and add one line to the session log saying what changed. You
-have file access; superseding markers are not needed.
+`session_log` gets one appended entry per sitting. Never rewrite past entries.
 
-If they are not sure which version is right, keep both in the entry and mark it
-`[UNRESOLVED]`.
+## Provenance markers
 
-## Session log
+Two things the schema does not encode, kept in the text of a field:
 
-One line per sitting, appended above `<!-- sessions:end -->`:
-
-```
-- 2026-08-15 · session 3 · covered the Acme years · added 1 role, 3 stories, 4 skills · corrected Acme end date
-```
+- **`[inferred]`** — you concluded it rather than being told. Prefix the value.
+  Confirm it with them, then remove the marker. Never let an inference harden
+  into a fact.
+- **`[UNRESOLVED]`** — two sources disagree. Keep **both** values in the field,
+  marked, and add the question to `meta.open_questions`. Never silently pick one.

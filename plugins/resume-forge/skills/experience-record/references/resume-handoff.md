@@ -8,25 +8,47 @@ tags intact, so a resume tool can choose what to use and tailor per posting —
 and so the person can see which claims still need work. Send across as much as
 is safe to send.
 
+**Save the profile first**, then build the export from the saved file. Never
+export from an in-memory version that has not been through `profile.py save` —
+if the save is refused, the export would carry data the record does not have.
+
 ## The one hard line
 
 Two tag families, and only one of them is safe to delegate downstream.
 
-**Defensibility travels.** `[strong]`, `[moderate]`, `[gap]`, `[do-not-claim]`
-are quality judgements. Send them all, tagged. A tailoring tool legitimately
-needs the weaker material — a niche posting may call for the thing that only
+**Defensibility travels.** `strong`, `moderate`, `gap`, `do_not_claim` are
+quality judgements. Send them all, tagged. A tailoring tool legitimately needs
+the weaker material — a niche posting may call for the thing that only
 half-fits — and hiding weak claims means the person never fixes them.
 
-**Sensitivity does not travel.** Never export anything tagged `[private]` or
-`[confidential]`, whatever its defensibility. `[confidential]` is NDA-bound or
-client-identifying, and a resume goes to employers. `[private]` is salary and
-negotiating position — resume tools deliberately refuse to take that, and this
-file must not smuggle it in.
+**Sensitivity does not travel.** Never export anything whose `sensitivity` is
+`private` or `confidential`, whatever its defensibility. `confidential` is
+NDA-bound or client-identifying, and a resume goes to employers. `private` is
+salary and negotiating position — resume tools deliberately refuse to take
+that, and this file must not smuggle it in.
 
 Also drop, wherever they appear: compensation, notice period, work
 authorization, sponsorship, citizenship, clearance, and any voluntary
-self-identification detail. Home address, if one was ever recorded. Parts 1, 2
-and 4 of the record.
+self-identification detail. Home address, if one was ever recorded. Everything
+in `meta` — `session_log`, `open_questions`, `next_focus`, and the
+`self_portrait` block — is working state, not resume material.
+
+**The filter runs per item, not per entry.** A `public` experience can hold a
+`confidential` accomplishment, and dropping the accomplishment does not drop the
+role. Check `sensitivity` on each accomplishment, story and skill in its own
+right, and check the parent entry too — a `private` experience takes all of its
+children with it.
+
+## Tag spelling changes at the export boundary
+
+The record stores `do_not_claim` (JSON, underscores). The export writes
+`[do-not-claim]` (markdown, hyphens), because that is what downstream tools
+match on. Same for the rest: write `[strong]`, `[moderate]`, `[gap]`,
+`[public]` as bracketed lowercase tags, one defensibility and one sensitivity
+per bullet.
+
+Since `private` and `confidential` never leave, `[public]` is the only
+sensitivity tag that ever appears in the export.
 
 ## Structure carries the safety, not the tags
 
@@ -37,7 +59,7 @@ unsupported claim quietly becoming a resume line.
 
 ## Shape
 
-Write it as `resume-source.md`:
+Write it as `exports/resume-source.md`:
 
 ````markdown
 # Resume source — <Name>
@@ -86,6 +108,31 @@ Do not use these on a resume. They are here so the person knows what to work on.
 Experience and projects newest first. Keep the person's own numbers exactly as
 given — never round, scale, or infer a figure that is not in the record.
 
+## Where each section comes from
+
+| Export section | Source |
+|---|---|
+| Contact | `meta.owner_label` and the contact fields; `TODO` for anything unset |
+| Target | `target_roles[].title`; years of experience from `meta` |
+| Experience | `experiences[]` where `type` is not `side_project`, newest first |
+| Projects | `projects[]`, plus `experiences[]` of type `side_project` |
+| Skills | `skills[]`, grouped by `category`, keeping `proficiency` and `example` |
+| Education | `education[]` |
+| Stories | `experiences[].stories[]`, whole, attributed to their role |
+| Not resume-ready | every item of any type whose defensibility is `gap` or `do_not_claim` |
+
+`informal` and `volunteer` experience belongs under Experience like any other.
+It is often the most interesting material in an early-career record, and the
+person has usually already tried to talk you out of including it.
+
+`scope_note`, where present, must survive into the bullet. It is what keeps a
+right-sized claim right-sized once it leaves the record.
+
+Strip provenance markers on the way out. An `[inferred]` value that has been
+confirmed exports as a plain fact; one still unconfirmed does not export at all
+— it goes to "Not resume-ready" with a note that it needs checking. Anything
+marked `[UNRESOLVED]` also goes there, never into a bullet.
+
 ## Missing fields
 
 If the basics block still has `TODO` values — no email, no phone, no
@@ -93,6 +140,17 @@ years-of-experience — **emit the line with `TODO` rather than omitting it**, a
 list the gaps when you hand it over. A missing line reads as "this person has no
 LinkedIn"; a `TODO` reads as "ask them." That distinction matters when someone
 else's tool consumes this.
+
+## Check before you hand it over
+
+Read the finished file back and confirm all four:
+
+1. No `private` or `confidential` material anywhere in it
+2. Every `gap` and `do_not_claim` item is inside "Not resume-ready", not above it
+3. Every bullet carries a defensibility tag and `[public]`
+4. No JSON, no field names, no ids
+
+If any check fails, fix the file before handing it over.
 
 ## Say this when you hand it over
 

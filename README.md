@@ -54,15 +54,15 @@ It checks your Google Drive connector first, then either reads a resume you
 already have or interviews you from scratch.
 
 No Google Drive, or not sure what belongs on the page yet? Say
-**"start my experience record"** instead — it needs no connectors and builds the
-honest inventory a resume gets written from.
+**"start my experience record"** instead — it needs no connectors, just a folder
+to save into, and builds the honest inventory a resume gets written from.
 
 ## Available plugins
 
 | Plugin | What it does | Version |
 |---|---|---|
 | **career-hunter** | End-to-end job-search automation: guided onboarding builds your profile + a Google Sheets tracker, then auto-apply and Gmail-sync skills hunt roles, submit applications, keep the tracker current, and add confirmed interviews to your calendar. | 0.4.2 |
-| **resume-forge** | Record, build, tailor, and review resumes in a single-column ATS-safe house style: keeps an honest experience record you own, writes a formatted Google Doc from that record, an interview, or an existing resume file, aims a copy at a specific job description, and audits any resume against a pre-submission checklist — without ever inventing achievements. | 0.7.6 |
+| **resume-forge** | Record, build, tailor, and review resumes in a single-column ATS-safe house style: keeps an honest experience record you own, writes a formatted Google Doc from that record, an interview, or an existing resume file, aims a copy at a specific job description, and audits any resume against a pre-submission checklist — without ever inventing achievements. | 0.8.0 |
 
 The two work well together: `resume-forge` produces the resume `career-hunter`
 asks you to supply, and reads its `career-profile.md` when it's there.

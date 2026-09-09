@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "master_profile.schema.json",
+  "title": "Experience Record — master profile",
+  "description": "REFERENCE/PLACEHOLDER schema reconstructed from the handoff (§7). Replace this file with the AUTHORITATIVE master_profile.schema.json from the old Claude Project Knowledge before trusting it for validation.",
+  "type": "object",
+  "required": ["meta", "experiences", "skills", "projects", "target_roles", "development_areas"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["owner_label", "created", "interrogation_stage", "self_portrait"],
+      "additionalProperties": true,
+      "properties": {
+        "owner_label": { "type": "string", "description": "The person's name; must match across the file (one person per file)." },
+        "created": { "type": "string" },
+        "last_updated": { "type": "string" },
+        "interrogation_stage": {
+          "type": "string",
+          "enum": ["intake", "broad_mapping", "deep_dive", "gap_filling", "polish"]
+        },
+        "self_portrait": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "in_their_words": { "type": "string" },
+            "through_line": { "type": "string" },
+            "known_for": { "type": "string" },
+            "headed_toward": { "type": "string" },
+            "moving_away_from": { "type": "string" },
+            "constraints": { "type": "string" },
+            "source": { "type": "string", "enum": ["user", "from_material", "inferred"] },
+            "confirmed": { "type": "boolean" }
+          }
+        },
+        "completeness": { "description": "Rough per-section measure of how full the profile is." },
+        "next_focus": { "type": "string" },
+        "open_questions": { "type": "array", "items": { "type": "string" } },
+        "session_log": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string" },
+              "covered": { "type": "string" },
+              "added": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "experiences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "pattern": "^exp_" },
+          "org": { "type": "string" },
+          "title": { "type": "string" },
+          "type": { "type": "string", "enum": ["job", "internship", "contract", "volunteer", "side_project", "informal"] },
+          "start": { "type": "string" },
+          "end": { "type": "string" },
+          "summary": { "type": "string" },
+          "source": { "type": "string", "enum": ["user", "inferred", "user_note", "from_material"] },
+          "surfaced_by_probing": { "type": "boolean" },
+          "responsibilities": { "type": "array", "items": { "type": "string" } },
+          "accomplishments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": { "type": "string" },
+                "metrics": { "type": "string" },
+                "defensibility": { "type": "string", "enum": ["strong", "moderate", "gap", "do_not_claim"] },
+                "scope_note": { "type": "string" },
+                "sensitivity": { "type": "string", "enum": ["public", "private", "confidential"] }
+              }
+            }
+          },
+          "stories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "pattern": "^story_" },
+                "situation": { "type": "string" },
+                "task": { "type": "string" },
+                "action": { "type": "string" },
+                "result": { "type": "string" },
+                "defensibility": { "type": "string", "enum": ["strong", "moderate", "gap", "do_not_claim"] },
+                "sensitivity": { "type": "string", "enum": ["public", "private", "confidential"] }
+              }
+            }
+          },
+          "skills_used": { "type": "array", "items": { "type": "string" } },
+          "scope_note": { "type": "string" },
+          "sensitivity": { "type": "string", "enum": ["public", "private", "confidential"] }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "pattern": "^skill_" },
+          "name": { "type": "string" },
+          "category": { "type": "string" },
+          "proficiency": { "type": "string" },
+          "interview_confidence": { "type": "string" },
+          "defensibility": { "type": "string", "enum": ["strong", "moderate", "gap", "do_not_claim"] },
+          "use_cases": { "type": "array", "items": { "type": "string" } },
+          "project": { "type": "string" },
+          "example": { "type": "string" },
+          "sensitivity": { "type": "string", "enum": ["public", "private", "confidential"] }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "pattern": "^proj_" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "experience_ref": { "type": "string" },
+          "skills": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "target_roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "requirements": { "type": "array", "items": { "type": "string" } },
+          "evidence": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "development_areas": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "education": {
+      "type": "array",
+      "description": "Optional. Basics are enough; depth fields are for students/grads or anyone who volunteers it.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "id": { "type": "string", "pattern": "^edu_" },
+          "institution": { "type": "string" },
+          "credential": { "type": "string", "description": "e.g. BSc, MD, certificate, bootcamp" },
+          "field": { "type": "string", "description": "major / area of study" },
+          "start": { "type": "string" },
+          "end": { "type": "string" },
+          "status": { "type": "string", "enum": ["in_progress", "completed"] },
+          "summary": { "type": "string" },
+          "knowledge": { "type": "array", "items": { "type": "string" }, "description": "knowledge areas gained" },
+          "coursework": { "type": "array", "items": { "type": "string" } },
+          "projects": { "type": "array", "items": { "type": "string" }, "description": "proj_* ids or names" },
+          "certifications": { "type": "array", "items": { "type": "string" } },
+          "skills": { "type": "array", "items": { "type": "string" }, "description": "skill_* ids; these also feed the skills inventory" },
+          "honors": { "type": "array", "items": { "type": "string" } },
+          "sensitivity": { "type": "string", "enum": ["public", "private", "confidential"] }
+        }
+      }
+    }
+  }
+}
