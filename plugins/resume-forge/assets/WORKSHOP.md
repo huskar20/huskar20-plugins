@@ -16,9 +16,9 @@ for the *Using the terminal?* boxes.
 |---|---|
 | The Claude desktop app | Downloaded and signed in |
 | Google Drive turned on | **Settings** → **Connectors** → enable **Google Drive** |
-| The model | Pick the most capable one your plan offers. The default works too; a stronger model writes better bullets and makes fewer formatting mistakes |
-| Your resume | A file in any format, **or a Google Doc link**. No resume? Fine — Step 4 asks you questions instead |
-| A notes file (optional) | A plain `.txt` in **your own language** listing what you actually did at each job or project. Numbers, tools, results. It does not need to be tidy, and on its own it is enough to build from |
+| The model | **Opus 5.5** or newer, with **Thinking** set to **High**, if your plan offers it. Not on your plan? The default works too; a stronger model writes better bullets and makes fewer formatting mistakes |
+| Your resume | A **PDF**, **Word** or **text** file, **or a Google Doc link**. No resume? Fine — Step 4 asks you questions instead |
+| Notes (optional) | What you actually did at each job or project, in **your own language**, any file name. Numbers, tools, results. It does not need to be tidy. It fills in what your resume leaves out, and with no resume it is enough to build from |
 
 ---
 
@@ -48,13 +48,16 @@ https://github.com/huskar20/huskar20-plugins
 - **Mac:** Finder → **Documents** → File → **New Folder** → name it `job-search`
 - **Windows:** File Explorer → **Documents** → right-click → **New** → **Folder** → `job-search`
 
-**Put your resume inside it.**
+**Put your resume inside it.** Claude reads the resumes and notes in this
+folder, so put anything else about your work here too. PDF, Word (`.docx`) and
+plain text files work. Pages, an old `.doc`, or a photo? Export it as PDF
+first.
 
 **Optional:** is there work your resume does not mention? A summer job, a
-class project, something you did for family? Put it in a file called
-`notes.txt` in the same folder, in whatever language you think in. Bullet
-points are fine. Say how many, how often, how long, with which tool. For
-example:
+class project, something you did for family? Write it down in a file in the
+same folder, in whatever language you think in. Any file name works, for
+example `notes.txt`. Bullet points are fine. Say how many, how often, how long,
+with which tool. For example:
 
 ```
 Kafe - garson, 2023 yazi. Gunde 80-100 musteri, kasa kapanisi bende.
@@ -93,27 +96,26 @@ No slash menu in your app? Type this instead — it does the same thing:
 build my resume
 ```
 
-**Wrote a notes file in Step 2?** Say so in the same message:
-
-```
-build my resume, and also read notes.txt
-```
-
-It reads both, keeps your facts, and writes the resume in English. Nothing
+It reads your resume and any notes in `job-search`, and lists every file it
+used or skipped. Check that list. It keeps your facts and writes the resume in English. Nothing
 from your notes is invented or changed, only translated and tightened.
 
-Your resume is already in the folder, so it should find it. Any of these also
-work:
+Resume not in the folder? Any of these also work:
 
 - **drag the file** into the chat
 - **paste a Google Doc link** — share it as *anyone with the link can view*
   first, or make sure it is in the same Google account
 - **paste the text** of your resume
 
+**Notes in Google Drive?** Paste the link in the chat, the same way.
+
 Your original is never changed. You always get a new document.
 
 It asks a few things: the job title you want, how many years you have worked,
 your contact details. Answer plainly.
+
+Then it asks for a few numbers — how many, how often, how long. A rough honest
+estimate is fine, and so is "I don't know". You can answer in your own language.
 
 You get a formatted Google Doc in your Drive.
 
@@ -127,7 +129,8 @@ You get a formatted Google Doc in your Drive.
 ## Good to know
 
 - **It never invents anything** — no fake numbers, tools, jobs, or dates. If a
-  bullet needs a number you do not have, it asks you.
+  bullet needs a number, it asks you. If you do not know, it writes the
+  bullet without one. That is fine — not every bullet needs a number.
 - **One page** if you have under five years of experience.
 - Your email should be your name: `first.last@gmail.com`.
 
@@ -144,8 +147,8 @@ You get a formatted Google Doc in your Drive.
 | Cannot find **Plugins** | Open **Settings** first — it is under the **Customize** heading |
 | Our repo is not in **Browse Anthropic sources** | It never will be. Go back and pick **Add from a repository** |
 | No PDF appeared | Correct — File → Download → PDF Document |
-| It asks for a number I do not have | Working as intended. Give a real estimate, or leave the placeholder |
-| It ignored my notes file | Name the file in the message: **"build my resume, and also read notes.txt"**. Check the file is inside `job-search` |
+| It asks for a number I do not have | Working as intended. Give a real estimate, or say you do not know and it writes the bullet without one |
+| It missed one of my files | Check the file is inside `job-search`, not in another folder. Pages, `.doc` or a photo? Export it as PDF. Still missed? Name it: **"also read notes.txt"** |
 | My resume is in **Arial**, not Calibri | Should not happen. If it does, select all and pick Calibri — ten seconds |
 | The **dates are not flush right** | Should not happen. If they are not, say so and ask for a rebuild |
 | Cannot sign in at all | Go to [No laptop, no account](#no-laptop-no-account) |

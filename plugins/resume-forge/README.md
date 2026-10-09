@@ -13,9 +13,9 @@ your contact details and target titles.
 | Skill | Invoke with | What it does |
 |---|---|---|
 | **experience-record** | "start my experience record" | Interviews you across many sittings and keeps one honest, structured record of everything you have done — roles, projects, skills, stories, including the informal work people forget. Exports a tagged, filtered copy for `build` to work from. Needs a local folder; no connectors. |
-| **build** | "build my resume" | Reads an existing resume (`.docx`, `.pdf`, `.md`, `.txt`, or pasted text), a notes file in any language, **or** interviews you from scratch → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
+| **build** | "build my resume" | Reads everything you put in your working folder — an existing resume and notes in any language (`.docx`, `.pdf`, `.md`, `.txt`, `.rtf`) — or pasted text and Google Doc links, **or** interviews you from scratch. Asks for the numbers your bullets need before writing → writes a formatted Google Doc named `JobTitle_FirstNameLastName`. |
 | **tailor** | "tailor my resume to this job" | Takes a job description → rewrites the target title line, reorders bullets and skill categories, aligns wording with the posting, and reports keyword coverage as a table. Always produces a new copy; never edits your master. |
-| **review** | "review my resume" | Audits a resume against a 38-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, unprofessional email addresses, unclaimed LinkedIn URLs, length problems. On a `.docx` it also verifies each hyperlink's real target against its display text. |
+| **review** | "review my resume" | Audits a resume against a 40-item checklist and reports quoted, concrete findings: passive bullets, missing metrics, tense drift, ATS-breaking layout, filler words, misspelled tool names, leftover placeholders, unprofessional email addresses, unclaimed LinkedIn URLs, length problems. On a `.docx` it also verifies each hyperlink's real target against its display text. |
 
 ## Starting from an experience record
 
@@ -194,8 +194,9 @@ So:
 - Achievements, metrics, scale, employers, dates, credentials, and tools come
   from **you**. Never generated, never rounded up, never inferred from a job
   title.
-- Where a bullet would be stronger with a number you don't have, you get
-  `[ADD NUMBER]` and a list of every placeholder — not a plausible figure.
+- Numbers are asked for before writing. Where you don't have one, the bullet is
+  written without it — not with a plausible figure, and not with a placeholder
+  that could reach an employer.
 - A requirement in a posting that's missing from your resume becomes a
   **question**, never a silent edit.
 - No "ATS score" or "match percentage." Nobody here has an employer's actual
