@@ -105,6 +105,8 @@ Resume not in the folder? Any of these also work:
   first, or make sure it is in the same Google account
 - **paste the text** of your resume
 
+**Notes in Google Drive?** Paste the link in the chat, the same way.
+
 Your original is never changed. You always get a new document.
 
 It asks a few things: the job title you want, how many years you have worked,

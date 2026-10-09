@@ -73,7 +73,8 @@ is no folder, ask which the user has, or infer it if they already said:
   produces a new Doc.
 - **A LinkedIn export or profile text** — treat as an existing resume.
 - **Notes in any language** — a `.txt`, `.md`, `.rtf` or `.docx` the user wrote
-  about what they did, often alongside an existing resume. Read it as source
+  about what they did, or a **Google Doc link** to such notes (read it like a
+  resume link). Often alongside an existing resume. Read it as source
   material of equal standing with the resume. Translate to English, keep every
   fact as given, and add nothing the notes do not say. When the notes and the
   resume disagree, ask which is right rather than picking one.
