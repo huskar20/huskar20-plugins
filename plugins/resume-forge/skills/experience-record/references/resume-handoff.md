@@ -40,6 +40,10 @@ its own right, and check the parent entry too — a `private` or `confidential`
 experience takes all of its children with it, including any skill whose
 `example` describes work done there.
 
+Responsibilities are plain strings with no tags of their own. They take their
+experience's `sensitivity`, and export as `[moderate]` — real duties, but not
+results with evidence behind them.
+
 **An item with no `sensitivity` recorded is not automatically public.** The
 field is optional, so absence means nobody decided — not that it is safe. Treat
 an untagged item as `private` and leave it out, then tell the person which items
@@ -136,8 +140,9 @@ right-sized claim right-sized once it leaves the record.
 
 Strip provenance markers on the way out. An `[inferred]` value that has been
 confirmed exports as a plain fact; one still unconfirmed does not export at all
-— it goes to "Not resume-ready" with a note that it needs checking. Anything
-marked `[UNRESOLVED]` also goes there, never into a bullet.
+— it goes to "Not resume-ready" with a note that it needs checking. So does an
+experience whose `source` is still `inferred`. Anything marked `[UNRESOLVED]`
+also goes there, never into a bullet.
 
 ## Missing fields
 

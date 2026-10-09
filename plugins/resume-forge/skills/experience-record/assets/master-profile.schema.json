@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "master_profile.schema.json",
+  "$id": "master-profile.schema.json",
   "title": "Experience Record — master profile",
   "description": "Validation schema for the experience-record skill's master_profile.json. scripts/profile.py validates every save against this file.",
   "type": "object",
@@ -103,6 +103,7 @@
             "type": "array",
             "items": {
               "type": "object",
+              "required": ["id"],
               "properties": {
                 "id": { "type": "string", "pattern": "^story_" },
                 "situation": { "type": "string" },
@@ -177,6 +178,7 @@
       "description": "Optional. Basics are enough; depth fields are for students/grads or anyone who volunteers it.",
       "items": {
         "type": "object",
+        "required": ["id"],
         "additionalProperties": true,
         "properties": {
           "id": { "type": "string", "pattern": "^edu_" },

@@ -39,6 +39,12 @@ Check whether `master_profile.json` exists:
 - **Not there** → first run, §3.
 - **There** → returning session, §4.
 
+If there is no `master_profile.json` but there is an `experience-record.md`, it
+is their record from before version 0.8.0. Run the first session (§3), but treat
+that file as material they have already handed over — tell them you found their
+earlier record, and mine it as §2 describes for a structured career document
+instead of re-asking what it already holds. Never edit or delete it.
+
 ## 2. Ask for their material — collect it now, mine it later
 
 Open every first session by asking what they already have written down, and
@@ -69,14 +75,17 @@ If they have nothing, that is completely fine and common — say so and carry on
 ## 3. First session
 
 1. Run `python3 scripts/profile.py init --dir "<their folder>" --name "<name>"`.
-   Ask their name first if you do not know it.
+   Ask their name first if you do not know it. If the script cannot run — no
+   Python 3, or the folder cannot be written — stop and say so, exactly as for
+   a missing folder in §1.
 2. Welcome them in plain language. Tell them: this takes several sittings,
    nothing is lost between sittings, and there is no wrong answer. Say nothing
    about files or JSON.
 3. Ask for their material (§2), then the basics — city, email, phone, LinkedIn,
    portfolio, target roles, roughly how long they have been working. Take these
    from their material and confirm; only cold-ask what is missing. Everything
-   except their name is skippable — leave it `""` and note it in
+   except their name is skippable — leave a skipped detail empty, in the shape
+   `references/record-format.md` shows for it, and note it in
    `meta.open_questions`.
 4. Read `references/interview-engine.md` and begin Stage 1, the self-portrait.
 5. Go deep on **one** experience — the richest thing they mentioned. One
@@ -112,16 +121,18 @@ Write your updated profile to a temp file first, then call `save`. The script
 prints what changed; relay a one-line human summary — *"Saved — added your role
 at Acme and two stories."*
 
-If it refuses because the new version has fewer entries than the old one, **do
+If it refuses because the new version is missing entries the old one had, **do
 not force it.** You have almost certainly dropped something. Re-read the current
 file, merge properly, and try again. Only pass `--allow-shrink` when the person
-has explicitly asked to delete something.
+has explicitly asked to delete something, or to move an accomplishment from one
+role to another.
 
-**The guard counts entries, not their contents.** It cannot see a responsibility
-you dropped from a role, a story you shortened, or an open question you
-overwrote — those save silently. So always build the new version by reading the
-current file and *adding to it*, never by reconstructing it from what you
-remember of this conversation. The script is a backstop, not a substitute for
+**The guard tracks entries, not their contents.** It follows each entry by its
+id, so never change or reuse an id. It cannot see a responsibility you dropped
+from a role, a story you shortened, or an open question you overwrote — those
+save silently. So always build the new version by reading the current file and
+*adding to it*, never by reconstructing it from what you remember of this
+conversation. The script is a backstop, not a substitute for
 merging carefully.
 
 Save at every checkpoint, at the end of each focused block, and at the end of
@@ -203,7 +214,9 @@ tags intact, with unsupported claims quarantined in a "Not resume-ready"
 section. Hand that file to `build`.
 
 Anything tagged `private` or `confidential` never reaches that file, and neither
-do salary, work authorization, or anything in `meta`.
+do salary, work authorization, or the working state in `meta` — session log,
+open questions, next focus, self-portrait. Their name, contact details and years
+of experience do go in; the handoff says where.
 
 **Before the record leaves their own folder** — cloud storage, another service,
 a shared drive — say once that it contains material never meant to leave the

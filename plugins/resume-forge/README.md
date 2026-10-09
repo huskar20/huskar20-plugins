@@ -43,9 +43,9 @@ folder. It does need a real working folder, and Python 3 to run the save script.
 
 > **Upgrading from 0.7.x?** The record used to be a markdown file,
 > `experience-record.md`. From 0.8.0 it is `master_profile.json`, and an
-> existing markdown record is **not** picked up automatically. Keep the old file
-> — nothing deletes it — and hand it over when a new session asks what you
-> already have written down; it will be mined into the new record.
+> existing markdown record is **not** converted automatically. Keep the old file
+> in the same folder — nothing deletes it. The first session will find it and
+> carry what it holds into the new record, without asking you everything again.
 
 ## The format it produces
 

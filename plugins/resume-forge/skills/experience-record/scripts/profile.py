@@ -16,7 +16,7 @@ Usage
   python3 scripts/profile.py save --dir <folder> --from <new_profile.json>
 
 Exit codes: 0 on success, 1 when a save or validation is refused, 2 when a file
-could not be read or written at all.
+could not be read, written, or backed up at all.
 """
 from __future__ import annotations
 
@@ -32,11 +32,14 @@ from typing import Any
 
 PROFILE_NAME = "master_profile.json"
 BACKUP_DIR = ".backups"
-SCHEMA_PATH = Path(__file__).resolve().parent.parent / "assets" / "master_profile.schema.json"
+SCHEMA_PATH = Path(__file__).resolve().parent.parent / "assets" / "master-profile.schema.json"
 
 # Counts that must never silently shrink.
 COUNTED_SECTIONS = ("experiences", "skills", "projects", "education", "target_roles",
                     "development_areas")
+# Sections whose entries carry an id. These are tracked one by one, so dropping
+# one entry and adding another in the same save cannot cancel out.
+ID_SECTIONS = ("experiences", "skills", "projects", "education")
 
 
 # --------------------------------------------------------------------------- #
@@ -136,13 +139,50 @@ def _backup_target(folder: Path, target: Path) -> Path:
     return backup
 
 
+# The old file may have been edited by hand, so these tolerate malformed parts.
+def _len(items: Any) -> int:
+    return len(items) if isinstance(items, list) else 0
+
+
+def _dicts(items: Any) -> list[dict]:
+    return [i for i in items if isinstance(i, dict)] if isinstance(items, list) else []
+
+
 def _counts(profile: dict) -> dict[str, int]:
-    counts = {k: len(profile.get(k) or []) for k in COUNTED_SECTIONS}
-    counts["stories"] = sum(len(e.get("stories") or [])
-                            for e in (profile.get("experiences") or []))
-    counts["accomplishments"] = sum(len(e.get("accomplishments") or [])
-                                    for e in (profile.get("experiences") or []))
+    counts = {k: _len(profile.get(k)) for k in COUNTED_SECTIONS}
+    experiences = _dicts(profile.get("experiences"))
+    counts["stories"] = sum(_len(e.get("stories")) for e in experiences)
+    counts["accomplishments"] = sum(_len(e.get("accomplishments")) for e in experiences)
     return counts
+
+
+def _ids(profile: dict) -> set[tuple[str, str]]:
+    ids = {(section, str(item["id"]))
+           for section in ID_SECTIONS
+           for item in _dicts(profile.get(section)) if item.get("id")}
+    for exp in _dicts(profile.get("experiences")):
+        ids |= {("stories", str(s["id"])) for s in _dicts(exp.get("stories")) if s.get("id")}
+    return ids
+
+
+def _accomplishments_per_role(profile: dict) -> dict[str, int]:
+    # Accomplishments have no id, so count them per role: a loss in one role
+    # must not be hidden by a gain in another.
+    return {str(e.get("id")): _len(e.get("accomplishments"))
+            for e in _dicts(profile.get("experiences"))}
+
+
+def _losses(old: dict, new: dict) -> list[str]:
+    """Everything `old` holds that `new` does not, one line each."""
+    losses = []
+    old_c, new_c = _counts(old), _counts(new)
+    losses += [f"{k}: {old_c[k]} -> {new_c[k]}" for k in old_c if new_c[k] < old_c[k]]
+    losses += [f"{section}: {ident} is missing"
+               for section, ident in sorted(_ids(old) - _ids(new))]
+    old_r, new_r = _accomplishments_per_role(old), _accomplishments_per_role(new)
+    losses += [f"accomplishments under {role}: {was} -> {new_r.get(role, 0)}"
+               for role, was in old_r.items() if new_r.get(role, 0) < was]
+    return losses
 
 
 # --------------------------------------------------------------------------- #
@@ -154,9 +194,8 @@ def cmd_init(args) -> int:
     target = folder / PROFILE_NAME
     if target.exists() and not args.force:
         print(f"REFUSED: {target} already exists. This folder already holds a profile.")
+        print("         This is a returning session: read the profile and continue it.")
         return 1
-    for sub in ("sources", "exports", BACKUP_DIR):
-        (folder / sub).mkdir(parents=True, exist_ok=True)
 
     profile = {
         "meta": {
@@ -184,7 +223,18 @@ def cmd_init(args) -> int:
         for e in errors:
             print("  -", e)
         return 2
-    _atomic_write(target, json.dumps(profile, indent=2, ensure_ascii=False) + "\n")
+    try:
+        for sub in ("sources", "exports", BACKUP_DIR):
+            (folder / sub).mkdir(parents=True, exist_ok=True)
+        # --force replaces a whole record, so it gets the same backup as a save.
+        if target.exists():
+            backup = _backup_target(folder, target)
+            print(f"NOTE: the existing profile was copied to {backup} before being replaced.")
+        _atomic_write(target, json.dumps(profile, indent=2, ensure_ascii=False) + "\n")
+    except OSError as exc:
+        print(f"ERROR: could not create the profile in {folder} — {exc}")
+        print("       Any existing profile is untouched.")
+        return 2
     print(f"OK: created {target}")
     print(f"    folders: sources/  exports/  {BACKUP_DIR}/")
     return 0
@@ -194,7 +244,7 @@ def cmd_validate(args) -> int:
     path = Path(args.file).expanduser().resolve()
     try:
         profile = _read_json(path)
-    except json.JSONDecodeError as exc:
+    except ValueError as exc:  # bad JSON, or bytes that are not UTF-8
         print(f"INVALID: {path} is not readable JSON — {exc}")
         return 1
     except OSError as exc:
@@ -217,16 +267,27 @@ def cmd_save(args) -> int:
     target = folder / PROFILE_NAME
     source = Path(getattr(args, "from")).expanduser().resolve()
 
+    if source == target:
+        print("REFUSED: --from is the profile itself. Write the new version to a separate")
+        print("         temp file and save from that, so the current one can be checked")
+        print("         and backed up. Nothing was written.")
+        return 1
+    if not target.exists():
+        print(f"REFUSED: there is no profile at {target}.")
+        print("         Check --dir. A new record is created with init, not save.")
+        print("         Nothing was written.")
+        return 1
+
     try:
         new = _read_json(source)
-    except json.JSONDecodeError as exc:
+    except ValueError as exc:  # bad JSON, or bytes that are not UTF-8
         print(f"REFUSED: the new profile is not readable JSON — {exc}")
         print("         Nothing was written. The existing profile is untouched.")
         return 1
     except OSError as exc:
-        print(f"REFUSED: could not read {source} — {exc}")
-        print("         Nothing was written. The existing profile is untouched.")
-        return 1
+        print(f"ERROR: could not read {source} — {exc}")
+        print("       Nothing was written. The existing profile is untouched.")
+        return 2
 
     errors = validate_profile(new)
     if errors:
@@ -236,57 +297,57 @@ def cmd_save(args) -> int:
         print("         Nothing was written. The existing profile is untouched.")
         return 1
 
-    old = None
-    unreadable = False
-    if target.exists():
-        try:
-            old = _read_json(target)
-        except (json.JSONDecodeError, OSError):
-            unreadable = True
+    try:
+        old = _read_json(target)
+    except (ValueError, OSError):
+        old = None
+    if not isinstance(old, dict):
+        old = None  # unparseable, or not a profile at all
 
+    losses: list[str] = []
     changes: list[str] = []
     if old is not None:
-        old_c, new_c = _counts(old), _counts(new)
-        shrunk = {k: (old_c[k], new_c[k]) for k in old_c if new_c[k] < old_c[k]}
-        if shrunk and not args.allow_shrink:
+        losses = _losses(old, new)
+        if losses and not args.allow_shrink:
             print("REFUSED: this save would remove existing content:")
-            for k, (was, now) in shrunk.items():
-                print(f"  - {k}: {was} -> {now}")
+            for line in losses:
+                print(f"  - {line}")
             print("         Nothing was written. The existing profile is untouched.")
             print("         Re-read the current profile, merge properly, and try again.")
-            print("         Only pass --allow-shrink if the person asked to delete this.")
+            print("         Only pass --allow-shrink if the person asked for this removal,")
+            print("         or asked for an item to move from one role to another.")
             return 1
-        for k in new_c:
-            if new_c[k] != old_c[k]:
-                changes.append(f"{k} {old_c[k]}->{new_c[k]}")
+        old_c, new_c = _counts(old), _counts(new)
+        changes = [f"{k} {old_c[k]}->{new_c[k]}" for k in new_c if new_c[k] != old_c[k]]
 
     # Back up whatever is on disk before overwriting it — an unparseable file is
     # the case where the copy matters most, so it must not depend on parsing.
-    if target.exists():
-        try:
-            backup = _backup_target(folder, target)
-        except OSError as exc:
-            print(f"REFUSED: could not back up the existing profile — {exc}")
-            print("         Nothing was written. The existing profile is untouched.")
-            return 1
-        if unreadable:
-            print("WARNING: the existing profile could not be parsed, so its contents "
-                  "could not be checked for data loss.")
-            print(f"         The unreadable file was copied to {backup} before writing.")
-            print("         Recover from there if this save was not what you intended.")
+    try:
+        backup = _backup_target(folder, target)
+    except OSError as exc:
+        print(f"ERROR: could not back up the existing profile — {exc}")
+        print("       Nothing was written. The existing profile is untouched.")
+        return 2
+    if old is None:
+        print("WARNING: the existing profile could not be parsed, so its contents "
+              "could not be checked for data loss.")
+        print(f"         The unreadable file was copied to {backup} before writing.")
+        print("         Recover from there if this save was not what you intended.")
 
     new.setdefault("meta", {})["last_updated"] = _now_iso()
 
-    for sub in ("sources", "exports", BACKUP_DIR):
-        (folder / sub).mkdir(parents=True, exist_ok=True)
     try:
+        for sub in ("sources", "exports"):
+            (folder / sub).mkdir(parents=True, exist_ok=True)
         _atomic_write(target, json.dumps(new, indent=2, ensure_ascii=False) + "\n")
     except OSError as exc:
-        print(f"REFUSED: the profile could not be written — {exc}")
-        print("         The existing profile is untouched.")
-        return 1
+        print(f"ERROR: the profile could not be written — {exc}")
+        print("       The existing profile is untouched.")
+        return 2
 
     print(f"SAVED: {target}")
+    if losses:
+        print("       removed, as allowed: " + "; ".join(losses))
     if changes:
         print("       changed: " + ", ".join(changes))
     elif old is not None:
@@ -302,7 +363,8 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("init", help="create folders and an empty profile")
     p.add_argument("--dir", required=True)
     p.add_argument("--name", required=True, help="the person's name")
-    p.add_argument("--force", action="store_true", help="overwrite an existing profile")
+    p.add_argument("--force", action="store_true",
+                   help="replace an existing profile with an empty one (it is backed up first)")
     p.set_defaults(func=cmd_init)
 
     p = sub.add_parser("validate", help="check a profile against the schema")

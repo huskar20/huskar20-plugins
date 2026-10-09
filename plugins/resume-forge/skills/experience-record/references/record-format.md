@@ -1,7 +1,7 @@
 # The record format
 
 The record is `master_profile.json` in their folder. It is JSON validated
-against `assets/master_profile.schema.json`. **Never write it by hand** — build
+against `assets/master-profile.schema.json`. **Never write it by hand** — build
 the new version in a temp file and pass it to `scripts/profile.py save`, which
 validates, backs up, and writes atomically.
 
@@ -33,6 +33,10 @@ their experience and numbered across the whole record, not per role.
 The schema enforces the prefix — `exp-1` and `experience_1` are rejected — but
 not the number after it. Keep to the convention anyway; cross-references between
 entries rely on ids being predictable.
+
+Every experience, skill, project, education entry and story must have an id.
+The save script tracks entries by id, so an id that disappears reads as a
+deleted entry. Never renumber.
 
 ## The two tag vocabularies
 
@@ -107,6 +111,9 @@ question in `meta.open_questions`.
 `source` records where the claim came from:
 `user` · `inferred` · `user_note` · `from_material`
 
+`inferred` goes with the `[inferred]` marker below. Once they confirm the entry,
+remove the marker and change `source` to `user`.
+
 `surfaced_by_probing: true` marks experience they first dismissed as not worth
 mentioning. It is worth knowing which parts of their record only exist because
 someone dug.
@@ -172,6 +179,19 @@ than `experiences`.
   "last_updated": "2026-01-15T09:40:00Z",
   "interrogation_stage": "broad_mapping",
   "self_portrait": { … },
+  "contact": {
+    "city": "Leeds",
+    "state": "",
+    "email": "jordan@example.com",
+    "phone": "",
+    "linkedin": "",
+    "portfolio": "",
+    "github": ""
+  },
+  "years_experience": {
+    "number": "6",
+    "in_their_words": "about six years, if you count the café"
+  },
   "next_focus": "Deep dive on the Acme role",
   "open_questions": ["Dates for the 2018 contract"],
   "session_log": [
@@ -183,9 +203,16 @@ than `experiences`.
 `interrogation_stage` is one of `intake` · `broad_mapping` · `deep_dive` ·
 `gap_filling` · `polish`, and drives where the interview resumes next sitting.
 
+`contact` and `years_experience` feed the resume header. A detail they skipped
+stays empty in place — `""` inside the object, as above — never removed, and
+never a bare `""` where the schema expects an object or list. Never record a
+full street address.
+
 `next_focus` and `open_questions` are how a future session knows where to pick
-up. Rewrite them at every save — a stale `next_focus` sends the next session
-back over ground already covered.
+up. Rewrite `next_focus` at every save — a stale one sends the next session
+back over ground already covered. Anything that must survive until a later
+stage, such as a claim to revisit at polish, belongs in `open_questions`, which
+keeps an item until it is answered.
 
 `self_portrait` holds their own account of themselves: `in_their_words`,
 `through_line`, `known_for`, `headed_toward`, `moving_away_from`,
