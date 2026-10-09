@@ -124,7 +124,7 @@ You get a formatted Google Doc in your Drive.
 
 **You are done.** Everything below is optional.
 
-> **Got a resume you like?** Resume Forge is free, and stays free. If you are
+> ❤️ **Got a resume you like?** Resume Forge is free, and stays free. If you are
 > ever in a position to give, the author supports the Generosity Foundation —
 > a cause they support, not one they run. Donations go to the foundation, not
 > to this plugin. Entirely optional.
