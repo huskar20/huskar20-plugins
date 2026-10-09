@@ -124,6 +124,13 @@ You get a formatted Google Doc in your Drive.
 
 **You are done.** Everything below is optional.
 
+> **Got a resume you like?** Resume Forge is free, and stays free. If you are
+> ever in a position to give, the author supports the Generosity Foundation —
+> a cause they support, not one they run. Donations go to the foundation, not
+> to this plugin. Entirely optional.
+>
+> **[foundationgenerosity.org/donation-center](https://www.foundationgenerosity.org/donation-center)**
+
 ---
 
 ## Good to know
@@ -177,29 +184,6 @@ No number in this role
 
 Fix your three worst bullets yourself. Shape: **verb + what you did + the tool
 + the result**.
-
----
-
-## If you have time — aim it at one job
-
-Find a real posting you would apply to.
-
-```
-/resume-forge:tailor
-```
-
-Or just: **"tailor my resume for this job"**.
-
-Paste the posting. You get a table:
-
-```
-Python            ✓ already on your resume
-Incident response ~ you have it, worded differently → "triaged alerts"
-Terraform         ✗ missing — do you have this?
-```
-
-Missing items come back as **questions**, not edits. If you have it, say where.
-If you do not, leave it.
 
 ---
 
@@ -310,9 +294,3 @@ No resume at all? Fill in the blank template, then hand it to `build`:
 
 **Tonight:** rewrite the bullets you did not get to. Twenty minutes beats a
 perfect resume you never finish.
-
-Resume Forge is free, and stays free. If it helped and you are ever in a
-position to give, the author supports the [Generosity
-Foundation](https://www.foundationgenerosity.org/donation-center) — a cause
-the author supports, not one they run. Donations go to the foundation, not to
-this plugin. Entirely optional.

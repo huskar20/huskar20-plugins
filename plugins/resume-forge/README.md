@@ -121,11 +121,16 @@ resume and an optional notes file in their own language, open Claude there,
 `build`. It is written for the **desktop app**, with terminal commands kept as
 short asides.
 
-Everything after Step 4 is optional and can be taken home: `review` and
-`tailor` with worked examples of what each hands back, a bullet-rewriting
-exercise, the `experience-record` skill, the ten checks, a troubleshooting
-table, blank and worked-example templates, and a paper-only lane for anyone who
-cannot get signed in.
+Everything after Step 4 is optional and can be taken home: `review` with a
+worked example of what it hands back, a bullet-rewriting exercise, the
+`experience-record` skill, the ten checks, a troubleshooting table, blank and
+worked-example templates, and a paper-only lane for anyone who cannot get
+signed in. `tailor` is left out on purpose — the handout ends at a finished
+resume, and tailoring belongs to a real application.
+
+The one donation note sits directly under "You are done", addressed only to
+students whose resume worked, because most stop reading once it is written.
+Nothing else in the handout mentions it.
 
 Share it as a single link:
 
