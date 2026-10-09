@@ -23,7 +23,7 @@ posting-specific comparison, and keep this review about the document itself.
 
 ## Step 2 — Run the checklist
 
-Read `references/checklist.md` and work through all 39 items. Check every one;
+Read `references/checklist.md` and work through all 40 items. Check every one;
 do not sample. Each is written to be objectively testable against the text.
 
 Some checks need a whole-document view rather than a line-by-line pass:
@@ -45,7 +45,7 @@ Some checks need a whole-document view rather than a line-by-line pass:
   text with its real target, and lists URL-looking text that carries no
   hyperlink at all. A link whose text says one address while pointing at
   another cannot be seen on the rendered page, so never skip the script when
-  the source is a `.docx`. Covers advisory items 35 and 36; for other source
+  the source is a `.docx`. Covers advisory items 36 and 37; for other source
   formats those two stay an eyeball check.
 
 ## Step 3 — Report
@@ -73,11 +73,8 @@ Ask before changing anything. If the user says yes:
 The checklist will surface bullets that need a number. **Ask the user for it.**
 Do not supply a plausible figure, do not infer scale from the job title, and do
 not round an unknown quantity up. If they do not have one, keep the bullet
-without a number rather than adding a placeholder.
-
-A bracketed placeholder already in the resume — `[ADD NUMBER]` from an earlier
-build, or any similar `[...]` note — is a **Blocking** finding. It reaches the
-employer as literal text.
+without a number rather than adding a placeholder — checklist item 13 blocks
+any placeholder already in the document, so a fix must never add one.
 
 Do not produce an "ATS score", "resume score", or percentage match. No real
 scoring engine is available here, so any number would be invented authority

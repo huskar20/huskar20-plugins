@@ -9,8 +9,13 @@ rediscovering them.
 **This is the route. Do not hand-write HTML for a resume.**
 
 ```
-python3 scripts/build_resume_docx.py spec.json out.docx --base64
+python3 scripts/build_resume_docx.py <tmp>/spec.json <tmp>/out.docx --base64
 ```
+
+`<tmp>` is a temporary directory — the session's scratch space or the system
+temp folder — **never the user's folder.** `build` reads that folder for source
+material, so a spec or `.docx` left there comes back on the next build as if
+the user had written it. The same goes for both `.b64` files below.
 
 Then create the file with `base64Content`, and Drive converts it to a Google Doc:
 
@@ -65,10 +70,10 @@ which is worse, because then the upload succeeds and the document is wrong.
 So verify the payload **before** the upload, every time:
 
 1. Build with the payload going to a file:
-   `python3 scripts/build_resume_docx.py spec.json out.docx --base64 > built.b64`
+   `python3 scripts/build_resume_docx.py <tmp>/spec.json <tmp>/out.docx --base64 > <tmp>/built.b64`
 2. Write the exact string you are about to pass as `base64Content` to a second
-   file, `pasted.b64`, with the file-writing tool.
-3. `python3 scripts/build_resume_docx.py --verify built.b64 pasted.b64`
+   file, `<tmp>/pasted.b64`, with the file-writing tool.
+3. `python3 scripts/build_resume_docx.py --verify <tmp>/built.b64 <tmp>/pasted.b64`
    prints `IDENTICAL` or lists every differing position, correct and corrupted
    context side by side. Patch `pasted.b64` and re-verify until it passes.
 4. Only then call `create_file`, reproducing the verified string exactly, with

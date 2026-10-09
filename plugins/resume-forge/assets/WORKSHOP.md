@@ -17,7 +17,7 @@ for the *Using the terminal?* boxes.
 | The Claude desktop app | Downloaded and signed in |
 | Google Drive turned on | **Settings** → **Connectors** → enable **Google Drive** |
 | The model | **Opus 5.5** or newer, with **Thinking** set to **High**, if your plan offers it. Not on your plan? The default works too; a stronger model writes better bullets and makes fewer formatting mistakes |
-| Your resume | A file in any format, **or a Google Doc link**. No resume? Fine — Step 4 asks you questions instead |
+| Your resume | A **PDF**, **Word** or **text** file, **or a Google Doc link**. No resume? Fine — Step 4 asks you questions instead |
 | Notes (optional) | What you actually did at each job or project, in **your own language**, any file name. Numbers, tools, results. It does not need to be tidy. It fills in what your resume leaves out, and with no resume it is enough to build from |
 
 ---
@@ -48,8 +48,10 @@ https://github.com/huskar20/huskar20-plugins
 - **Mac:** Finder → **Documents** → File → **New Folder** → name it `job-search`
 - **Windows:** File Explorer → **Documents** → right-click → **New** → **Folder** → `job-search`
 
-**Put your resume inside it.** Claude reads everything in this folder, so put
-anything else about your work here too.
+**Put your resume inside it.** Claude reads the resumes and notes in this
+folder, so put anything else about your work here too. PDF, Word (`.docx`) and
+plain text files work. Pages, an old `.doc`, or a photo? Export it as PDF
+first.
 
 **Optional:** is there work your resume does not mention? A summer job, a
 class project, something you did for family? Write it down in a file in the
@@ -94,8 +96,8 @@ No slash menu in your app? Type this instead — it does the same thing:
 build my resume
 ```
 
-It reads everything in `job-search` — your resume and any notes — and tells you
-what it found. It keeps your facts and writes the resume in English. Nothing
+It reads your resume and any notes in `job-search`, and lists every file it
+used or skipped. Check that list. It keeps your facts and writes the resume in English. Nothing
 from your notes is invented or changed, only translated and tightened.
 
 Resume not in the folder? Any of these also work:
@@ -146,7 +148,7 @@ You get a formatted Google Doc in your Drive.
 | Our repo is not in **Browse Anthropic sources** | It never will be. Go back and pick **Add from a repository** |
 | No PDF appeared | Correct — File → Download → PDF Document |
 | It asks for a number I do not have | Working as intended. Give a real estimate, or say you do not know and it writes the bullet without one |
-| It missed one of my files | Check the file is inside `job-search`, not in another folder. Still missed? Name it: **"also read notes.txt"** |
+| It missed one of my files | Check the file is inside `job-search`, not in another folder. Pages, `.doc` or a photo? Export it as PDF. Still missed? Name it: **"also read notes.txt"** |
 | My resume is in **Arial**, not Calibri | Should not happen. If it does, select all and pick Calibri — ten seconds |
 | The **dates are not flush right** | Should not happen. If they are not, say so and ask for a rebuild |
 | Cannot sign in at all | Go to [No laptop, no account](#no-laptop-no-account) |
