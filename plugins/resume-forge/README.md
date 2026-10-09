@@ -194,8 +194,9 @@ So:
 - Achievements, metrics, scale, employers, dates, credentials, and tools come
   from **you**. Never generated, never rounded up, never inferred from a job
   title.
-- Where a bullet would be stronger with a number you don't have, you get
-  `[ADD NUMBER]` and a list of every placeholder — not a plausible figure.
+- Numbers are asked for before writing. Where you don't have one, the bullet is
+  written without it — not with a plausible figure, and not with a placeholder
+  that could reach an employer.
 - A requirement in a posting that's missing from your resume becomes a
   **question**, never a silent edit.
 - No "ATS score" or "match percentage." Nobody here has an employer's actual

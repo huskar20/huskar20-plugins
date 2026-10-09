@@ -125,8 +125,8 @@ You get a formatted Google Doc in your Drive.
 ## Good to know
 
 - **It never invents anything** — no fake numbers, tools, jobs, or dates. If a
-  bullet needs a number, it asks you. If you do not know, it leaves
-  `[ADD NUMBER]` for you to fill in later.
+  bullet needs a number, it asks you. If you do not know, it writes the
+  bullet without one. That is fine — not every bullet needs a number.
 - **One page** if you have under five years of experience.
 - Your email should be your name: `first.last@gmail.com`.
 
@@ -143,7 +143,7 @@ You get a formatted Google Doc in your Drive.
 | Cannot find **Plugins** | Open **Settings** first — it is under the **Customize** heading |
 | Our repo is not in **Browse Anthropic sources** | It never will be. Go back and pick **Add from a repository** |
 | No PDF appeared | Correct — File → Download → PDF Document |
-| It asks for a number I do not have | Working as intended. Give a real estimate, or say you do not know and it leaves `[ADD NUMBER]` |
+| It asks for a number I do not have | Working as intended. Give a real estimate, or say you do not know and it writes the bullet without one |
 | It missed one of my files | Check the file is inside `job-search`, not in another folder. Still missed? Name it: **"also read notes.txt"** |
 | My resume is in **Arial**, not Calibri | Should not happen. If it does, select all and pick Calibri — ten seconds |
 | The **dates are not flush right** | Should not happen. If they are not, say so and ask for a rebuild |

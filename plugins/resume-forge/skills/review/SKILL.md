@@ -72,7 +72,12 @@ Ask before changing anything. If the user says yes:
 
 The checklist will surface bullets that need a number. **Ask the user for it.**
 Do not supply a plausible figure, do not infer scale from the job title, and do
-not round an unknown quantity up. Leave `[ADD NUMBER]` and list the placeholders.
+not round an unknown quantity up. If they do not have one, keep the bullet
+without a number rather than adding a placeholder.
+
+A bracketed placeholder already in the resume — `[ADD NUMBER]` from an earlier
+build, or any similar `[...]` note — is a **Blocking** finding. It reaches the
+employer as literal text.
 
 Do not produce an "ATS score", "resume score", or percentage match. No real
 scoring engine is available here, so any number would be invented authority

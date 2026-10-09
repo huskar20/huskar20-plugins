@@ -162,7 +162,7 @@ thin after all of those — it is a space filler of last resort, and
 `house-style.md` sets the bar it has to clear.
 
 **Then ask for the numbers.** Most people have them and have not counted, and
-this is the moment to get them — before writing, not as placeholders after.
+this is the moment to get them — before writing, not as a to-do list after.
 Once the required fields are in, pick the bullets where a number would matter
 most for the target job, at most about five, and ask for them in one short
 round. Quote the activity in a few words and suggest the kind of figure:
@@ -177,8 +177,8 @@ Say that an honest estimate they can defend is fine — "roughly 900 tickets,"
 "about 40% fewer escalations" — that "I don't know" is a fine answer, and that
 they may answer in their own language. Skip this round when the material
 already carries real numbers in most roles, or the user says they want to move
-fast. Whatever they cannot give becomes `[ADD NUMBER]` in Step 5; never fill
-the gap yourself.
+fast. Where they do not know, the bullet is written without a number in
+Step 5; never fill the gap yourself.
 
 **Then decide the bullet-glyph scheme, and state it before writing.** It is a
 document-wide decision like section order, not a per-line choice, and mixing
@@ -210,8 +210,10 @@ If writing turns up a gap that round missed and it matters, ask once more
 rather than guessing.
 
 **Never fabricate.** If a bullet would be stronger with a number and the user
-does not have one, write the bullet without it and leave `[ADD NUMBER]` in
-place, then list every placeholder in the final summary. Do not guess a
+does not have one, write a clean bullet without it. **Never put a placeholder
+such as `[ADD NUMBER]` in the document.** The user has already been asked, and
+a hurried PDF export sends the bracket to an employer, where a parser reads it
+as literal text. A bullet without a number is a normal bullet. Do not guess a
 plausible figure, do not round an unknown up, and do not infer scale from job
 title. This document is used to get hired; a number the user cannot defend in an
 interview is worse than no number. The same applies to tools — never list
@@ -296,8 +298,9 @@ hand.
 Tell the user:
 
 - A link to the Doc and where it lives
-- **Every `[ADD NUMBER]` placeholder left in the document**, quoted with its
-  bullet, so they can fill them in
+- **Bullets that could take a number later** — only those where the user said
+  they could find one out, quoted, so they can add it to the Doc themselves.
+  Skip the ones they said they do not know; asking again is not useful
 - Anything asked for and not received
 - Any format compromise made (for example, dates not flush right because they
   came in through HTML import)
