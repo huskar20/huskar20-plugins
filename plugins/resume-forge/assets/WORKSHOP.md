@@ -251,8 +251,10 @@ Drive working today. It also keeps things a resume must never show — salary,
 work under NDA, claims you cannot back up yet — and filters them out only when
 you export.
 
-> In the desktop app it may hand you the file back instead of saving it. That
-> is normal. Keep the file and bring it to the next session.
+> **It does need the folder you connected earlier.** That is where your record
+> is saved, and where you will find it next time. If no folder is connected it
+> will tell you and stop, rather than interviewing you and losing the answers.
+> Every save keeps a backup of the previous version, so nothing gets overwritten.
 
 When you want a resume out of it, say **"give me material for my resume"**,
 then hand that file to `build`.

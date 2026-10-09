@@ -75,14 +75,15 @@ rule in `house-style.md`.
 Also check for `exports/resume-source.md` in the working folder or its parents.
 That file is written by the `experience-record` skill in this plugin. If it
 exists, read it as the starting material and confirm what it holds rather than
-re-interviewing. Never write to it, and never read `experience-record.md`
-itself — the record deliberately keeps material that must not reach a resume.
+re-interviewing. Never write to it, and never read the record itself —
+`master_profile.json`, or `experience-record.md` in records written before
+0.8.0. The record deliberately keeps material that must not reach a resume.
 
 Two conventions travel with that file:
 
-- **Strip the tags.** `[strong]`, `[moderate]`, `[gap]` and `[public]` record
-  how well a claim holds up and whether it may be used. They are provenance for
-  choosing between claims, never resume text.
+- **Strip the tags.** `[strong]`, `[moderate]`, `[gap]`, `[do-not-claim]` and
+  `[public]` record how well a claim holds up and whether it may be used. They
+  are provenance for choosing between claims, never resume text.
 - **Never take anything from the "Not resume-ready" section.** Those items are
   recorded as unsupported. If a posting calls for one, ask the user for the
   evidence — the "Never fabricate" rule in Step 5 applies unchanged.
