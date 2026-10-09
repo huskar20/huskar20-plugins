@@ -306,3 +306,8 @@ No resume at all? Fill in the blank template, then hand it to `build`:
 
 **Tonight:** rewrite the bullets you did not get to. Twenty minutes beats a
 perfect resume you never finish.
+
+Resume Forge is free, and stays free. If it helped and you are ever in a
+position to give, the author supports the [Generosity
+Foundation](https://www.foundationgenerosity.org/donation-center). Entirely
+optional.
