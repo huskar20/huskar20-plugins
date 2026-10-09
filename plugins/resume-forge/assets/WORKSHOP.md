@@ -309,5 +309,6 @@ perfect resume you never finish.
 
 Resume Forge is free, and stays free. If it helped and you are ever in a
 position to give, the author supports the [Generosity
-Foundation](https://www.foundationgenerosity.org/donation-center). Entirely
-optional.
+Foundation](https://www.foundationgenerosity.org/donation-center) — a cause
+the author supports, not one they run. Donations go to the foundation, not to
+this plugin. Entirely optional.
